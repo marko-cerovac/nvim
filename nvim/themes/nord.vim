@@ -1,17 +1,17 @@
 "   [ Marko Cerovac | Vim/NeoVim | nord theme settings ]
 "
-"         ___           ___     
-"        /\  \         /\__\    
-"       |::\  \       /:/  /    
-"       |:|:\  \     /:/  /     
-"     __|:|\:\  \   /:/  /  ___ 
+"         ___           ___
+"        /\  \         /\__\
+"       |::\  \       /:/  /
+"       |:|:\  \     /:/  /
+"     __|:|\:\  \   /:/  /  ___
 "    /::::|_\:\__\ /:/__/  /\__\
 "    \:\~~\  \/__/ \:\  \ /:/  /
-"     \:\  \        \:\  /:/  / 
-"      \:\  \        \:\/:/  /  
-"       \:\__\        \::/  /   
-"        \/__/         \/__/    
-"  
+"     \:\  \        \:\  /:/  /
+"      \:\  \        \:\/:/  /
+"       \:\__\        \::/  /
+"        \/__/         \/__/
+"
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1				"Enable truecolors
 let g:nord_cursor_line_number_background = 1	"Custom background for line numbers

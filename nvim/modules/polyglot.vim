@@ -1,4 +1,4 @@
-"   [ Marko Cerovac | Vim/NeoVim | space-vim theme settings ]
+"   [ Marko Cerovac | Vim/NeoVim | polyglot settings ]
 "
 "         ___           ___
 "        /\  \         /\__\
@@ -13,6 +13,4 @@
 "        \/__/         \/__/
 "
 
-let g:airline_theme_style = 'kolor'				"Material theme for airline
-
-colorscheme space_vim_theme
+let g:python_highlight_space_errors = 0

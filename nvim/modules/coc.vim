@@ -1,25 +1,28 @@
 "   [ Marko Cerovac | Vim/NeoVim | coc settings ]
 "
-"         ___           ___     
-"        /\  \         /\__\    
-"       |::\  \       /:/  /    
-"       |:|:\  \     /:/  /     
-"     __|:|\:\  \   /:/  /  ___ 
+"         ___           ___
+"        /\  \         /\__\
+"       |::\  \       /:/  /
+"       |:|:\  \     /:/  /
+"     __|:|\:\  \   /:/  /  ___
 "    /::::|_\:\__\ /:/__/  /\__\
 "    \:\~~\  \/__/ \:\  \ /:/  /
-"     \:\  \        \:\  /:/  / 
-"      \:\  \        \:\/:/  /  
-"       \:\__\        \::/  /   
-"        \/__/         \/__/    
-"    
+"     \:\  \        \:\  /:/  /
+"      \:\  \        \:\/:/  /
+"       \:\__\        \::/  /
+"        \/__/         \/__/
+"
 
 "Installed extensions:
 "	coc-calc
 "	coc-clangd
-"	coc-git 
-"	coc-json 
-"	coc-lua 
-"	coc-pairs 
+"	coc-cmake
+"	coc-git
+"	coc-json
+"	coc-lua
+"	coc-marketplace
+"	coc-pairs
+"	coc-sh
 "	coc-snippets
 "	coc-tsserver
 "	coc-vimlsp
@@ -67,8 +70,8 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-"inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -165,7 +168,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <C-e>     :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
