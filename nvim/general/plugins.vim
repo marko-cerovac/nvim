@@ -4,7 +4,7 @@
 "        /\  \         /\__\
 "       |::\  \       /:/  /
 "       |:|:\  \     /:/  /
-"     __|:|\:\  \   /:/  /
+"     __|:|\:\  \   /:/  /  ___
 "    /::::|_\:\__\ /:/__/  /\__\
 "    \:\~~\  \/__/ \:\  \ /:/  /
 "     \:\  \        \:\  /:/  /
@@ -45,9 +45,10 @@ Plug 'ryanoasis/vim-devicons'									"Icons
 Plug 'unblevable/quick-scope'									"Quickscope
 Plug 'honza/vim-snippets'										"Snippets
 Plug 'norcalli/nvim-colorizer.lua'								"Colorizer
+Plug 'liuchengxu/vim-which-key'                                 "Which key
 
 "Uninstaled plugins
 "Plug 'lyuts/vim-rtags'                                         "Rtags for C++
-"Plug 'sheerun/vim-polyglot'										"Polyglot syntax highlighting
+"Plug 'sheerun/vim-polyglot'									"Polyglot syntax highlighting
 
 call plug#end()

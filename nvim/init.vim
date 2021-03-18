@@ -31,5 +31,6 @@
 "source $HOME/.config/nvim/modules/coc.vim					"Coc settings
 "source $HOME/.config/nvim/modules/quickscope.vim			"Quickscope settings
 "source $HOME/.config/nvim/modules/ranger.vim                "Ranger settings
-"luafile $HOME/.config/nvim/lua/treesitter-config.lua
-"luafile $HOME/.config/nvim/lua/colorizer-config.lua
+"source $HOME/.config/nvim/modules/which-key.vim             "Which-key settings
+"lua require('colorizer-config')
+"lua require('treesitter-config')
