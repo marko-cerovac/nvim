@@ -1,5 +1,4 @@
---   [ Marko Cerovac | Vim/NeoVim | nerdtree settings ]
---
+--  [ Marko Cerovac | NeoVim | treesitter settings ]
 --         ___           ___
 --        /\  \         /\__\
 --       |::\  \       /:/  /

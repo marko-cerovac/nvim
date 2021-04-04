@@ -1,0 +1,262 @@
+{
+    "Standard Starter Template": {
+        "prefix": "sst",
+        "body": [
+            "#include <stdio.h>",
+            "",
+            "int main (int argc, char *argv[])",
+            "{",
+            "    $0",
+            "    return 0;",
+            "}"
+        ],
+        "description": "A standard starter template for a C program"
+    },
+    "Stdlib Variant Starter Template": {
+        "prefix": "libsst",
+        "body": [
+            "#include <stdio.h>",
+            "#include <stdlib.h>",
+            "",
+            "int main (int argc, char *argv[])",
+            "{",
+            "   $0",
+            "   return 0;",
+            "}"
+        ],
+        "description": "A standard starter template for a C program with stdlib included"
+    },
+    "Main with args": {
+        "prefix": "main args",
+        "body": [
+            "int main (int argc, char *argv[])",
+            "{",
+            "   $0",
+            "   return 0;",
+            "}"
+        ],
+        "description": "Main function with command line arguments"
+    },
+    "Main without args": {
+        "prefix": "main void",
+        "body": [
+            "int main (void)",
+            "{",
+            "   $0",
+            "   return 0;",
+            "}"
+        ],
+        "description": "Main function without arguments"
+    },
+    "If statement": {
+        "prefix": "if",
+        "body": [
+            "if ($0) {",
+            "   /* code here */ ",
+            "}"
+        ],
+        "description": "Creates an if statement"
+    },
+    "Else if statement": {
+        "prefix": "elif",
+        "body": [
+            "else if ($0) {",
+            "   /* code here */ ",
+            "}"
+        ],
+        "description": "Creates an else if statement"
+    },
+    "Else statement": {
+        "prefix": "else",
+        "body": [
+            "else {",
+            "   $0/* code here */ ",
+            "}"
+        ],
+        "description": "Creates an else statement"
+    },
+    "For loop": {
+        "prefix": "for",
+        "body": [
+            "for (int i = 0; i < $0; i++) {",
+            "   /* code here */ ",
+            "}"
+        ],
+        "description": "Creates a for loop that runs for a certain number if iterations"
+    },
+    "While loop" : {
+        "prefix": "while",
+        "body": [
+            "while ($0) {",
+            "   /* code here */ ",
+            "}"
+        ],
+        "description": "Creates a while loop"
+    },
+    "Do...while loop": {
+        "prefix": "dowhile",
+        "body": [
+            "do {",
+            "   /* code here */ ",
+            "} while($0)"
+        ],
+        "description": "Creates a do...while loop"
+    },
+    "Create single linked list": {
+        "prefix": "linked list single",
+        "body": [
+            "typedef struct _node",
+            "{",
+            "   $0; /* information */",
+            "",
+            "   struct _node* next;",
+            "}NODE;"
+        ],
+        "description": "Creates a linked list template"
+    },
+    "Create double linked list": {
+        "prefix": "linked list double",
+        "body": [
+            "typedef struct _node",
+            "{",
+            "   $0; /* information */",
+            " ",
+            "   struct _node* next;",
+            "   struct _node* prev;",
+            "}NODE;"
+        ],
+        "description": "Creates a linked list template"
+    },
+    "Single linked list allocator": {
+        "prefix": "linked list single allocator",
+        "body": [
+            "// dinamicaly allocate a NODE, return NULL if failed",
+            "NODE* new_node (void)",
+            "{",
+            "   NODE* new = (NODE*)malloc(sizeof(NODE));",
+            "   if (new == NULL) return NULL;",
+            "   else return new;",
+            "}",
+            " ",
+            "// create a NODE and link it, return NULL if failed",
+            "NODE* add_node (NODE** head, $1 /* information value here */ )",
+            "{",
+            "   NODE* new = new_node();",
+            "   if (new == NULL) return NULL;",
+            "   new -> info = $0;",
+            " ",
+            "   if (*head != NULL) new -> next = *head;",
+            "   *head = new;",
+            "   return new;",
+            "}"
+        ],
+        "description": "Create single linked list allocation functions"
+    },
+    "Create int function": {
+        "prefix": "intfunc",
+        "body": [
+            "int $1 () {",
+            "   int $0;",
+            "   return $0;",
+            "}"
+        ],
+        "description": "Creates a function that returns the int type"
+    },
+    "Create float function": {
+        "prefix": "flfunc",
+        "body": [
+            "float $2 () {",
+            "   float $0;",
+            "   return $0;",
+            "}"
+        ],
+        "description": "Creates a function that returns the float type"
+    },
+    "Create double function": {
+        "prefix": "doubfunc",
+        "body": [
+            "double $2 () {",
+            "   double $0;",
+            "   return $0;",
+            "}"
+        ],
+        "description": "Creates a function that returns the double type"
+    },
+    "Create string function": {
+        "prefix": "strfunc",
+        "body": [
+            "char[] $1 () {",
+            "   char[] $0 = {};",
+            "   return $0;",
+            "}"
+        ],
+        "description": "Creates a function that returns the char array type"
+    },
+    "Create long function": {
+        "prefix": "longfunc",
+        "body": [
+            "long $1 () {",
+            "   long $0;",
+            "   return $0;",
+            "}"
+        ],
+        "description": "Creates a function that returns the long type"
+    },
+	"Print text": {
+		"prefix": "printf",
+		"body": [
+			"printf(\"$0\\n\");"
+		],
+		"description": "Print a string to standard output"
+	},
+    "Print variable of type float (2 decimal places)": {
+        "prefix": "pflo",
+        "body": [
+            "printf(\"$0 :>> %.2f\\n\", $0);"
+        ],
+        "description": "Calls printf() to log value of variable of type float rounded to 2 decimal places"
+    },
+    "Print variable of type integer": {
+        "prefix": "pint",
+        "body": [
+            "printf(\"$0 :>> %d\\n\", $0);"
+        ],
+        "description": "Calls printf() to log value of variable of type signed integer"
+    },
+    "Print variable of type char": {
+        "prefix": "pcha",
+        "body": [
+            "printf(\"$0 :>> %c\\n\", $0);"
+        ],
+        "description": "Calls printf() to log value of variable of type char"
+    },
+    "Print variable of type pointer": {
+        "prefix": "ppoint",
+        "body": [
+            "printf(\"$0 :>> %p\\n\", (void *) $0);"
+        ],
+        "description": "Calls printf() to log value of variable of type pointer"
+    },
+    "Print variable of type size_t": {
+        "prefix": "psiz",
+        "body": [
+            "printf(\"$0 :>> %zu\\n\", $0);"
+        ],
+        "description": "Calls printf() to log value of variable of type size_t"
+    },
+    "Allocate memory using calloc": {
+        "prefix": "cal",
+        "body": [
+            "$1*ptr = ($1*)calloc($2, sizeof($1));",
+            "",
+            "if (ptr == NULL)",
+            "{",
+            "  printf(\"Memory allocation failed!\\n\");",
+            "  exit(0);",
+            "}",
+            "",
+            "free(ptr);"
+        ],
+        "description": "Allocates memory to a pointer variable using calloc(), then deallocates using free()."
+    }
+}
