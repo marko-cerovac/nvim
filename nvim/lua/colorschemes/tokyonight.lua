@@ -7,22 +7,12 @@
 --   \:\~~\  \/__/ \:\  \ /:/  /
 --    \:\  \        \:\  /:/  /    Group: NeoVim
 --     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
---      \:\__\        \::/  /      File: material.lua
---       \/__/         \/__/       Desc: material theme settings
+--      \:\__\        \::/  /      File: tokyonight.lua
+--       \/__/         \/__/       Desc: tokyonight theme settings
 
 
-vim.g.material_italic_comments = false
+vim.g.tokyonight_style = 'storm'
+vim.g.tokyonight_dark_sidebar = true
+vim.g.tokyonight_dark_float = true
 
-vim.g.material_italic_keywords = true
-
-vim.g.material_italic_functions = true
-
-vim.g.material_italic_variables = false
-
-vim.g.material_contrast = true
-
-vim.g.material_borders = false
-
-vim.g.material_style = 'deep ocean'
-
-require('material').set()
+vim.cmd[[colorscheme tokyonight]]

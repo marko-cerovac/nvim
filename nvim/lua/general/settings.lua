@@ -1,16 +1,15 @@
---  [ Marko Cerovac | NeoVim | general settings ]
---         ___           ___
---        /\  \         /\__\
---       |::\  \       /:/  /
---       |:|:\  \     /:/  /
---     __|:|\:\  \   /:/  /  ___
---    /::::|_\:\__\ /:/__/  /\__\
---    \:\~~\  \/__/ \:\  \ /:/  /
---     \:\  \        \:\  /:/  /
---      \:\  \        \:\/:/  /
---       \:\__\        \::/  /
---        \/__/         \/__/
---
+--        ___           ___
+--       /\  \         /\__\       Marko Cerovac
+--      |::\  \       /:/  /       marko.cerovac16@gmail.com
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--    __|:|\:\  \   /:/  /  ___
+--   /::::|_\:\__\ /:/__/  /\__\
+--   \:\~~\  \/__/ \:\  \ /:/  /
+--    \:\  \        \:\  /:/  /    Group: NeoVim
+--     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
+--      \:\__\        \::/  /      File: settings.lua
+--       \/__/         \/__/       Desc: global settings
+
 
 vim.o.hidden = true
 vim.o.swapfile = false
@@ -32,7 +31,7 @@ vim.bo.smartindent = true
 vim.o.autoindent = true
 vim.o.smartcase = true
 
-vim.cmd('set colorcolumn=9999')
+vim.cmd('set colorcolumn=999')
 vim.wo.number = true
 vim.wo.wrap = false
 vim.wo.cursorline = true

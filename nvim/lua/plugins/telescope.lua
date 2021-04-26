@@ -1,3 +1,16 @@
+--        ___           ___
+--       /\  \         /\__\       Marko Cerovac
+--      |::\  \       /:/  /       marko.cerovac16@gmail.com
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--    __|:|\:\  \   /:/  /  ___
+--   /::::|_\:\__\ /:/__/  /\__\
+--   \:\~~\  \/__/ \:\  \ /:/  /
+--    \:\  \        \:\  /:/  /    Group: NeoVim
+--     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
+--      \:\__\        \::/  /      File: plugins/telescope.lua
+--       \/__/         \/__/       Desc: telescope settings
+
+
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -69,7 +82,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gc', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<Leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<Leader>gv', [[<cmd>lua require('modules/telescope').neovim_rc()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gv', [[<cmd>lua require('plugins.telescope').neovim_rc()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fm', [[<cmd>lua require('telescope.builtin').keymaps()<CR>]], { noremap = true, silent = true })
 
 -- Default mappings:
@@ -84,3 +97,14 @@ vim.api.nvim_set_keymap('n', '<Leader>fm', [[<cmd>lua require('telescope.builtin
 --  <C-d>	            scroll down in preview window
 --  <C-c>	            close telescope
 --  <Esc>	            close telescope (in normal mode)
+
+local neovim_rc = function ()
+    require("telescope.builtin").find_files({
+        prompt_title = "NeoVimRC",
+        cwd = "~/.config/nvim/",
+    })
+end
+
+return {
+    neovim_rc = neovim_rc
+}

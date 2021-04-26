@@ -14,4 +14,4 @@
          \:\__\        \::/  /
           \/__/         \/__/
           
-Config files for my neovim setup
+![screen](media/mc-neovim.png)

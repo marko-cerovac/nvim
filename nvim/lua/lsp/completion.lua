@@ -1,16 +1,15 @@
---  [ Marko Cerovac | NeoVim | LSP completion settings ]
---         ___           ___
---        /\  \         /\__\
---       |::\  \       /:/  /
---       |:|:\  \     /:/  /
---     __|:|\:\  \   /:/  /  ___
---    /::::|_\:\__\ /:/__/  /\__\
---    \:\~~\  \/__/ \:\  \ /:/  /
---     \:\  \        \:\  /:/  /
---      \:\  \        \:\/:/  /
---       \:\__\        \::/  /
---        \/__/         \/__/
---
+--        ___           ___
+--       /\  \         /\__\       Marko Cerovac
+--      |::\  \       /:/  /       marko.cerovac16@gmail.com
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--    __|:|\:\  \   /:/  /  ___
+--   /::::|_\:\__\ /:/__/  /\__\
+--   \:\~~\  \/__/ \:\  \ /:/  /
+--    \:\  \        \:\  /:/  /    Group: NeoVim
+--     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
+--      \:\__\        \::/  /      File: lsp/completion.lua
+--       \/__/         \/__/       Desc: lsp completion settings
+
 
 vim.o.completeopt = "menuone,noselect"
 local npairs = require('nvim-autopairs')
@@ -99,6 +98,36 @@ _G.completion_confirm=function()
   end
 end
 
+-- Plugin: onsails/lspkind-nvim
+require('lspkind').init({
+    with_text = false,
+    symbol_map = {
+      Text = '  ',
+      Method = '  ',
+      Function = '  ',
+      Constructor = '  ',
+      Variable = '[]',
+      Class = '  ',
+      Interface = ' 蘒',
+      Module = '  ',
+      Property = '  ',
+      Unit = ' 塞 ',
+      Value = '  ',
+      Enum = ' 練',
+      Keyword = '  ',
+      Snippet = '  ',
+      Color = '',
+      File = '',
+      Folder = ' ﱮ ',
+      EnumMember = '  ',
+      Constant = '  ',
+      Struct = '  '
+    },
+})
+
+-- Set snippet directory
+vim.g.vsnip_snippet_dir = "$HOME/.config/nvim/snippets"
+
 -- Set Tab and Shift + Tab key mappings
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
@@ -110,3 +139,7 @@ vim.api.nvim_set_keymap('i' , '<CR>','v:lua.completion_confirm()', {expr = true 
 vim.api.nvim_set_keymap("i", "<C-e>", [[compe#close('<C-e>')]], {silent = true, expr = true})
 vim.api.nvim_set_keymap("i", "<C-f>", [[compe#scroll({ 'delta': +4 })]], {silent = true, expr = true})
 vim.api.nvim_set_keymap("i", "<C-d>", [[compe#scroll({ 'delta': -4 })]], {silent = true, expr = true})
+
+-- Snippets
+vim.api.nvim_set_keymap('i', '<C-j>', [[vsnip#expandable() ? '<Plug>(vsnip-expand)'     : '<C-j>']], {expr = true})
+vim.api.nvim_set_keymap('s', '<C-j>', [[vsnip#expandable() ? '<Plug>(vsnip-expand)'     : '<C-j>']], {expr = true})

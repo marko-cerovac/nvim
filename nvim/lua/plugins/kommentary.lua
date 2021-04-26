@@ -1,16 +1,14 @@
---  [ Marko Cerovac | NeoVim | kommentary settings ]
---         ___           ___
---        /\  \         /\__\
---       |::\  \       /:/  /
---       |:|:\  \     /:/  /
---     __|:|\:\  \   /:/  /  ___
---    /::::|_\:\__\ /:/__/  /\__\
---    \:\~~\  \/__/ \:\  \ /:/  /
---     \:\  \        \:\  /:/  /
---      \:\  \        \:\/:/  /
---       \:\__\        \::/  /
---        \/__/         \/__/
---
+--        ___           ___
+--       /\  \         /\__\       Marko Cerovac
+--      |::\  \       /:/  /       marko.cerovac16@gmail.com
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--    __|:|\:\  \   /:/  /  ___
+--   /::::|_\:\__\ /:/__/  /\__\
+--   \:\~~\  \/__/ \:\  \ /:/  /
+--    \:\  \        \:\  /:/  /    Group: NeoVim
+--     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
+--      \:\__\        \::/  /      File: plugins/kommentary.lua
+--       \/__/         \/__/       Desc: kommentary settings
 
 
 require('kommentary.config').use_extended_mappings()
@@ -25,7 +23,7 @@ require('kommentary.config').configure_language("default", {
 })
 
 -- Key mappings
---vim.api.nvim_set_keymap("n", "<leader>kk", "<Plug>kommentary_line_default", {})
+vim.api.nvim_set_keymap("n", "<leader>kl", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "<leader>k", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("v", "<leader>k", "<Plug>kommentary_visual_default", {})
 

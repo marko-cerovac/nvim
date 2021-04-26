@@ -1,27 +1,19 @@
---  [ Marko Cerovac | NeoVim | key mappings ]
---         ___           ___
---        /\  \         /\__\
---       |::\  \       /:/  /
---       |:|:\  \     /:/  /
---     __|:|\:\  \   /:/  /  ___
---    /::::|_\:\__\ /:/__/  /\__\
---    \:\~~\  \/__/ \:\  \ /:/  /
---     \:\  \        \:\  /:/  /
---      \:\  \        \:\/:/  /
---       \:\__\        \::/  /
---        \/__/         \/__/
---
+--        ___           ___
+--       /\  \         /\__\       Marko Cerovac
+--      |::\  \       /:/  /       marko.cerovac16@gmail.com
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--    __|:|\:\  \   /:/  /  ___
+--   /::::|_\:\__\ /:/__/  /\__\
+--   \:\~~\  \/__/ \:\  \ /:/  /
+--    \:\  \        \:\  /:/  /    Group: NeoVim
+--     \:\  \        \:\/:/  /     Origin: github.com/marko-cerovac/mc-neovim
+--      \:\__\        \::/  /      File: mappings.lua
+--       \/__/         \/__/       Desc: global mappings
+
 
 -- Map leader to Space
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
-
--- Temporary: map 'e' to open built-in explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
--- Temporary: map 'nh' to open remove search highlight
---vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>h', ':noh<CR>', { noremap = true, silent = true })
 
 -- Window navigation
 vim.api.nvim_set_keymap('n', '<M-j>', '<C-w>j', { silent = true })
@@ -43,9 +35,19 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', 'jf', '<Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 
+-- Remove search highlight
+vim.api.nvim_set_keymap('n', '<Leader>sh', [[<cmd>noh<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>h', [[<cmd>noh<CR>]], { noremap = true, silent = true })
+
 -- Open terminal
 vim.api.nvim_set_keymap('n', '<Leader>v', ':vertical new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>tv', ':vertical new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ts', ':split new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>tt', ':tab new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Toggle settings
+vim.api.nvim_set_keymap('n', '<Leader>sn', [[<Cmd>lua require("general/functions").number()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>sr', [[<Cmd>lua require("general/functions").relative_number()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>sc', [[<cmd>lua require("general/functions").cursor_line()<CR>]], { noremap = true, silent = true })
+
