@@ -39,9 +39,12 @@ vim.o.incsearch = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.updatetime = 300
-vim.o.timeoutlen = 1000
+vim.o.timeoutlen = 300
+vim.o.mouse = "a"
+vim.o.showmode = false
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.o.guifont = "Sauce Code Pro Nerd Font"
+vim.o.completeopt = "menuone,noselect"
 vim.o.pumheight = 10

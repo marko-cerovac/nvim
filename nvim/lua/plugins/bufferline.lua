@@ -39,3 +39,5 @@ require'bufferline'.setup{
 
 vim.api.nvim_set_keymap('n', '[b', '<cmd>BufferLineCycleNext<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'b]', '<cmd>BufferLineCyclePrev<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', 'gb', '<cmd>BufferLineCycleNext<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', 'gB', '<cmd>BufferLineCyclePrev<CR>', { silent = true, noremap = true })

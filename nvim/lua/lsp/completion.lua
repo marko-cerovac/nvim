@@ -27,7 +27,7 @@ require'compe'.setup {
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = false;
+  documentation = true;
 
   source = {
     path = true;
@@ -37,7 +37,7 @@ require'compe'.setup {
     nvim_lsp = true;
     nvim_lua = true;
     spell = true;
-    tags = false;
+    tags = true;
     treesitter = false;
     snippets_nvim = false;
   };
@@ -103,9 +103,10 @@ require('lspkind').init({
     with_text = false,
     symbol_map = {
       Text = '  ',
-      Method = '  ',
+      -- Method = '  ',
+      Method = '  ',
       Function = '  ',
-      Constructor = '  ',
+      Constructor = '  ',
       Variable = '[]',
       Class = '  ',
       Interface = ' 蘒',

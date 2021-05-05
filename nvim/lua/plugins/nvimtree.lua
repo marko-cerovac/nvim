@@ -21,7 +21,7 @@ vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_special_files = { 'README.md', 'Makefile', 'MAKEFILE' }
 
 vim.g.nvim_tree_show_icons = {
-    git = 1,
+    git = 0,
     folders = 1,
     files = 1
 }
@@ -47,10 +47,10 @@ vim.g.nvim_tree_icons = {
         symlink_open = "",
     },
     lsp = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
+        hint = " ",
+        info = " ",
+        warning = " ",
+        error = "﯇ ",
     }
 }
 

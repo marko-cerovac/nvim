@@ -25,11 +25,12 @@ vim.api.nvim_set_keymap('n', 'gs', [[:lua require('lspsaga.signaturehelp').signa
 vim.api.nvim_set_keymap('n', 'gh', [[:lua require'lspsaga.provider'.lsp_finder()<CR>]], { noremap = true, silent = true })
 
 -- Diagnostics
-vim.api.nvim_set_keymap('n', '<Leader>cd', [[:lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[e', [[:lua require'lspsaga.diagnostic'.lsp_jump_diagnistic_prev()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']e', [[:lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", '<leader>cd', "<cmd>LspTroubleToggle<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>cl', [[:lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[c', [[:lua require'lspsaga.diagnostic'.lsp_jump_diagnistic_prev()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']c', [[:lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ct', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', { noremap = true, silent = true })
 
 -- Hover
 vim.api.nvim_set_keymap('n', 'K', [[:lua require('lspsaga.hover').render_hover_doc()<CR>]], { noremap = true, silent = true })
@@ -45,9 +46,9 @@ vim.api.nvim_set_keymap('v', '<leader>ca', [[:<C-U>lua require('lspsaga.codeacti
 vim.api.nvim_set_keymap('n', '<Leader>cr', [[:lua require('lspsaga.rename').rename()<CR>]], { noremap = true, silent = true })
 
 -- Add to workspace
-vim.api.nvim_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>da', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>dr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>dl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { noremap = true, silent = true})
 
 local on_attach = function(client, bufnr)
 

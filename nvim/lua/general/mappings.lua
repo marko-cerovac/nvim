@@ -20,12 +20,18 @@ vim.api.nvim_set_keymap('n', '<M-j>', '<C-w>j', { silent = true })
 vim.api.nvim_set_keymap('n', '<M-k>', '<C-w>k', { silent = true })
 vim.api.nvim_set_keymap('n', '<M-h>', '<C-w>h', { silent = true })
 vim.api.nvim_set_keymap('n', '<M-l>', '<C-w>l', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>wr', '<C-w><C-r>', { noremap = true, silent = true })
 
 -- Window resizing
 vim.api.nvim_set_keymap('n', '<C-j>', ':resize -2<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-k>', ':resize +2<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-h>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+
+-- Window splitting
+vim.api.nvim_set_keymap('n', '<leader>ws', ':split<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>wv', ':vertical split<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>wt', ':tab split<CR>', { noremap = true, silent = true })
 
 -- Indent selected lines
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
@@ -45,6 +51,9 @@ vim.api.nvim_set_keymap('n', '<Leader>tv', ':vertical new<CR>:terminal<CR>', { n
 vim.api.nvim_set_keymap('n', '<Leader>ts', ':split new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>tt', ':tab new<CR>:terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Compile code
+vim.api.nvim_set_keymap('n', '<Leader>cc', ':make<CR>', { noremap = true, silent = true })
 
 -- Toggle settings
 vim.api.nvim_set_keymap('n', '<Leader>sn', [[<Cmd>lua require("general/functions").number()<CR>]], { noremap = true, silent = true })

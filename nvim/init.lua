@@ -12,28 +12,30 @@
 
 
 -- General settings
-require('general/settings')
-require('general/mappings')
+-- require('general/settings')
+-- require('general/mappings')
 
 -- Colorschemes
-require('colorschemes/material')
+-- require('colorschemes/material')
 --require('colorschemes/tokyonight')
 
 -- Plugins
-require('plugins')
-require('plugins/treesitter')
-require('plugins/nvimtree')
-require('plugins/statusline')
-require('plugins/bufferline')
-require('plugins/git')
-require('plugins/indentline')
-require('plugins/telescope')
-require('plugins/autopairs')
-require('plugins/kommentary')
-require('plugins/colorizer')
+-- require('plugins')
+-- require('plugins/treesitter')
+-- require('plugins/nvimtree')
+-- require('plugins/statusline')
+-- require('plugins/bufferline')
+-- require('plugins/git')
+-- require('plugins/whichkey')
+-- require('plugins/indentline')
+-- require('plugins/telescope')
+-- require('plugins/autopairs')
+-- require('plugins/kommentary')
+-- require('plugins/colorizer')
+-- require('plugins/startscreen')
 
 -- Lsp settings
-require('lsp')
-require('lsp/completion')
-require('lsp/ui')
-require('lsp/lua-ls')
+-- require('lsp')
+-- require('lsp/completion')
+-- require('lsp/ui')
+-- require('lsp/lua-ls')

@@ -33,6 +33,10 @@ return require('packer').startup(function (use)
     use 'hrsh7th/nvim-compe'                                            -- Lsp completion
     use 'glepnir/lspsaga.nvim'                                          -- Lsp UI
     use 'onsails/lspkind-nvim'                                          -- Lsp icons
+    use {
+        'folke/lsp-trouble.nvim',                                       -- Lsp trouble
+        requires = 'kyazdani42/nvim-web-devicons'
+    }
 
     -- Snippets
     use 'hrsh7th/vim-vsnip'                                             -- Lsp snippets
@@ -75,6 +79,9 @@ return require('packer').startup(function (use)
         requires = 'nvim-lua/plenary.nvim'
     }
 
+    -- Which key
+    use 'folke/which-key.nvim'                                          -- Which key
+
     -- Indent lines
     use {
         'lukas-reineke/indent-blankline.nvim',                          -- Code indent lines
@@ -97,4 +104,8 @@ return require('packer').startup(function (use)
       }
     }
 
+    -- Start screen
+    use {
+        'glepnir/dashboard-nvim',                                        -- Start screen
+    }
 end)

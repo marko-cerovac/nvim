@@ -71,6 +71,10 @@ end
 time("try_loadstring definition", false)
 time("Defining packer_plugins", true)
 _G.packer_plugins = {
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/marko/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/marko/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
@@ -82,6 +86,10 @@ _G.packer_plugins = {
   kommentary = {
     loaded = true,
     path = "/home/marko/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["lsp-trouble.nvim"] = {
+    loaded = true,
+    path = "/home/marko/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -163,6 +171,10 @@ _G.packer_plugins = {
   ["vim-vsnip-integ"] = {
     loaded = true,
     path = "/home/marko/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/marko/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
