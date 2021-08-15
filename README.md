@@ -21,7 +21,3 @@
 --                                                                
 --                          N E O V I M                           
 ```
-          
-![screen](media/startscreen.png)
-![screen](media/editor.png)
-![screen](media/telescope.png)
