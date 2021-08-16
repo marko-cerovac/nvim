@@ -1,4 +1,4 @@
-# neovim-config
+# 🔱 NeoVim-config
 
 My NeoVim config written in lua.
 
