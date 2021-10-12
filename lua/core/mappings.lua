@@ -1,4 +1,4 @@
-local map = require('functions').map
+local map = require('core.functions').map
 
 -- Map leader to Space
 map('n', '<Space>', '<NOP>')
@@ -25,10 +25,10 @@ map('n', '<leader>wt', ':tab split<CR>')
 map('n', '<leader>wr', '<C-w><C-r>')
 
 -- Switching buffers
-map('n', '<TAB>', ':bnext<CR>')
-map('n', '<S-TAB>', ':bprevious<CR>')
-map('n', 'gb', ':bnext<CR>')
-map('n', 'gB', ':bprevious<CR>')
+-- map('n', '<TAB>', ':bnext<CR>')
+-- map('n', '<S-TAB>', ':bprevious<CR>')
+-- map('n', 'gb', ':bnext<CR>')
+-- map('n', 'gB', ':bprevious<CR>')
 
 -- Indenting lines
 map('v', '<', '<gv')
@@ -43,9 +43,6 @@ map('i', 'jj', '<Esc>')
 map('n', '<leader>sh', ':noh<CR>')
 map('n', '<leader>h', ':noh<CR>')
 
--- Improved yanking
-map('n', 'Y', 'y$')
-
 -- Opening terminal
 map('n', '<leader>v', ':vertical new<CR>:terminal<CR>')
 map('n', '<leader>tv', ':vertical new<CR>:terminal<CR>')
@@ -57,10 +54,10 @@ map('t', '<Esc>', '<C-\\><C-n>')
 map('n', '<leader>cc', ':make<CR>')
 
 -- Toggling settings
-map('n', '<leader>sn', [[:lua require('functions').number()<CR>]])
-map('n', '<leader>sr', [[:lua require('functions').relative_number()<CR>]])
-map('n', '<leader>sc', [[:lua require('functions').cursor_line()<CR>]])
-map('n', '<leader>sm', [[:lua require('functions').mouse()<CR>]])
+map('n', '<leader>sn', [[:lua require('core.functions').number()<CR>]])
+map('n', '<leader>sr', [[:lua require('core.functions').relative_number()<CR>]])
+map('n', '<leader>sc', [[:lua require('core.functions').cursor_line()<CR>]])
+map('n', '<leader>sm', [[:lua require('core.functions').mouse()<CR>]])
 
 -- Toggle Nvim-Tree
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
@@ -85,10 +82,10 @@ map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR
 map('n', '<leader>gi', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
 
 -- Telescope NeoVim rc
-map('n', '<leader>fs', [[<cmd>lua require('plugins.telescope').neovim_rc()<CR>]])
+map('n', '<leader>fs', [[<cmd>lua require('plugins.configs.telescope').neovim_rc()<CR>]])
 
 -- Toggle indent line
-map('n', '<Leader>si', '<Cmd>IndentBlanklineToggle<CR>')
+-- map('n', '<leader>si', [[<Cmd>IndentBlanklineToggle<CR>]])
 
 -- Disable kommentary mappings
 vim.g.kommentary_create_default_mappings = false

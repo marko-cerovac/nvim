@@ -22,7 +22,7 @@ wk.setup {
       group = " ", -- symbol prepended to a group
     },
     window = {
-      border = "none", -- none, single, double, shadow
+      border = "rounded", -- none, single, double, shadow
       position = "bottom", -- bottom, top
       margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
       padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -30,10 +30,11 @@ wk.setup {
     layout = {
       height = { min = 3, max = 25 }, -- min and max height of the columns
       width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 5, -- spacing between columns
+      spacing = 18, -- spacing between columns
     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-    show_help = true -- show help message on the command line when the popup is visible
+    show_help = true, -- show help message on the command line when the popup is visible
+	ignore_missing = true
 }
 
 -- Key mappings
@@ -56,6 +57,13 @@ wk.register({
 	["gr"] = "go-to references",
 })
 
+-- Ignore escape remaps
+wk.register({
+	["fj"] = "which_key_ignore",
+	["jf"] = "which_key_ignore",
+	["jj"] = "which_key_ignore",
+}, {mode = 'i'})
+
 -- Code
 wk.register({
 	c = {
@@ -72,6 +80,19 @@ wk.register({
 		q = "set location list"
 	}
 }, { prefix = "<leader>" })
+
+-- Buffers
+wk.register({
+	b = {
+		name = 'buffer',
+		l = 'move buffer right',
+		h = 'move buffer left',
+		e = 'sort by extension',
+		d = 'sort by directory',
+		g = 'go to buffer',
+		x = 'select to close',
+	}
+}, { prefix = '<leader>'})
 
 -- Git
 wk.register({
@@ -108,8 +129,9 @@ wk.register({
         r = "set relative numbers",
         c = "set cursorline",
         i = "set indentline",
+		m = "set mouse",
         -- h = "set highlights",
-        m = "toggle material style"
+        s = "toggle material style"
     }
 }, { prefix = "<leader>" })
 

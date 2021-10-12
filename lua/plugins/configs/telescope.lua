@@ -1,5 +1,3 @@
-local map = require('functions').map
-
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {

@@ -27,15 +27,15 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', options)
     buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
     buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', options)
-    buf_set_keymap('n', '[c', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
-    buf_set_keymap('n', ']c', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
+    buf_set_keymap('n', '[c', '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts={border="rounded"}})<CR>', options)
+    buf_set_keymap('n', ']c', '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts={border="rounded"}})<CR>', options)
     buf_set_keymap('n', '<leader>cq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', options)
     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
     buf_set_keymap("v", "<leader>cf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", options)
 
 	-- Rounded hover borders
-	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = require('lsp.border')})
-	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = require('lsp.border')})
+	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'})
+	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'})
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -50,7 +50,9 @@ local on_attach = function(client, bufnr)
 end
 
 -- Enable code snippets
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Define signs

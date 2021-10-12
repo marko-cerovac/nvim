@@ -19,7 +19,7 @@ return packer.startup(
 			'nvim-treesitter/nvim-treesitter',
 			-- run = ':TSUpdate',
             config = function ()
-                require 'plugins.treesitter'
+                require 'plugins.configs.treesitter'
             end
 		}
 
@@ -41,18 +41,27 @@ return packer.startup(
         }
 
 		-- Completion engine
-        use {
-            'hrsh7th/nvim-compe',
-            event = 'InsertEnter',
-            config = function()
-                require 'lsp.compe'
-            end,
-        }
+		use {
+			'hrsh7th/nvim-cmp',
+			requires = {
+				'hrsh7th/cmp-nvim-lsp',
+				'hrsh7th/cmp-buffer',
+				'hrsh7th/cmp-nvim-lua',
+				'hrsh7th/cmp-path',
+				'hrsh7th/cmp-calc',
+				'L3MON4D3/LuaSnip',
+				'saadparwaiz1/cmp_luasnip'
+			},
+			config = function()
+				require 'lsp.completion'
+				require 'lsp.snippets'
+			end,
+		}
 
 		-- Completion symbols
         use {
             'onsails/lspkind-nvim',
-            after = 'nvim-compe',
+            after = 'nvim-cmp',
             config = function()
                 require 'lsp.lspkind'
             end
@@ -61,22 +70,12 @@ return packer.startup(
 		-- Lsp Diagnostics
 		use {
 			'folke/lsp-trouble.nvim',
-			after = 'nvim-lspconfig',
+			keys = { '<leader>cd' },
+			-- after = 'nvim-lspconfig',
 			requires = 'kyazdani42/nvim-web-devicons',
             config = function ()
                 require 'lsp.lsptrouble'
             end
-		}
-
-		-- Snippets
-		use {
-			'hrsh7th/vim-vsnip',
-            event = 'InsertCharPre'
-		}
-		use {
-			'hrsh7th/vim-vsnip-integ',
-			requires = 'vim-vsnip',
-            event = 'InsertCharPre'
 		}
 
 		-- Debugg adapter protocol
@@ -103,9 +102,9 @@ return packer.startup(
 		-- Autopairs
         use {
             'windwp/nvim-autopairs',
-            after = 'nvim-compe',
+			event = 'InsertEnter',
             config = function()
-                require 'plugins.autopairs'
+                require 'plugins.configs.autopairs'
             end,
         }
 
@@ -116,16 +115,34 @@ return packer.startup(
             event = 'BufWinEnter',
             -- event = 'BufRead',
             config = function ()
-                require 'plugins.lualine'
+                require 'plugins.configs.lualine'
             end
+		}
+
+		-- Buffer line
+		use {
+			'akinsho/bufferline.nvim',
+			requires = 'kyazdani42/nvim-web-devicons',
+			event = 'BufAdd',
+			config = function ()
+				require 'plugins.configs.bufferline'
+			end
 		}
 
 		-- Which key
 		use {
 			'folke/which-key.nvim',
-			event = 'BufWinEnter',
+			keys = {
+				'<leader>',
+				'g',
+				'd',
+				'c',
+				'y',
+				'v'
+			},
+			-- event = 'BufWinEnter',
 			config = function()
-				require'plugins.whichkey'
+				require'plugins.configs.whichkey'
 			end
 		}
 
@@ -142,7 +159,7 @@ return packer.startup(
 			-- event = 'VimEnter',
             cmd = 'NvimTreeToggle',
             config = function()
-                require 'plugins.nvim-tree'
+                require 'plugins.configs.nvim-tree'
             end
         }
 
@@ -157,7 +174,7 @@ return packer.startup(
 			},
             event = 'UIEnter',
             config = function()
-                require 'plugins.telescope'
+                require 'plugins.configs.telescope'
             end
         }
 
@@ -166,7 +183,7 @@ return packer.startup(
             'lewis6991/gitsigns.nvim',
             event = 'BufRead',
             config = function()
-                require 'plugins.gitsigns'
+                require 'plugins.configs.gitsigns'
             end
         }
 
@@ -176,35 +193,43 @@ return packer.startup(
 			requires = 'nvim-lua/plenary.nvim',
 			cmd = 'Neogit',
             config = function()
-                require 'plugins.neogit'
+                require 'plugins.configs.neogit'
             end
 		}
 
 		-- Startscreen
         use {
             'glepnir/dashboard-nvim',
-			event = 'VimEnter',
-			-- event = 'UIEnter',
+            -- event = 'UIEnter',
             setup = function()
-                require 'plugins.dashboard'
+                require 'plugins.configs.dashboard'
             end
         }
 
 		-- Indent line
         use {
             'lukas-reineke/indent-blankline.nvim',
-            event = 'BufRead',
-            setup = function()
-                require'plugins.indent-blankline'
+			keys = { '<leader>si' },
+			--[[ cmd = {
+				'IndentBlanklineEnable',
+				'IndentBlanklineToggle',
+			}, ]]
+            config = function()
+                require'plugins.configs.indent-blankline'
             end
         }
 
 		-- Commenting
 		use {
 			'b3nj5m1n/kommentary',
-			event = 'BufRead',
+			keys = { '<leader>k' },
+			-- event = 'BufRead',
+			setup = function ()
+				-- Disable kommentary mappings
+				vim.g.kommentary_create_default_mappings = false
+			end,
 			config = function()
-				require'plugins.kommentary'
+				require'plugins.configs.kommentary'
 			end
 		}
 
@@ -216,17 +241,20 @@ return packer.startup(
                 'ColorizerToggle'
             },
             config = function ()
-              require'plugins.colorizer'
+              require'plugins.configs.colorizer'
             end
 		}
 
 		-- Org mode
-		use {
+		--[[ use {
 			'vhyrro/neorg',
 			ft = 'norg',
-			requires = 'nvim-lua/plenary.nvim',
+			requires = {
+				'nvim-lua/plenary.nvim',
+				'hrsh7th/nvim-cmp',
+			},
             config = function ()
-                require'plugins.neorg'
+                require'plugins.configs.neorg'
             end
-		}
+		} ]]
 	end)

@@ -24,7 +24,7 @@ vim.g.dashboard_custom_header = {
     [[        \/__/                                          \/__/      ]],
     [[                                                                  ]],
     [[                                                                  ]],
-    [[                            N E O V I M                          ]]
+    [[                            N E O V I M                           ]]
 }
 
 -- vim.g.dashboard_disable_statusline = 1
@@ -39,9 +39,9 @@ vim.g.dashboard_custom_section = {
     c = {
             description = {'  Recently Used Files               Leader f r'},
             command = 'Telescope oldfiles'},
-    d = {
+    --[[ d = {
             description = {'  Load Last Session                 Leader w l'},
-            command = 'SessionLoad'},
+            command = 'SessionLoad'}, ]]
     e = {
             description = {'  Find Word                         Leader f g'},
             command = 'Telescope live_grep'},
@@ -53,7 +53,7 @@ vim.g.dashboard_custom_section = {
             command = 'Telescope colorscheme'}, ]]
     h = {
             description = {'  Settings                          Leader f s'},
-            command = [[lua require('plugins.telescope').neovim_rc()]]},
+            command = [[lua require('plugins.configs.telescope').neovim_rc()]]},
     i = {
             description = {'  Quit                                        '},
             command = 'q!'}
