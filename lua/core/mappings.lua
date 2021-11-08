@@ -24,9 +24,15 @@ map('n', '<leader>wt', ':tab split<CR>')
 -- Window rotating
 map('n', '<leader>wr', '<C-w><C-r>')
 
+-- Window moving
+map('n', '<leader>wh', '<C-w>H')
+map('n', '<leader>wj', '<C-w>J')
+map('n', '<leader>wk', '<C-w>K')
+map('n', '<leader>wl', '<C-w>L')
+
 -- Switching buffers
--- map('n', '<TAB>', ':bnext<CR>')
--- map('n', '<S-TAB>', ':bprevious<CR>')
+map('n', '<TAB>', ':bnext<CR>')
+map('n', '<S-TAB>', ':bprevious<CR>')
 -- map('n', 'gb', ':bnext<CR>')
 -- map('n', 'gB', ':bprevious<CR>')
 
@@ -62,27 +68,30 @@ map('n', '<leader>sm', [[:lua require('core.functions').mouse()<CR>]])
 -- Toggle Nvim-Tree
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
+-- Debugg
+-- map('n', '<leader>d', ':lua require("plugins.configs.termdebug")<CR>')
+
 -- Telescope finder
-map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-map('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]])
-map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-map('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]])
-map('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').vim_options()<CR>]])
-map('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
-map('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').man_pages()<CR>]])
-map('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').colorscheme()<CR>]])
+-- map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
+-- map('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]])
+-- map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+-- map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+-- map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+-- map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+-- map('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]])
+-- map('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').vim_options()<CR>]])
+-- map('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+-- map('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').man_pages()<CR>]])
+-- map('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').colorscheme()<CR>]])
 
 -- Telescope git
-map('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
-map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
-map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-map('n', '<leader>gi', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
+-- map('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
+-- map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
+-- map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
+-- map('n', '<leader>gi', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
 
 -- Telescope NeoVim rc
-map('n', '<leader>fs', [[<cmd>lua require('plugins.configs.telescope').neovim_rc()<CR>]])
+-- map('n', '<leader>fs', [[<cmd>lua require('plugins.configs.telescope').neovim_rc()<CR>]])
 
 -- Toggle indent line
 -- map('n', '<leader>si', [[<Cmd>IndentBlanklineToggle<CR>]])

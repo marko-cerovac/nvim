@@ -17,10 +17,9 @@ if not vim.g.vscode then
 	require('core.mappings')
 
 	-- Plugins
-	require('plugins')
-	require('core.colorscheme')
+	require('core.plugins')
 
 	-- UI
-	require('ui.neovide')
+	-- require('ui.neovide')
 
 end

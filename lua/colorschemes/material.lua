@@ -17,8 +17,8 @@ require('material').setup({
 		"qf",
 		"dapui_scopes",
 		"dapui_breakpoints",
-		"dapui_stacks",
-		"dapui_watches"
+		"dapui_watches",
+		"dapui_stacks"
 	},
 	disable = {
 		background = false,
@@ -31,4 +31,4 @@ require('material').setup({
 vim.api.nvim_set_keymap('n', '<leader>ss', ':lua require("material.functions").toggle_style()<CR>', { noremap = true, silent = true })
 
 -- Enable the colorscheme
-vim.cmd[[colorscheme material]]
+vim.cmd 'colorscheme material'

@@ -9,6 +9,9 @@ local function setup_servers()
             nvim_lsp[server].setup{
                 on_attach = require('lsp.lsp-config').on_attach,
                 capabilities = require('lsp.lsp-config').capabilities,
+				flags = {
+					debounce_text_changes = 150,
+				}
                 -- root_dir = vim.loop.cwd
             }
         elseif server == 'lua' then

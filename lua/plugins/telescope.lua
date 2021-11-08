@@ -1,4 +1,6 @@
-require('telescope').setup{
+local telescope = require('telescope')
+
+telescope.setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -41,16 +43,16 @@ require('telescope').setup{
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
   },
-  extensions = {
+  --[[ extensions = {
     fzy_native = {
           override_generic_sorter = false,
           override_file_sorter = true,
     }
-  }
+  } ]]
 }
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('media_files')
+-- telescope.load_extension('fzy_native')
+-- telescope.load_extension('media_files')
 
 -- Default mappings:
 --  <C-n>/<Down>        Next item
@@ -71,4 +73,27 @@ local neovim_rc = function ()
         cwd = "~/.config/nvim/",
     })
 end
+local map = require('core.functions').map
+-- Telescope finder
+map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
+map('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]])
+map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+map('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]])
+map('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').vim_options()<CR>]])
+map('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+map('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').man_pages()<CR>]])
+map('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').colorscheme()<CR>]])
+
+-- Telescope git
+map('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
+map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
+map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
+map('n', '<leader>gi', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
+
+-- Telescope NeoVim rc
+map('n', '<leader>fs', [[<cmd>lua require('plugins.telescope').neovim_rc()<CR>]])
+
 return { neovim_rc = neovim_rc }

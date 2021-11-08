@@ -29,22 +29,26 @@ vim.g.dashboard_custom_header = {
 
 -- vim.g.dashboard_disable_statusline = 1
 
+local pre = 'lua require("core.functions").load_telescope("'
+local post = '")'
+
 vim.g.dashboard_custom_section = {
     a = {
             description = {'  File Explorer                     Leader f e'},
-            command = 'Telescope file_browser hidden=true'},
+            command = pre .. 'Telescope file_browser hidden=true' .. post },
+            -- command = 'PackerLoad telescope.nvim |Telescope file_browser hidden=true'},
     b = {
             description = {'  Find File                         Leader f f'},
-            command = 'Telescope find_files'},
+            command = pre .. 'Telescope find_files' .. post },
     c = {
             description = {'  Recently Used Files               Leader f r'},
-            command = 'Telescope oldfiles'},
+            command = pre .. 'Telescope oldfiles' .. post },
     --[[ d = {
             description = {'  Load Last Session                 Leader w l'},
             command = 'SessionLoad'}, ]]
     e = {
             description = {'  Find Word                         Leader f g'},
-            command = 'Telescope live_grep'},
+            command = pre .. 'Telescope live_grep' .. post },
     f = {
             description = {'  Open a Terminal                   Leader t o'},
             command = 'terminal'},
@@ -53,7 +57,7 @@ vim.g.dashboard_custom_section = {
             command = 'Telescope colorscheme'}, ]]
     h = {
             description = {'  Settings                          Leader f s'},
-            command = [[lua require('plugins.configs.telescope').neovim_rc()]]},
+            command = pre .. "lua require('plugins.configs.telescope').neovim_rc()" .. post },
     i = {
             description = {'  Quit                                        '},
             command = 'q!'}

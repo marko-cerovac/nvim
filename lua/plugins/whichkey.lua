@@ -126,6 +126,7 @@ wk.register({
     s = {
         name = "settings",
         n = "set numbers",
+		b = "set bufferline",
         r = "set relative numbers",
         c = "set cursorline",
         i = "set indentline",
@@ -168,12 +169,18 @@ wk.register({
 wk.register({
     w = {
         name = "window",
+		a = "add workspace folder",
         v = "vertical split",
         s = "horizontal split",
         t = "tab split",
         r = "rotate",
-        l = "load session",
-        a = "archive session"
+		h = "move left",
+		j = "move down",
+		k = "move up",
+		x = "remove workspace folder",
+		l = "move right",
+        -- l = "load session",
+        -- a = "archive session"
     }
 }, { prefix = "<leader>" })
 

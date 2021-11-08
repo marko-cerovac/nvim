@@ -4,7 +4,7 @@ require("dapui").setup({
     -- Use a table to apply multiple mappings
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
-    remove = "d",
+    remove = "x",
     edit = "e",
     repl = "r",
   },
@@ -18,21 +18,24 @@ require("dapui").setup({
       },
       { id = "breakpoints", size = 0.25 },
       { id = "stacks", size = 0.25 },
-      { id = "watches", size = 00.25 },
+      { id = "watches", size = 0.25 },
     },
-    width = 40,
+    size = 40,
     position = "left", -- Can be "left" or "right"
   },
   tray = {
     elements = { "repl" },
-    height = 10,
+    -- elements = {},
+    size = 5,
     position = "bottom", -- Can be "bottom" or "top"
   },
   floating = {
     max_height = nil, -- These can be integers or a float between 0 and 1.
     max_width = nil, -- Floats will be treated as percentage of your screen.
+	border = "rounded", -- Border style. Can be "single", "double", or "rounded"
     mappings = {
       close = { "q", "<Esc>" },
+	  -- expand = { "<CR>", "<2-LeftMouse>" },
     },
   },
   windows = { indent = 1 },
@@ -41,7 +44,8 @@ require("dapui").setup({
 require('which-key').register({
 	d = {
 		name = 'debugg',
-		d = {'<cmd>lua require("dapui").toggle()<CR>', 'toggle ui'},
-		e = {'<cmd>lua require("dapui").eval()<CR>', 'evaluate expression'}
+		d = {'<cmd>lua require("dapui").toggle("sidebar")<CR>', 'toggle ui'},
+		e = {'<cmd>lua require("dapui").eval()<CR>', 'evaluate expression'},
+		r = {'<cmd>lua require("dapui").toggle("tray")<CR>', 'toggle repl'}
 	},
 }, { prefix = '<leader>' })

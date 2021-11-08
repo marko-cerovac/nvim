@@ -13,19 +13,43 @@ return packer.startup(
 
 		use 'wbthomason/packer.nvim'
 
-		use 'marko-cerovac/material.nvim'
+		use {
+			'marko-cerovac/material.nvim',
+			config = function ()
+				require 'colorschemes.material'
+			end
+		}
+
+		use {
+			'folke/tokyonight.nvim',
+			-- cmd = 'colorscheme tokyonight',
+			opt = true,
+			config = function ()
+				require 'colorschemes.tokyonight'
+			end
+		}
 
 		use {
 			'nvim-treesitter/nvim-treesitter',
 			-- run = ':TSUpdate',
             config = function ()
-                require 'plugins.configs.treesitter'
+                require 'plugins.treesitter'
             end
 		}
 
 		-- Language Server Protocol
         use {
             'neovim/nvim-lspconfig',
+			ft = {
+				'lua',
+				'c',
+				'cpp',
+				'make',
+				'cmake',
+				'bash',
+				'zsh',
+				'sh',
+			},
             config = function()
                 require 'lsp.lsp-config'
             end
@@ -34,6 +58,7 @@ return packer.startup(
 		-- Language server installer
         use {
             'kabouzeid/nvim-lspinstall',
+			opt = true,
 			after = 'nvim-lspconfig',
             config = function()
                 require 'lsp.lsp-install'
@@ -67,6 +92,16 @@ return packer.startup(
             end
         }
 
+		-- Lsp UI
+		use {
+			'tami5/lspsaga.nvim',
+			opt = true,
+			after = 'nvim-lspconfig',
+            config = function()
+                require 'lsp.lspsaga'
+            end
+		}
+
 		-- Lsp Diagnostics
 		use {
 			'folke/lsp-trouble.nvim',
@@ -81,21 +116,24 @@ return packer.startup(
 		-- Debugg adapter protocol
 		use {
 			'mfussenegger/nvim-dap',
-			-- event = 'UIEnter',
-			-- cmd = 'Debugg',
 			keys = { '<leader>d' },
 			config = function ()
 				require('debugger.dap-config')
 			end
 		}
-
 		-- Debugg adapter ui
 		use {
 			'rcarriga/nvim-dap-ui',
 			after = 'nvim-dap',
-			cmd = 'Debugg',
 			config = function ()
 				require('debugger.dap-ui')
+			end
+		}
+		use {
+			'theHamsta/nvim-dap-virtual-text',
+			after = 'nvim-dap',
+			config = function ()
+				require('debugger.dap-virtual-text')
 			end
 		}
 
@@ -104,7 +142,7 @@ return packer.startup(
             'windwp/nvim-autopairs',
 			event = 'InsertEnter',
             config = function()
-                require 'plugins.configs.autopairs'
+                require 'plugins.autopairs'
             end,
         }
 
@@ -115,7 +153,7 @@ return packer.startup(
             event = 'BufWinEnter',
             -- event = 'BufRead',
             config = function ()
-                require 'plugins.configs.lualine'
+                require 'plugins.lualine'
             end
 		}
 
@@ -123,35 +161,21 @@ return packer.startup(
 		use {
 			'akinsho/bufferline.nvim',
 			requires = 'kyazdani42/nvim-web-devicons',
-			event = 'BufAdd',
+			opt = true,
+			keys = { '<leader>sb' },
+			-- event = 'BufAdd',
 			config = function ()
-				require 'plugins.configs.bufferline'
+				require 'plugins.bufferline'
 			end
 		}
 
 		-- Which key
 		use {
 			'folke/which-key.nvim',
-			keys = {
-				'<leader>',
-				'g',
-				'd',
-				'c',
-				'y',
-				'v'
-			},
-			-- event = 'BufWinEnter',
 			config = function()
-				require'plugins.configs.whichkey'
+				require'plugins.whichkey'
 			end
 		}
-
-		-- Buffer line
-		--[[ use {
-			'akinsho/nvim-bufferline.lua',
-			requires = 'kyazdani42/nvim-web-devicons',
-			after = 'material.nvim'
-		} ]]
 
 		-- File tree explorer
         use {
@@ -159,41 +183,50 @@ return packer.startup(
 			-- event = 'VimEnter',
             cmd = 'NvimTreeToggle',
             config = function()
-                require 'plugins.configs.nvim-tree'
+                require 'plugins.nvim-tree'
             end
         }
 
 		-- Telescope
         use {
             'nvim-telescope/telescope.nvim',
-			requires = {
-				{'nvim-lua/popup.nvim'},
-				{'nvim-lua/plenary.nvim'},
-				{'nvim-telescope/telescope-fzy-native.nvim'},
-				{'nvim-telescope/telescope-media-files.nvim'}
+			keys = {
+				'<leader>f',
+				'<leader>g',
 			},
-            event = 'UIEnter',
+			requires = {
+				{'nvim-lua/popup.nvim', opt = true},
+				'nvim-lua/plenary.nvim',
+			},
             config = function()
-                require 'plugins.configs.telescope'
+                require 'plugins.telescope'
             end
         }
+		use {
+			'nvim-telescope/telescope-fzy-native.nvim',
+			after = 'telescope.nvim',
+            config = function()
+				require('telescope').load_extension('fzy_native')
+            end
+		}
 
 		-- Git signs
         use {
             'lewis6991/gitsigns.nvim',
             event = 'BufRead',
+			requires = { 'nvim-lua/plenary.nvim', },
             config = function()
-                require 'plugins.configs.gitsigns'
+                require 'plugins.gitsigns'
             end
         }
 
 		-- Git UI
 		use {
 			'TimUntersberger/neogit',
-			requires = 'nvim-lua/plenary.nvim',
+			requires = {'nvim-lua/plenary.nvim'},
 			cmd = 'Neogit',
             config = function()
-                require 'plugins.configs.neogit'
+                require 'plugins.neogit'
             end
 		}
 
@@ -202,7 +235,7 @@ return packer.startup(
             'glepnir/dashboard-nvim',
             -- event = 'UIEnter',
             setup = function()
-                require 'plugins.configs.dashboard'
+                require 'plugins.dashboard'
             end
         }
 
@@ -210,12 +243,8 @@ return packer.startup(
         use {
             'lukas-reineke/indent-blankline.nvim',
 			keys = { '<leader>si' },
-			--[[ cmd = {
-				'IndentBlanklineEnable',
-				'IndentBlanklineToggle',
-			}, ]]
             config = function()
-                require'plugins.configs.indent-blankline'
+                require'plugins.indent-blankline'
             end
         }
 
@@ -229,7 +258,7 @@ return packer.startup(
 				vim.g.kommentary_create_default_mappings = false
 			end,
 			config = function()
-				require'plugins.configs.kommentary'
+				require'plugins.kommentary'
 			end
 		}
 
@@ -241,7 +270,9 @@ return packer.startup(
                 'ColorizerToggle'
             },
             config = function ()
-              require'plugins.configs.colorizer'
+				require('colorizer').setup({
+					names = false;
+				})
             end
 		}
 
@@ -254,7 +285,7 @@ return packer.startup(
 				'hrsh7th/nvim-cmp',
 			},
             config = function ()
-                require'plugins.configs.neorg'
+                require'plugins.neorg'
             end
 		} ]]
 	end)

@@ -46,7 +46,7 @@ require('bufferline').setup {
 		persist_buffer_sort = true,
 		separator_style = "thin", -- "slant" | "thick" | "thin" | { 'any', 'any' },
 		enforce_regular_tabs = false,
-		always_show_bufferline = false,
+		always_show_bufferline = true,
 		sort_by = 'id', -- 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs'
 
 		highlights = {

@@ -49,7 +49,9 @@ require'nvim-tree'.setup {
 
 	view = {
 		-- width of the window, can be either a number (columns) or a string in `%`
-		width = 30,
+		width = 40,
+		-- hide the roor floder name
+		hide_root_folder = true,
 		-- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
 		side = 'left',
 		-- if true the tree will resize itself after opening a file
@@ -106,7 +108,7 @@ vim.g.nvim_tree_highlight_opened_files = 1 --0 by default, will enable folder an
 vim.g.nvim_tree_icon_padding = ' ' --one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
 vim.g.nvim_tree_symlink_arrow = ' >> ' -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
 vim.g.nvim_tree_respect_buf_cwd = 1 --0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
-vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
+-- vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
 vim.g.nvim_tree_window_picker_exclude = {
 	filetype = {
 		 'notify',
