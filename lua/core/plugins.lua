@@ -6,6 +6,18 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command 'packadd packer.nvim'
 end
 
+-- Filetypes for which lsp should be added
+local lspFiletypes = {
+	'lua',
+	'c',
+	'cpp',
+	'make',
+	'cmake',
+	'bash',
+	'zsh',
+	'sh',
+}
+
 local packer = require 'packer'
 
 return packer.startup(
@@ -22,7 +34,6 @@ return packer.startup(
 
 		use {
 			'folke/tokyonight.nvim',
-			-- cmd = 'colorscheme tokyonight',
 			opt = true,
 			config = function ()
 				require 'colorschemes.tokyonight'
@@ -31,7 +42,7 @@ return packer.startup(
 
 		use {
 			'nvim-treesitter/nvim-treesitter',
-			-- run = ':TSUpdate',
+			run = ':TSUpdate',
             config = function ()
                 require 'plugins.treesitter'
             end
@@ -40,16 +51,8 @@ return packer.startup(
 		-- Language Server Protocol
         use {
             'neovim/nvim-lspconfig',
-			ft = {
-				'lua',
-				'c',
-				'cpp',
-				'make',
-				'cmake',
-				'bash',
-				'zsh',
-				'sh',
-			},
+			-- after = 'nvim-cmp',
+			ft = lspFiletypes;
             config = function()
                 require 'lsp.lsp-config'
             end
@@ -82,15 +85,6 @@ return packer.startup(
 				require 'lsp.snippets'
 			end,
 		}
-
-		-- Completion symbols
-        use {
-            'onsails/lspkind-nvim',
-            after = 'nvim-cmp',
-            config = function()
-                require 'lsp.lspkind'
-            end
-        }
 
 		-- Lsp UI
 		use {

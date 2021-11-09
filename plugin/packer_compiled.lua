@@ -154,14 +154,6 @@ _G.packer_plugins = {
     path = "/home/marko/.local/share/nvim/site/pack/packer/opt/lsp-trouble.nvim",
     url = "https://github.com/folke/lsp-trouble.nvim"
   },
-  ["lspkind-nvim"] = {
-    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16lsp.lspkind\frequire\0" },
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/marko/.local/share/nvim/site/pack/packer/opt/lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
-  },
   ["lspsaga.nvim"] = {
     config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16lsp.lspsaga\frequire\0" },
     load_after = {
@@ -204,9 +196,10 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "lspkind-nvim" },
+    config = { "\27LJ\1\2G\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0014\0\0\0%\1\2\0>\0\2\1G\0\1\0\17lsp.snippets\19lsp.completion\frequire\0" },
     loaded = true,
-    only_config = true
+    path = "/home/marko/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     commands = { "ColorizerAttachToBuffer", "ColorizerToggle" },
@@ -349,30 +342,22 @@ time([[Setup for dashboard-nvim]], false)
 time([[packadd for dashboard-nvim]], true)
 vim.cmd [[packadd dashboard-nvim]]
 time([[packadd for dashboard-nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\1\2G\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0014\0\0\0%\1\2\0>\0\2\1G\0\1\0\17lsp.snippets\19lsp.completion\frequire\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
 -- Config for: material.nvim
 time([[Config for material.nvim]], true)
 try_loadstring("\27LJ\1\0025\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\26colorschemes.material\frequire\0", "config", "material.nvim")
 time([[Config for material.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugins.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\1\2G\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0014\0\0\0%\1\2\0>\0\2\1G\0\1\0\17lsp.snippets\19lsp.completion\frequire\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\1\0020\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\21plugins.whichkey\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd lspkind-nvim ]]
-
--- Config for: lspkind-nvim
-try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16lsp.lspkind\frequire\0", "config", "lspkind-nvim")
-
-time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -384,13 +369,13 @@ time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
-vim.cmd [[noremap <silent> <leader>sb <cmd>lua require("packer.load")({'bufferline.nvim'}, { keys = "<lt>leader>sb", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>d <cmd>lua require("packer.load")({'nvim-dap'}, { keys = "<lt>leader>d", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>cd <cmd>lua require("packer.load")({'lsp-trouble.nvim'}, { keys = "<lt>leader>cd", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>g <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>g", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>cd <cmd>lua require("packer.load")({'lsp-trouble.nvim'}, { keys = "<lt>leader>cd", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>f <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>f", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>si <cmd>lua require("packer.load")({'indent-blankline.nvim'}, { keys = "<lt>leader>si", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>k <cmd>lua require("packer.load")({'kommentary'}, { keys = "<lt>leader>k", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>d <cmd>lua require("packer.load")({'nvim-dap'}, { keys = "<lt>leader>d", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>sb <cmd>lua require("packer.load")({'bufferline.nvim'}, { keys = "<lt>leader>sb", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]

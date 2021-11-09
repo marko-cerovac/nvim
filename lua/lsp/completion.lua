@@ -1,6 +1,35 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
+local icons = {
+   Text = "",
+   Method = "",
+   Function = "",
+   Constructor = "",
+   Field = "ﰠ",
+   Variable = "",
+   Class = "ﴯ",
+   Interface = "",
+   Module = "",
+   Property = "ﰠ",
+   Unit = "塞",
+   Value = "",
+   Enum = "",
+   Keyword = "",
+   Snippet = "",
+   Color = "",
+   File = "",
+   Reference = "",
+   Folder = "",
+   EnumMember = "",
+   Constant = "",
+   Struct = "פּ",
+   Event = "",
+   Operator = "",
+   TypeParameter = "",
+}
+
+
 local check_backspace = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -16,8 +45,8 @@ cmp.setup {
 		format = function(entry, vim_item)
 			-- load lspkind icons
 			vim_item.kind = string.format(
-				" %s  %s ",
-				require('lspkind').presets.default[vim_item.kind],
+				" %s  [ %s ] ",
+				icons[vim_item.kind],
 				vim_item.kind
 			)
 			vim_item.menu = ({
