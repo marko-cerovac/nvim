@@ -42,9 +42,4 @@ functions.zathura_open_pdf = function ()
 	return file_name
 end
 
-functions.load_telescope = function (command)
-	vim.cmd'PackerLoad telescope.nvim'
-	vim.cmd(command)
-end
-
 return functions

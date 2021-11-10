@@ -66,9 +66,15 @@ map('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>')
 map('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>')
 map('n', ']b', '<cmd>BufferLineCycleNext<CR>')
 map('n', '[b', '<cmd>BufferLineCyclePrev<CR>')
-map('n', '<leader>bl', '<cmd>BufferLineMoveNext<CR>')
-map('n', '<leader>bh', '<cmd>BufferLineMovePrev<CR>')
-map('n', '<leader>be', '<cmd>BufferLineSortByExtension<CR>')
-map('n', '<leader>bd', '<cmd>BufferLineSortByDirectory<CR>')
-map('n', '<leader>bx', '<cmd>BufferLinePickClose<CR>')
-map('n', '<leader>bg', '<cmd>BufferLinePick<CR>')
+
+require('which-key').register({
+	b = {
+		name = 'buffer',
+		l = {'<cmd>BufferLineMoveNext<CR>', 'move buffer right'},
+		h = {'<cmd>BufferLineMovePrev<CR>', 'move buffer left'},
+		e = {'<cmd>BufferLineSortByExtension<CR>', 'sort by extension'},
+		d = {'<cmd>BufferLineSortByDirectory<CR>', 'sort by directory'},
+		g = {'<cmd>BufferLinePick<CR>', 'go to buffer'},
+		x = {'<cmd>BufferLinePickClose<CR>', 'select to close'},
+	},
+}, { prefix = '<leader>' })

@@ -1,71 +1,62 @@
 local telescope = require('telescope')
+local actions = require ('telescope.actions')
+
 
 telescope.setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-	-- path_display = {"tail", "absolute"},
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+	defaults = {
+		vimgrep_arguments = {
+			'rg',
+			'--color=never',
+			'--no-heading',
+			'--with-filename',
+			'--line-number',
+			'--column',
+			'--smart-case'
+		},
+		prompt_prefix = "> ",
+		selection_caret = "> ",
+		entry_prefix = "  ",
+		initial_mode = "insert",
+		selection_strategy = "reset",
+		sorting_strategy = "descending",
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				mirror = false,
+			},
+			vertical = {
+				mirror = false,
+			},
+		},
+		file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+		file_ignore_patterns = {},
+		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+		-- path_display = {"tail", "absolute"},
+		winblend = 0,
+		border = {},
+		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+		color_devicons = true,
+		use_less = true,
+		set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+		file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+		grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+		qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
 
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
-  },
-  --[[ extensions = {
-    fzy_native = {
-          override_generic_sorter = false,
-          override_file_sorter = true,
-    }
-  } ]]
+		-- Developer configurations: Not meant for general override
+		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
+		mappings = {
+			n = {
+				["s"] = actions.select_horizontal,
+				["v"] = actions.select_vertical,
+				["t"] = actions.select_tab,
+			},
+			i = {
+				["<Tab>"] = actions.move_selection_previous,
+				["<S-Tab>"] = actions.move_selection_next,
+			}
+		},
+	},
 }
-
--- telescope.load_extension('fzy_native')
--- telescope.load_extension('media_files')
-
--- Default mappings:
---  <C-n>/<Down>        Next item
---  <C-p>/<Up>	        Previous item
---  j/k	                Next/previous (in normal mode)
---  <CR>	            Confirm selection
---  <C-x>	            go to file selection as a split
---  <C-v>	            go to file selection as a vsplit
---  <C-t>	            go to a file in a new tab
---  <C-u>	            scroll up in preview window
---  <C-d>	            scroll down in preview window
---  <C-c>	            close telescope
---  <Esc>	            close telescope (in normal mode)
 
 local neovim_rc = function ()
     require("telescope.builtin").find_files({
@@ -73,27 +64,34 @@ local neovim_rc = function ()
         cwd = "~/.config/nvim/",
     })
 end
-local map = require('core.functions').map
--- Telescope finder
-map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-map('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]])
-map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-map('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]])
-map('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').vim_options()<CR>]])
-map('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
-map('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').man_pages()<CR>]])
-map('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').colorscheme()<CR>]])
 
--- Telescope git
-map('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
-map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]])
-map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-map('n', '<leader>gi', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
+-- Load mappings
+require('which-key').register({
+	f = {
+		name = 'find',
+		a = {'<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', 'code actions'},
+		b = {'<cmd>lua require("telescope.builtin").buffers()<CR>', 'buffers'},
+		c = {'<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', 'in current buffer'},
+		e = {'<cmd>lua require("telescope.builtin").file_browser({hidden=true})<CR>', 'file explorer'},
+		f = {'<cmd>lua require("telescope.builtin").find_files()<CR>', 'files'},
+		g = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'grep files'},
+		h = {'<cmd>lua require("telescope.builtin").help_tags()<CR>', 'help'},
+		o = {'<cmd>lua require("telescope.builtin").vim_options()<CR>', 'options'},
+		m = {'<cmd>lua require("telescope.builtin").man_pages()<CR>', 'manual pages'},
+		r = {'<cmd>lua require("telescope.builtin").oldfiles()<CR>', 'recent files'},
+		s = {'<cmd>lua require("plugins.telescope").neovim_rc()<CR>', 'neovim settings'},
+		t = {'<cmd>lua require("telescope.builtin").colorscheme()<CR>', 'colorschemes'},
+	},
+}, { prefix = '<leader>' })
 
--- Telescope NeoVim rc
-map('n', '<leader>fs', [[<cmd>lua require('plugins.telescope').neovim_rc()<CR>]])
+require('which-key').register({
+	g = {
+		name = 'git',
+		b = {'<cmd>lua require("telescope.builtin").git_branches()<CR>', 'branches'},
+		c = {'<cmd>lua require("telescope.builtin").git_commits()<CR>', 'commits'},
+		f = {'<cmd>lua require("telescope.builtin").git_files()<CR>', 'files'},
+		i = {'<cmd>lua require("telescope.builtin").git_status()<CR>', 'status'},
+	},
+}, { prefix = '<leader>' })
 
 return { neovim_rc = neovim_rc }

@@ -29,35 +29,61 @@ vim.g.dashboard_custom_header = {
 
 -- vim.g.dashboard_disable_statusline = 1
 
-local pre = 'lua require("core.functions").load_telescope("'
-local post = '")'
-
 vim.g.dashboard_custom_section = {
     a = {
-            description = {'  File Explorer                     Leader f e'},
-            command = pre .. 'Telescope file_browser hidden=true' .. post },
-            -- command = 'PackerLoad telescope.nvim |Telescope file_browser hidden=true'},
-    b = {
+            description = {'פּ  File Tree                         Leader e  '},
+            command = function ()
+            	vim.cmd 'PackerLoad nvim-tree.lua'
+				vim.cmd 'NvimTreeToggle'
+            end },
+
+    --[[ b = {
             description = {'  Find File                         Leader f f'},
-            command = pre .. 'Telescope find_files' .. post },
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+            	vim.cmd 'Telescope find_files'
+            end}, ]]
+
     c = {
+            description = {'  File Explorer                     Leader f e'},
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+            	vim.cmd 'Telescope file_browser hidden=true'
+            end},
+
+
+    d = {
             description = {'  Recently Used Files               Leader f r'},
-            command = pre .. 'Telescope oldfiles' .. post },
-    --[[ d = {
-            description = {'  Load Last Session                 Leader w l'},
-            command = 'SessionLoad'}, ]]
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+            	vim.cmd 'Telescope oldfiles'
+            end},
+
     e = {
             description = {'  Find Word                         Leader f g'},
-            command = pre .. 'Telescope live_grep' .. post },
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+            	vim.cmd 'Telescope live_grep'
+            end},
+
     f = {
             description = {'  Open a Terminal                   Leader t o'},
             command = 'terminal'},
+
     --[[ g = {
             description = {'  Change Colorscheme                Leader f t'},
-            command = 'Telescope colorscheme'}, ]]
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+            	vim.cmd 'Telescope colorscheme'
+            end}, ]]
+
     h = {
-            description = {'  Settings                          Leader f s'},
-            command = pre .. "lua require('plugins.configs.telescope').neovim_rc()" .. post },
+            description = {'  Settings                          Leader f s'},
+            command = function ()
+				vim.cmd 'PackerLoad telescope.nvim'
+				require('plugins.telescope').neovim_rc()
+            end},
+
     i = {
             description = {'  Quit                                        '},
             command = 'q!'}

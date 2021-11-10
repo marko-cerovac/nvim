@@ -8,8 +8,7 @@ wk.setup {
       -- No actual key bindings are created
       presets = {
         operators = true, -- adds help for operators like d, y, ...
-        motions = true, -- adds help for motions
-        text_objects = true, -- help for text objects triggered after entering an operator
+        motions = true, -- adds help for motions text_objects = true, -- help for text objects triggered after entering an operator
         windows = true, -- default bindings on <c-w>
         nav = true, -- misc bindings to work with windows
         z = true, -- bindings for folds, spelling and others prefixed with z
@@ -31,7 +30,8 @@ wk.setup {
       height = { min = 3, max = 25 }, -- min and max height of the columns
       width = { min = 20, max = 50 }, -- min and max width of the columns
       spacing = 18, -- spacing between columns
-    },
+	  align = "center", -- align columns left, center or right
+     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
 	ignore_missing = true
@@ -82,34 +82,10 @@ wk.register({
 }, { prefix = "<leader>" })
 
 -- Buffers
-wk.register({
-	b = {
-		name = 'buffer',
-		l = 'move buffer right',
-		h = 'move buffer left',
-		e = 'sort by extension',
-		d = 'sort by directory',
-		g = 'go to buffer',
-		x = 'select to close',
-	}
-}, { prefix = '<leader>'})
+wk.register({ b = { name = 'buffer', } }, { prefix = '<leader>'})
 
 -- Git
-wk.register({
-    g = {
-        name = "git",
-        b = "git branches",
-        c = "git commits",
-        f = "git files",
-		i = "git status",
-        l = "line blame",
-		p = "preview hunk",
-		r = "reset hunk",
-		R = "reset buffer",
-        s = "stage hunk",
-		u = "unstage hunk"
-    },
-}, { prefix = "<leader>" })
+wk.register({ g = { name = "git", }, }, { prefix = "<leader>" })
 
 -- Terminal
 wk.register({
@@ -137,33 +113,7 @@ wk.register({
 }, { prefix = "<leader>" })
 
 -- Find
-wk.register({
-    f = {
-        name = "find",
-        a = "code actions",
-        b = "buffers",
-		c = "in current buffer",
-		e = "file browser",
-        f = "files",
-        g = "grep files",
-        h = "help",
-		o = "options",
-        m = "manual pages",
-        r = "recent files",
-        s = "settings",
-        t = "colorschemes"
-    }
-}, { prefix = "<leader>" })
-
--- Directory
---[[ wk.register({
-    d = {
-        name = "directory",
-        a = "add directory",
-        l = "list directories",
-        r = "remove directory",
-    }
-}, { prefix = "<leader>" }) ]]
+wk.register({ f = { name = "find", } }, { prefix = "<leader>" })
 
 -- Window
 wk.register({

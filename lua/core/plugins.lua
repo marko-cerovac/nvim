@@ -173,9 +173,9 @@ return packer.startup(
 
 		-- File tree explorer
         use {
-            'kyazdani42/nvim-tree.lua',
 			-- event = 'VimEnter',
             cmd = 'NvimTreeToggle',
+            ft = '',
             config = function()
                 require 'plugins.nvim-tree'
             end
@@ -190,7 +190,7 @@ return packer.startup(
 			},
 			requires = {
 				{'nvim-lua/popup.nvim', opt = true},
-				'nvim-lua/plenary.nvim',
+				{'nvim-lua/plenary.nvim'},
 			},
             config = function()
                 require 'plugins.telescope'

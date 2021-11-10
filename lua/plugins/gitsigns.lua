@@ -59,3 +59,20 @@ require('gitsigns').setup {
 		enable = false
 	},
 }
+
+-- Load whichkey
+require('which-key').register({
+    g = {
+        name = "git",
+        b = "branches",
+        c = "commits",
+        f = "files",
+        i = "status",
+        l = "line blame",
+		p = "preview hunk",
+		r = "reset hunk",
+		R = "reset buffer",
+        s = "stage hunk",
+		u = "unstage hunk"
+    },
+}, { prefix = "<leader>" })
