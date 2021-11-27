@@ -42,7 +42,7 @@ luasnip.snippets.c = {
 			textNode({
 				"#include <stdio.h>",
 				"",
-				"int main(int argc, char **argv)",
+				"int main()",
 				"{",
 				"\t"
 			}),
@@ -65,7 +65,7 @@ luasnip.snippets.c = {
 				"#include <stdio.h>",
 				"#include <stdlib.h>",
 				"",
-				"int main(int argc, char **argv)",
+				"int main()",
 				"{",
 				"\t"
 			}),
@@ -162,15 +162,34 @@ luasnip.snippets.cpp = {
 			textNode({
 				"#include <iostream>",
 				"",
-				"int main(int argc, char **argv)",
+				"int main()",
 				"{",
 				"\t"
 			}),
-			insertNode(0, "//Write some code"),
+			insertNode(0, "// Write some code"),
 			textNode({
 				"",
 				"}"
 			})
 		}
 	),
+	snippet(
+		{
+			trig = "main void",
+			name = "void main function",
+			descr = "main function without parameters"
+		},
+		{
+			textNode({
+				"int main()",
+				"{",
+				"\t"
+			}),
+			insertNode(0, "// Write some code"),
+			textNode({
+				"",
+				"}"
+			})
+		}
+	)
 }

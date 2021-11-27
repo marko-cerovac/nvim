@@ -102,6 +102,7 @@ cmp.setup {
 		{ name = 'calc' },
 		{ name = 'buffer' },
 		{ name = 'path' },
+		{ name = 'neorg' },
 	},
 	documentation = {
 		border = 'rounded'

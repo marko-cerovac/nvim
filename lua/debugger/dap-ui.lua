@@ -44,7 +44,7 @@ require("dapui").setup({
 require('which-key').register({
 	d = {
 		name = 'debugg',
-		d = {'<cmd>lua require("dapui").toggle("sidebar")<CR>', 'toggle ui'},
+		d = {'<cmd>set nocursorline<CR><cmd>lua require("dapui").toggle("sidebar")<CR><cmd>set cursorline<CR>', 'toggle ui'},
 		e = {'<cmd>lua require("dapui").eval()<CR>', 'evaluate expression'},
 		r = {'<cmd>lua require("dapui").toggle("tray")<CR>', 'toggle repl'}
 	},

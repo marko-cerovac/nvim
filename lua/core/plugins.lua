@@ -34,7 +34,8 @@ return packer.startup(
 
 		use {
 			'folke/tokyonight.nvim',
-			opt = true,
+			-- opt = true,
+			keys = { '<leader>ft' },
 			config = function ()
 				require 'colorschemes.tokyonight'
 			end
@@ -173,9 +174,9 @@ return packer.startup(
 
 		-- File tree explorer
         use {
+			'kyazdani42/nvim-tree.lua',
 			-- event = 'VimEnter',
             cmd = 'NvimTreeToggle',
-            ft = '',
             config = function()
                 require 'plugins.nvim-tree'
             end
@@ -271,7 +272,7 @@ return packer.startup(
 		}
 
 		-- Org mode
-		--[[ use {
+		use {
 			'vhyrro/neorg',
 			ft = 'norg',
 			requires = {
@@ -281,5 +282,5 @@ return packer.startup(
             config = function ()
                 require'plugins.neorg'
             end
-		} ]]
+		}
 	end)

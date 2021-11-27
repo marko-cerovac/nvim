@@ -43,7 +43,8 @@ map('v', '>', '>gv')
 -- Escaping insert mode
 map('i', 'jf', '<Esc>')
 map('i', 'fj', '<Esc>')
-map('i', 'jj', '<Esc>')
+map('i', 'kj', '<Esc>')
+-- map('i', 'jj', '<Esc>')
 
 -- Removing search highlight
 map('n', '<leader>sh', ':noh<CR>')
@@ -66,7 +67,7 @@ map('n', '<leader>sc', [[:lua require('core.functions').cursor_line()<CR>]])
 map('n', '<leader>sm', [[:lua require('core.functions').mouse()<CR>]])
 
 -- Toggle Nvim-Tree
-map('n', '<leader>e', ':NvimTreeToggle<CR>')
+map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>')
 
 -- Debugg
 -- map('n', '<leader>d', ':lua require("plugins.configs.termdebug")<CR>')

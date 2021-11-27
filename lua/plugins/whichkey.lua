@@ -72,6 +72,7 @@ wk.register({
 		c = "compile",
 		d = "diagnostics",
 		f = "format",
+		h = "finder",
 		l = "line diagnostics",
 		p = "preview definition",
 		r = "rename",

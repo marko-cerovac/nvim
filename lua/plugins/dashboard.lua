@@ -33,7 +33,6 @@ vim.g.dashboard_custom_section = {
     a = {
             description = {'פּ  File Tree                         Leader e  '},
             command = function ()
-            	vim.cmd 'PackerLoad nvim-tree.lua'
 				vim.cmd 'NvimTreeToggle'
             end },
 
