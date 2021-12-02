@@ -19,7 +19,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', options)
     buf_set_keymap('n', '<leader>wx', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', options)
     buf_set_keymap('n', '<leader>ct', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
-    buf_set_keymap('n', '<leader>cq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', options)
     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
     buf_set_keymap("v", "<leader>cf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", options)
 
@@ -40,6 +39,7 @@ local on_attach = function(client, bufnr)
 
     -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', options)
     -- buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', options)
+    -- buf_set_keymap('n', '<leader>cq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', options)
     -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
     -- buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({border="rounded"})<CR>', options)
     -- buf_set_keymap('n', '<leader>cs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', options)
@@ -50,17 +50,23 @@ local on_attach = function(client, bufnr)
 	-- Rounded hover borders
 	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'})
 	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'})
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	  virtual_text = {
+		prefix = ' ', -- Could be '●', '▎', 'x'
+	  }
+	})
 
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-             augroup lsp_document_highlight
-               autocmd! * <buffer>
-               autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-               autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-             augroup END
-        ]], false)
-    end
+    -- if client.resolved_capabilities.document_highlight then
+    --     vim.api.nvim_exec([[
+    --          augroup lsp_document_highlight
+    --            autocmd! * <buffer>
+    --            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    --          augroup END
+    --     ]], false)
+    -- end
+
 end
 
 -- Enable code snippets
@@ -68,6 +74,19 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+   properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+   },
+}
 
 -- Define signs
 -- vim.fn.sign_define('DiagnosticSignError', {text = ' ', texthl = 'LspDiagnosticsSignError', numhl = ''})

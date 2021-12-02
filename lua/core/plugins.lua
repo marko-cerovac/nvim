@@ -61,7 +61,7 @@ return packer.startup(
 
 		-- Language server installer
         use {
-            'kabouzeid/nvim-lspinstall',
+			'williamboman/nvim-lsp-installer',
 			opt = true,
 			after = 'nvim-lspconfig',
             config = function()

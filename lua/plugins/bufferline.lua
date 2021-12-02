@@ -78,3 +78,6 @@ require('which-key').register({
 		x = {'<cmd>BufferLinePickClose<CR>', 'select to close'},
 	},
 }, { prefix = '<leader>' })
+
+-- reload the colorscheme
+vim.cmd('colorscheme ' .. vim.g.colors_name)

@@ -78,7 +78,7 @@ wk.register({
 		r = "rename",
 		s = "signature help",
 		t = "type definition",
-		q = "set location list"
+		-- q = "set location list"
 	}
 }, { prefix = "<leader>" })
 
