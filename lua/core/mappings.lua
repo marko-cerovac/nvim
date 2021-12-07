@@ -57,8 +57,15 @@ map('n', '<leader>ts', ':split new<CR>:terminal<CR>')
 map('n', '<leader>tt', ':tab new<CR>:terminal<CR>')
 map('t', '<Esc>', '<C-\\><C-n>')
 
+-- External command
+map('n', '<leader><tab>', ':!')
+
 -- Compiling code
-map('n', '<leader>cc', ':make<CR>')
+map('n', '<leader>cc', ':lua require("core.functions").build_system()<CR>')
+-- map('n', '<leader>cc', ':make<CR>')
+
+-- Running code
+map('n', '<leader>cg', ':lua require("core.functions").run_code()<CR>')
 
 -- Toggling settings
 map('n', '<leader>sn', [[:lua require('core.functions').number()<CR>]])

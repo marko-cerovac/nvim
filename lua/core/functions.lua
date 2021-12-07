@@ -42,4 +42,39 @@ functions.zathura_open_pdf = function ()
 	return file_name
 end
 
+functions.build_system = function ()
+	if vim.g.build_command_selected ~= 1 then
+		local build_command = vim.fn.input("Input build command: ", "", "shellcmd")
+		if build_command == "" then
+			build_command = "make"
+		end
+		vim.o.makeprg = build_command
+		vim.g.build_command_selected = 1
+	end
+	vim.cmd 'make'
+end
+
+functions.run_code = function ()
+	-- if the executable path is unknown, prompt the user
+	if vim.g.autorun_executable == nil or vim.g.autorun_executable == 0 then
+		vim.g.autorun_executable = vim.fn.input("Input executable to autorun: ", vim.fn.getcwd() .. "/", "file_in_path")
+		if vim.g.autorun_executable == "" then
+			vim.g.autorun_executable = nil
+			return
+		end
+	end
+
+	-- if the terminal split is unknown, prompt the user
+	if vim.g.autorun_term_variant == nil or vim.g.autorun_term_variant == 0 then
+		vim.g.autorun_term_variant = vim.fn.input("Input terminal variant [ vertical | split | tab ]: ")
+		if vim.g.autorun_term_variant == "" then
+			vim.g.autorun_term_variant = "vertical"
+		end
+	end
+	vim.cmd(vim.g.autorun_term_variant .. ' new')
+	vim.cmd 'terminal'
+	local command = vim.api.nvim_replace_termcodes(vim.g.autorun_executable .. "<CR>", true, true, true)
+	vim.api.nvim_feedkeys(command, 'n', true)
+end
+
 return functions

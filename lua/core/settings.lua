@@ -9,17 +9,15 @@ vim.o.clipboard = "unnamedplus"                     -- clipboard
 
 vim.o.smarttab = true                               -- smart tabs
 vim.bo.expandtab = false                            -- expand tabs to spaces
-vim.cmd('set ts=4')                                 -- tab stop
-vim.cmd('set softtabstop=4')                        -- soft tab stop
-vim.cmd('set shortmess+=c')                         -- short messages
-vim.cmd('set iskeyword+=-')                         -- add keywords
+vim.o.ts = 4										-- tab stop
+vim.o.softtabstop = 4								-- soft tab stop
 
-vim.cmd('set shiftwidth=4')                         -- shift width
+vim.o.shiftwidth = 4									-- shift width
 vim.bo.smartindent = true                           -- smart indenting
 vim.o.autoindent = true                             -- auto indenting
 vim.o.smartcase = true                              -- search smart case
 
-vim.cmd('set colorcolumn=999')                      -- color column
+vim.o.colorcolumn = '999'							-- color column
 vim.wo.number = true                                -- line numbers
 vim.wo.relativenumber = true                        -- relative line numbers
 vim.wo.wrap = false                                 -- word wrapping
@@ -31,7 +29,8 @@ vim.o.updatetime = 250                              -- update time
 vim.o.timeoutlen = 300                              -- timeout length
 vim.o.showmode = false                              -- mode message
 vim.o.mouse = "a"                                   -- mouse
-vim.g.tex_flavor = "latex"                          -- tex flavor
+vim.o.foldenable = false							-- disable auto folding
+vim.o.foldmethod = "expr"							-- folding method
 
 vim.o.termguicolors = true                          -- gui colors
 vim.o.background = "dark"                           -- background color

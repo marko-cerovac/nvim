@@ -52,7 +52,7 @@ local on_attach = function(client, bufnr)
 	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'})
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	  virtual_text = {
-		prefix = ' ', -- Could be '●', '▎', 'x'
+		prefix = '●', -- Could be '', '▎', 'x'
 	  }
 	})
 

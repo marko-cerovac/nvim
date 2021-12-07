@@ -2,8 +2,13 @@
 vim.g.material_style = 'deep ocean'
 
 require('material').setup({
-	contrast = true,
-	borders = false,
+	contrast = {
+		sidebars = true,
+		floating_windows = false,
+		line_numbers = false,
+		sign_column = false,
+		cursor_line = false,
+	},
 	italics = {
 		comments = false,
 		keywords = true,
@@ -15,12 +20,10 @@ require('material').setup({
 		"terminal",
 		"packer",
 		"qf",
-		"dapui_scopes",
-		"dapui_breakpoints",
-		"dapui_watches",
-		"dapui_stacks"
+		"NvimTree",
 	},
 	disable = {
+		borders = true,
 		background = false,
 		term_colors = false,
 		eob_lines = true
