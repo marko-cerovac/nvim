@@ -21,10 +21,10 @@ functions.relative_number = function ()
 end
 
 functions.cursor_line = function ()
-	if vim.wo.cursorline == true then
-		vim.wo.cursorline = false
+	if vim.wo.cursorlineopt == "both" then
+		vim.wo.cursorlineopt = "number"
 	else
-		vim.wo.cursorline = true
+		vim.wo.cursorlineopt = "both"
 	end
 end
 
@@ -43,13 +43,13 @@ functions.zathura_open_pdf = function ()
 end
 
 functions.build_system = function ()
-	if vim.g.build_command_selected ~= 1 then
+	if vim.g.auto_build_command_selected ~= 1 then
 		local build_command = vim.fn.input("Input build command: ", "", "shellcmd")
 		if build_command == "" then
 			build_command = "make"
 		end
 		vim.o.makeprg = build_command
-		vim.g.build_command_selected = 1
+		vim.g.auto_build_command_selected = 1
 	end
 	vim.cmd 'make'
 end
@@ -66,14 +66,18 @@ functions.run_code = function ()
 
 	-- if the terminal split is unknown, prompt the user
 	if vim.g.autorun_term_variant == nil or vim.g.autorun_term_variant == 0 then
-		vim.g.autorun_term_variant = vim.fn.input("Input terminal variant [ vertical | split | tab ]: ")
-		if vim.g.autorun_term_variant == "" then
+		vim.g.autorun_term_variant = vim.fn.input("Input terminal variant [ v | s | t ]: ")
+		if vim.g.autorun_term_variant == "s" then
+			vim.g.autorun_term_variant = "split"
+		elseif vim.g.autorun_term_variant == "t" then
+			vim.g.autorun_term_variant = "tab"
+		else
 			vim.g.autorun_term_variant = "vertical"
 		end
 	end
 	vim.cmd(vim.g.autorun_term_variant .. ' new')
 	vim.cmd 'terminal'
-	local command = vim.api.nvim_replace_termcodes(vim.g.autorun_executable .. "<CR>", true, true, true)
+	local command = vim.api.nvim_replace_termcodes("<C-l>" .. vim.g.autorun_executable .. "<CR>", true, true, true)
 	vim.api.nvim_feedkeys(command, 'n', true)
 end
 

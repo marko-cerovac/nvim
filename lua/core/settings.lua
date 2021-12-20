@@ -1,43 +1,45 @@
-vim.o.hidden = true                                 -- hidden buffers
-vim.o.swapfile = false                              -- swap files
-vim.o.errorbells = false                            -- error sound
-vim.o.backup = false                                -- backup file
-vim.o.writebackup = false                           -- writing backup file
-vim.o.autochdir = true                              -- change directory
-vim.o.encoding = "UTF-8"                            -- encoding
-vim.o.clipboard = "unnamedplus"                     -- clipboard
+vim.opt.hidden = true										-- hidden buffers
+vim.opt.swapfile = false									-- swap files
+vim.opt.errorbells = false                            		-- error sound
+vim.opt.backup = false                                		-- backup file
+vim.opt.writebackup = false                           		-- writing backup file
+vim.opt.autochdir = true                              		-- change directory
+vim.opt.encoding = "UTF-8"                            		-- encoding
+vim.opt.clipboard = "unnamedplus"                     		-- clipboard
 
-vim.o.smarttab = true                               -- smart tabs
-vim.bo.expandtab = false                            -- expand tabs to spaces
-vim.o.ts = 4										-- tab stop
-vim.o.softtabstop = 4								-- soft tab stop
+vim.opt.smarttab = true                               		-- smart tabs
+vim.opt.expandtab = false                            		-- expand tabs to spaces
+vim.opt.ts = 4												-- tab stop
+vim.opt.softtabstop = 4										-- soft tab stop
 
-vim.o.shiftwidth = 4									-- shift width
-vim.bo.smartindent = true                           -- smart indenting
-vim.o.autoindent = true                             -- auto indenting
-vim.o.smartcase = true                              -- search smart case
+vim.opt.shiftwidth = 4										-- shift width
+vim.opt.smartindent = true                           		-- smart indenting
+vim.opt.autoindent = true                             		-- auto indenting
+vim.opt.smartcase = true                              		-- search smart case
 
-vim.o.colorcolumn = '999'							-- color column
-vim.wo.number = true                                -- line numbers
-vim.wo.relativenumber = true                        -- relative line numbers
-vim.wo.wrap = false                                 -- word wrapping
-vim.wo.cursorline = true                            -- cursor line
-vim.o.incsearch = true                              -- incremental search
-vim.o.splitright = true                             -- split vertical windows right
-vim.o.splitbelow = true                             -- split horizontal windows below
-vim.o.updatetime = 250                              -- update time
-vim.o.timeoutlen = 300                              -- timeout length
-vim.o.showmode = false                              -- mode message
-vim.o.mouse = "a"                                   -- mouse
-vim.o.foldenable = false							-- disable auto folding
-vim.o.foldmethod = "expr"							-- folding method
+vim.opt.colorcolumn = '999'									-- color column
+vim.opt.number = true                                		-- line numbers
+vim.opt.relativenumber = true                        		-- relative line numbers
+vim.opt.wrap = false                                 		-- word wrapping
+vim.opt.cursorline = true                            		-- cursor line
+vim.opt.incsearch = true                              		-- incremental search
+vim.opt.splitright = true                             		-- split vertical windows right
+vim.opt.splitbelow = true                             		-- split horizontal windows below
+vim.opt.updatetime = 250                              		-- update time
+vim.opt.timeoutlen = 300                              		-- timeout length
+vim.opt.showmode = false                              		-- mode message
+vim.opt.mouse = "a"                                   		-- mouse
+vim.opt.foldenable = false									-- disable auto folding
+vim.opt.foldmethod = "expr"									-- folding method
 
-vim.o.termguicolors = true                          -- gui colors
-vim.o.background = "dark"                           -- background color
-vim.o.guifont = "Sauce Code Pro Nerd Font:h16"      -- font
--- vim.o.guifont = "Hasklug Nerd Font:h16"
-vim.o.completeopt = "menuone,noselect"              -- completion options
-vim.o.pumheight = 10                                -- popup menu height
+vim.opt.termguicolors = true                          		-- gui colors
+vim.opt.background = "dark"                           		-- background color
+-- vim.opt.guifont = "Sauce Code Pro Nerd Font:h10"			-- font
+-- vim.opt.guifont = "Hasklug Nerd Font Complete:h16"
+vim.opt.completeopt = "menuone,noselect"              		-- completion options
+vim.opt.pumheight = 10                                		-- popup menu height
+-- vim.opt.guicursor:append(',a:Cursor/Cursor')				-- color cursor output
+
 
 -- Open terminal in insert mode
 vim.cmd [[augroup Terminal]]
@@ -49,26 +51,26 @@ vim.cmd [[autocmd TermOpen * :normal a]]
 vim.cmd [[augroup END]]
 
 -- Disable built-in plugins
-local built_ins = {
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	"gzip",
-	"zip",
-	"zipPlugin",
-	"tar",
-	"tarPlugin",
-	"getscript",
-	"getscriptPlugin",
-	"vimball",
-	"vimballPlugin",
-	"2html_plugin",
-	"logipat",
-	"rrhelper",
-	"spellfile_plugin",
-	"matchit"
-}
-for _,plugin in pairs(built_ins) do
-	vim.g["loaded_" .. plugin] = 1
-end
+-- local built_ins = {
+-- 	"netrw",
+-- 	"netrwPlugin",
+-- 	"netrwSettings",
+-- 	"netrwFileHandlers",
+-- 	"gzip",
+-- 	"zip",
+-- 	"zipPlugin",
+-- 	"tar",
+-- 	"tarPlugin",
+-- 	"getscript",
+-- 	"getscriptPlugin",
+-- 	"vimball",
+-- 	"vimballPlugin",
+-- 	"2html_plugin",
+-- 	"logipat",
+-- 	"rrhelper",
+-- 	"spellfile_plugin",
+-- 	"matchit"
+-- }
+-- for _,plugin in pairs(built_ins) do
+-- 	vim.g["loaded_" .. plugin] = 1
+-- end

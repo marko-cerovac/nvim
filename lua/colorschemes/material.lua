@@ -2,30 +2,20 @@
 vim.g.material_style = 'deep ocean'
 
 require('material').setup({
+	popup_menu = 'light',
 	contrast = {
 		sidebars = true,
-		floating_windows = false,
-		line_numbers = false,
-		sign_column = false,
-		cursor_line = false,
 	},
 	italics = {
-		comments = false,
 		keywords = true,
 		functions = true,
-		strings = false,
-		variables = false
 	},
-	contrast_windows = {
-		"terminal",
+	contrast_filetypes = {
 		"packer",
 		"qf",
-		"NvimTree",
 	},
 	disable = {
 		borders = true,
-		background = false,
-		term_colors = false,
 		eob_lines = true
 	}
 })

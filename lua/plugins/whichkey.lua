@@ -68,7 +68,7 @@ wk.register({
 }, { prefix = "<leader>" })
 
 -- Buffers
-wk.register({ b = { name = 'buffer', } }, { prefix = '<leader>'})
+-- wk.register({ b = { name = 'buffer', } }, { prefix = '<leader>'})
 
 -- Git
 wk.register({ g = { name = "git", }, }, { prefix = "<leader>" })
@@ -93,8 +93,8 @@ wk.register({
         c = "set cursorline",
         i = "set indentline",
 		m = "set mouse",
-        -- h = "set highlights",
-        s = "toggle material style"
+        s = "toggle material style",
+		z = "set colorizer",
     }
 }, { prefix = "<leader>" })
 

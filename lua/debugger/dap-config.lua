@@ -42,7 +42,7 @@ require('which-key').register({
 		-- r = { wrap('repl.open'),			'open repl' },
 		q = { wrap('close'),				'quit' },
 		-- i = { ':lua require("dap.ui.widgets").hover()<CR>',	'evaluate expression' },
-		-- C = { wrap('run_to_cursor'),		'run to cursor' },
+		g = { wrap('run_to_cursor'),		'run to cursor' },
 		-- r = {wrap(repl.toggle()<CR><C-w>l', 'toggle repl'},
 		-- g = { wrap('session'),				'get Session' },
 		-- i = {wrap(.widgets").hover()<CR>', 'hover'},

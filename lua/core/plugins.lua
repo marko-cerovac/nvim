@@ -260,14 +260,14 @@ return packer.startup(
 		-- Colorizer
 		use {
 			'norcalli/nvim-colorizer.lua',
-			cmd = {
-                'ColorizerAttachToBuffer',
-                'ColorizerToggle'
-            },
+			-- cmd = { 'ColorizerToggle' },
+			keys = { '<leader>sz' },
             config = function ()
 				require('colorizer').setup({
 					names = false;
 				})
+			vim.api.nvim_set_keymap("n", "<leader>sz", ":ColorizerToggle<CR>", {noremap = true})
+
             end
 		}
 

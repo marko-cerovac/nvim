@@ -1,3 +1,3 @@
 require('trouble').setup {}
 
-vim.api.nvim_set_keymap('n', '<leader>cd', '<cmd>LspTroubleToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cd', '<cmd>TroubleToggle<CR>', { noremap = true, silent = true })

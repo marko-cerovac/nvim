@@ -2,7 +2,8 @@ require('bufferline').setup {
 	options = {
 		numbars = 'buffer_id',
 		numbers = function(opts)
-			return string.format('%s|%s ', opts.id, opts.raise(opts.ordinal))
+			-- return string.format('%s|%s ', opts.id, opts.raise(opts.ordinal))
+			return string.format('%s', opts.id)
 		end,
 
 		close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
@@ -10,8 +11,8 @@ require('bufferline').setup {
 		left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
 		middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
 
-		-- indicator_icon = '▎',
-		indicator_icon = '▎ ',
+		indicator_icon = '▎',
+		-- indicator_icon = '▎ ',
 		buffer_close_icon = '',
 		diagnostics = 'nvim_lsp',
 
@@ -30,16 +31,18 @@ require('bufferline').setup {
 		},
 
 		show_close_icon = false,
+		show_buffer_close_icons = false,
 		separator_style = "thin", -- "slant" | "thick" | "thin" | { 'any', 'any' },
 	}
 }
 
-local map = require('core.functions').map
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
-map('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>')
-map('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>')
-map('n', ']b', '<cmd>BufferLineCycleNext<CR>')
-map('n', '[b', '<cmd>BufferLineCyclePrev<CR>')
+map('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', opts)
+map('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', opts)
+map('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
+map('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
 
 require('which-key').register({
 	b = {

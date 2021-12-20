@@ -1,3 +1,4 @@
-vim.cmd [[let g:neovide_cursor_vfx_mode = "sonicboom"]]
--- vim.cmd [[let g:neovide_transparency=0.8]]
--- vim.cmd [[lett g:neovide_cursor_animation_lenght=0.13]]
+vim.g.neovide_cursor_vfx_mode = "sonicboom"
+vim.o.guifont = "Source Code Pro:h7.8"      -- font
+-- vim.o.guifont = "Hasklug:h12"      -- font
+-- vim.o.guifont = "Hack:h12"      -- font
