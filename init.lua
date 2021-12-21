@@ -24,6 +24,6 @@ else
 	require('core.mappings')
 
 	-- Plugins
-	require('core.plugins')
+	require('plugins')
 
 end

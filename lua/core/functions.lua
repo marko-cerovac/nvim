@@ -1,9 +1,5 @@
 local functions = {}
 
-functions.map = function (mode, keymap, action)
-	vim.api.nvim_set_keymap(mode, keymap, action, { noremap = true, silent = true })
-end
-
 functions.number = function ()
 	if vim.wo.number == true then
 		vim.wo.number = false

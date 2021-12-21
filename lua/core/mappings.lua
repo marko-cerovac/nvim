@@ -76,6 +76,3 @@ map('n', '<leader>sm', [[:lua require('core.functions').mouse()<CR>]], opts)
 
 -- Toggle Nvim-Tree
 map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-
--- Disable kommentary mappings
-vim.g.kommentary_create_default_mappings = false

@@ -39,7 +39,7 @@ require('which-key').register({
         c = "commits",
         f = "files",
         i = "status",
-		n = {'<cmd>Neogit<CR>', 'open neogit'},
+		g = {'<cmd>Neogit<CR>', 'open neogit'},
         l = "line blame",
         -- L = "full line blame",
 		p = "preview hunk",
