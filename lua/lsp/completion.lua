@@ -31,7 +31,7 @@ local icons = {
 
 
 local check_backspace = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
@@ -66,8 +66,8 @@ cmp.setup {
 		ghost_text = true
 	},
 	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -101,11 +101,11 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'nvim_lua' },
-		-- { name = 'treesitter' },
 		{ name = 'calc' },
 		{ name = 'buffer' },
 		{ name = 'path' },
-		{ name = 'neorg' },
+		-- { name = 'treesitter' },
+		-- { name = 'neorg' },
 	},
 	documentation = {
 		border = 'rounded',
