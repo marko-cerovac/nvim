@@ -10,20 +10,22 @@
 --      \:\__\        \::/  /      Desc: NeoVim config
 --       \/__/         \/__/
 
+
 if vim.g.vscode then
 
 	-- VSCode ui
-	require('ui.vscode')
+	require("mc-neovim.ui.vscode")
 
-else
-
-	-- Settings
-	require('core.settings')
-
-	-- Mappings
-	require('core.mappings')
-
-	-- Plugins
-	require('plugins')
+	return
 
 end
+
+-- Settings
+require("mc-neovim.core.settings")
+
+-- Mappings
+require("mc-neovim.core.mappings")
+
+-- Plugins
+require("mc-neovim.plugins")
+
