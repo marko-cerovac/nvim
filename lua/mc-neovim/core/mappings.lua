@@ -63,16 +63,16 @@ map('n', "<leader><tab>", ":!", { noremap = true })
 
 -- Compiling code
 -- map('n', "<leader>cc", ":make<CR>", opts)
-map('n', "<leader>cc", ":lua require('core.functions').build_system()<CR>", opts)
+map('n', "<leader>cc", ":lua require('mc-neovim.core.functions').build_system()<CR>", opts)
 
 -- Running code
-map('n', "<leader>cg", ":lua require('core.functions').run_code()<CR>", opts)
+map('n', "<leader>cg", ":lua require('mc-neovim.core.functions').run_code()<CR>", opts)
 
 -- Toggling settings
-map('n', "<leader>sn", [[:lua require("core.functions").number()<CR>]], opts)
-map('n', "<leader>sr", [[:lua require("core.functions").relative_number()<CR>]], opts)
-map('n', "<leader>sc", [[:lua require("core.functions").cursor_line()<CR>]], opts)
-map('n', "<leader>sm", [[:lua require("core.functions").mouse()<CR>]], opts)
+map('n', "<leader>sn", ":lua require('mc-neovim.core.functions').number()<CR>", opts)
+map('n', "<leader>sr", ":lua require('mc-neovim.core.functions').relative_number()<CR>", opts)
+map('n', "<leader>sc", ":lua require('mc-neovim.core.functions').cursor_line()<CR>", opts)
+map('n', "<leader>sm", ":lua require('mc-neovim.core.functions').mouse()<CR>", opts)
 
 -- Toggle Nvim-Tree
 map('n', "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
