@@ -26,9 +26,9 @@ require("bufferline").setup {
 		end,
 
 		offsets = {
-			{filetype = "NvimTree", text = "File Explorer", text_align =  "center", highlight = "NvimTreeFolderIcon" },
-			{filetype = "SidebarNvim", text = "Sidebar", text_align =  "center", highlight = "NvimTreeFolderIcon" },
-			{filetype = "packer", text = "Packer" , text_align =  "center", highlight = "NvimTreeFolderIcon" }
+			{filetype = "NvimTree", text = "File Explorer", text_align =  "center", highlight = "NvimTreeRootFolder" },
+			{filetype = "SidebarNvim", text = "Sidebar", text_align =  "center", highlight = "NvimTreeRootFolder" },
+			{filetype = "packer", text = "Packer" , text_align =  "center", highlight = "NvimTreeRootFolder" }
 		},
 
 		show_close_icon = false,

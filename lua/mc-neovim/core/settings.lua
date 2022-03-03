@@ -9,9 +9,8 @@ vim.opt.clipboard = "unnamedplus"                     		-- clipboard
 
 vim.opt.smarttab = true                               		-- smart tabs
 vim.opt.expandtab = false                            		-- expand tabs to spaces
-vim.opt.ts = 4												-- tab stop
-vim.opt.softtabstop = 4										-- soft tab stop
-
+vim.opt.tabstop = 4											-- tab stop
+-- vim.opt.softtabstop = 0										-- soft tab stop
 vim.opt.shiftwidth = 4										-- shift width
 vim.opt.smartindent = true                           		-- smart indenting
 vim.opt.autoindent = true                             		-- auto indenting
@@ -40,6 +39,7 @@ vim.opt.background = "dark"                           		-- background color
 vim.opt.completeopt = "menuone,noselect"              		-- completion options
 vim.opt.pumheight = 10                                		-- popup menu height
 -- vim.opt.guicursor:append(",a:Cursor/Cursor")				-- color cursor output
+vim.opt.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 
 
 -- Open terminal in insert mode

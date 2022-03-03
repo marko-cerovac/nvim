@@ -103,6 +103,7 @@ wk.register({
         r = "set relative numbers",
         c = "set cursorline",
         i = "set indentline",
+		l = "set listchars",
 		m = "set mouse",
         s = "toggle material style",
 		z = "set colorizer",

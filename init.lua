@@ -28,4 +28,3 @@ require("mc-neovim.core.mappings")
 
 -- Plugins
 require("mc-neovim.plugins")
-

@@ -1,5 +1,5 @@
 -- Toggle indent line
-vim.api.nvim_set_keymap('n', "<leader>si", "<Cmd>IndentBlanklineToggle<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', "<leader>si", "<Cmd>IndentBlanklineToggle<CR>", { noremap = true, silent = true })
 
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
@@ -20,3 +20,6 @@ require("indent_blankline").setup {
 		"terminal"
 	}
 }
+
+-- vim.cmd 'IndentBlanklineRefresh'
+vim.cmd 'IndentBlanklineToggle'

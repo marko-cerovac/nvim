@@ -1,21 +1,5 @@
 local functions = {}
 
-functions.number = function ()
-	if vim.wo.number == true then
-		vim.wo.number = false
-	else
-		vim.wo.number = true
-	end
-end
-
-functions.relative_number = function ()
-	if vim.wo.relativenumber == true then
-		vim.wo.relativenumber = false
-	else
-		vim.wo.relativenumber = true
-	end
-end
-
 functions.cursor_line = function ()
 	if vim.wo.cursorlineopt == "both" then
 		vim.wo.cursorlineopt = "number"

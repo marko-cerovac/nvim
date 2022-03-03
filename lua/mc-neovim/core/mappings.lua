@@ -69,13 +69,17 @@ map('n', "<leader>cc", ":lua require('mc-neovim.core.functions').build_system()<
 map('n', "<leader>cg", ":lua require('mc-neovim.core.functions').run_code()<CR>", opts)
 
 -- Toggling settings
-map('n', "<leader>sn", ":lua require('mc-neovim.core.functions').number()<CR>", opts)
-map('n', "<leader>sr", ":lua require('mc-neovim.core.functions').relative_number()<CR>", opts)
+map('n', "<leader>sn", ":lua vim.wo.number = not vim.wo.number<CR>", opts)
+map('n', "<leader>sr", ":lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", opts)
 map('n', "<leader>sc", ":lua require('mc-neovim.core.functions').cursor_line()<CR>", opts)
 map('n', "<leader>sm", ":lua require('mc-neovim.core.functions').mouse()<CR>", opts)
+map('n', "<leader>sl", ":lua vim.wo.list = not vim.wo.list<CR>", opts)
 
 -- Toggle Nvim-Tree
-map('n', "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
+map('n', "<leader>e", "<cmd>PackerLoad nvim-tree.lua<CR><cmd>NvimTreeToggle<CR>", opts)
+
+-- Toggle indent lines
+map('n', "<leader>si", "<cmd>IndentBlanklineToggle<CR>", opts)
 
 -- Toggle Sidebar.nvim
 map('n', "<leader>b", "<cmd>SidebarNvimToggle<CR>", opts)

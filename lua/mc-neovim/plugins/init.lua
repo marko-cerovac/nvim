@@ -211,7 +211,8 @@ return packer.startup(
 		-- File tree explorer
         use {
 			"kyazdani42/nvim-tree.lua",
-            cmd = "NvimTreeToggle",
+            -- cmd = "NvimTreeToggle",
+			keys = { "<leader>e" },
             config = function()
                 require "mc-neovim.plugins.nvim-tree"
             end
@@ -224,10 +225,7 @@ return packer.startup(
 				"<leader>f",
 				"<leader>g",
 			},
-			requires = {
-				{"nvim-lua/popup.nvim", opt = true},
-				{"nvim-lua/plenary.nvim"},
-			},
+			requires = { "nvim-lua/plenary.nvim" },
             config = function()
                 require "mc-neovim.plugins.telescope"
             end
@@ -286,7 +284,9 @@ return packer.startup(
 		-- Indent line
         use {
             "lukas-reineke/indent-blankline.nvim",
-			keys = { "<leader>si" },
+			cmd = "IndentBlanklineToggle",
+			-- keys = { "<leader>si" },
+			-- ft = lspFiletypes;
             config = function()
                 require "mc-neovim.plugins.indent-blankline"
             end
