@@ -13,6 +13,11 @@ require("material").setup({
 	contrast_filetypes = {
 		"packer",
 		"qf",
+		"Trouble",
+		"dapui_scopes",
+		"dapui_breakpoints",
+		"dapui_stacks",
+		"dapui_watches"
 	},
 	disable = {
 		borders = true,

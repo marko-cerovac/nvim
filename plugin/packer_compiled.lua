@@ -265,7 +265,7 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
-    after = { "nvim-lsp-installer", "lspsaga.nvim" },
+    after = { "lspsaga.nvim", "nvim-lsp-installer" },
     config = { "\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29mc-neovim.lsp.lsp-config\frequire\0" },
     loaded = false,
     needs_bufread = false,
@@ -370,65 +370,65 @@ time([[Setup for dashboard-nvim]], false)
 time([[packadd for dashboard-nvim]], true)
 vim.cmd [[packadd dashboard-nvim]]
 time([[packadd for dashboard-nvim]], false)
--- Config for: material.nvim
-time([[Config for material.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0$mc-neovim.colorschemes.material\frequire\0", "config", "material.nvim")
-time([[Config for material.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n[\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\1K\0\1\0\27mc-neovim.lsp.snippets\29mc-neovim.lsp.completion\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30mc-neovim.plugins.lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31mc-neovim.plugins.whichkey\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30mc-neovim.plugins.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!mc-neovim.plugins.treesitter\frequire\0", "config", "nvim-treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: material.nvim
+time([[Config for material.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0$mc-neovim.colorschemes.material\frequire\0", "config", "material.nvim")
+time([[Config for material.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require("packer.load")({'neogit'}, { cmd = "Neogit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file IndentBlanklineToggle lua require("packer.load")({'indent-blankline.nvim'}, { cmd = "IndentBlanklineToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SidebarNvimToggle lua require("packer.load")({'sidebar.nvim'}, { cmd = "SidebarNvimToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require("packer.load")({'neogit'}, { cmd = "Neogit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
-vim.cmd [[noremap <silent> <leader>sz <cmd>lua require("packer.load")({'nvim-colorizer.lua'}, { keys = "<lt>leader>sz", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>k <cmd>lua require("packer.load")({'kommentary'}, { keys = "<lt>leader>k", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>g <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>g", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>cd <cmd>lua require("packer.load")({'lsp-trouble.nvim'}, { keys = "<lt>leader>cd", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>f <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>f", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>e <cmd>lua require("packer.load")({'nvim-tree.lua'}, { keys = "<lt>leader>e", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>sb <cmd>lua require("packer.load")({'bufferline.nvim'}, { keys = "<lt>leader>sb", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>sz <cmd>lua require("packer.load")({'nvim-colorizer.lua'}, { keys = "<lt>leader>sz", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <leader>d <cmd>lua require("packer.load")({'nvim-dap'}, { keys = "<lt>leader>d", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>k <cmd>lua require("packer.load")({'kommentary'}, { keys = "<lt>leader>k", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>sb <cmd>lua require("packer.load")({'bufferline.nvim'}, { keys = "<lt>leader>sb", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>e <cmd>lua require("packer.load")({'nvim-tree.lua'}, { keys = "<lt>leader>e", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>f <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>f", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>g <cmd>lua require("packer.load")({'telescope.nvim'}, { keys = "<lt>leader>g", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType c ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "c" }, _G.packer_plugins)]]
+vim.cmd [[au FileType cpp ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "cpp" }, _G.packer_plugins)]]
 vim.cmd [[au FileType zsh ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "zsh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType norg ++once lua require("packer.load")({'neorg'}, { ft = "norg" }, _G.packer_plugins)]]
-vim.cmd [[au FileType make ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "make" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sh ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "sh" }, _G.packer_plugins)]]
-vim.cmd [[au FileType cpp ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "cpp" }, _G.packer_plugins)]]
 vim.cmd [[au FileType lua ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "lua" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sh ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "sh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType cmake ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "cmake" }, _G.packer_plugins)]]
-vim.cmd [[au FileType c ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "c" }, _G.packer_plugins)]]
+vim.cmd [[au FileType make ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "make" }, _G.packer_plugins)]]
 vim.cmd [[au FileType bash ++once lua require("packer.load")({'nvim-lspconfig'}, { ft = "bash" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au ColorSchemePre * ++once lua require("packer.load")({'nord.nvim', 'tokyonight.nvim'}, { event = "ColorSchemePre *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au ColorSchemePre * ++once lua require("packer.load")({'tokyonight.nvim', 'nord.nvim'}, { event = "ColorSchemePre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]

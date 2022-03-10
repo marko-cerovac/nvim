@@ -11,14 +11,14 @@ dap.configurations.cpp = {
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
-	args = function ()
-		local string = vim.fn.input("Program arguments: ")
-		local cmd_args = {}
-		for substring in string:gmatch("%S+") do
-			table.insert(cmd_args, substring)
-		end
-		return cmd_args
-	end,
+	-- args = function ()
+	-- 	local string = vim.fn.input("Program arguments: ")
+	-- 	local cmd_args = {}
+	-- 	for substring in string:gmatch("%S+") do
+	-- 		table.insert(cmd_args, substring)
+	-- 	end
+	-- 	return cmd_args
+	-- end,
     cwd = "${workspaceFolder}",
     stopOnEntry = true,
   }

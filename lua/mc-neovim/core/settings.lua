@@ -43,15 +43,13 @@ vim.opt.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:�
 
 
 -- Open terminal in insert mode
-vim.cmd [[
-	augroup Terminal
-	autocmd!
-		autocmd TermOpen * :set nonumber
-		autocmd TermOpen * :set norelativenumber
-		autocmd TermOpen * :set nocursorline
-		autocmd TermOpen * :normal a
-	augroup END
-]]
+local terminal_group = vim.api.nvim_create_augroup("Terminal", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", { callback = function ()
+	vim.opt.number = false
+	vim.opt.relativenumber = false
+	vim.opt.cursorline = false
+	vim.cmd 'startinsert'
+end, group = terminal_group })
 
 -- Disable built-in plugins
 -- local built_ins = {

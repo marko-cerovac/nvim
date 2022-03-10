@@ -31,7 +31,7 @@ require("which-key").register({
 		name = "find",
 		a = {"<cmd>Telescope lsp_code_actions<CR>", "code actions"},
 		b = {"<cmd>Telescope buffers<CR>", "buffers"},
-		c = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "in current buffer"},
+		c = {"<cmd>Telescope lsp_references<CR>", "code references"},
 		e = {"<cmd>Telescope file_browser<CR>", "file explorer"},
 		f = {"<cmd>Telescope find_files<CR>", "files"},
 		g = {"<cmd>Telescope live_grep<CR>", "grep files"},
