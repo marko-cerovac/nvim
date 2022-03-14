@@ -34,8 +34,6 @@ vim.opt.foldmethod = "expr"									-- folding method
 
 vim.opt.termguicolors = true                          		-- gui colors
 vim.opt.background = "dark"                           		-- background color
--- vim.opt.guifont = "Sauce Code Pro Nerd Font:h10"			-- font
--- vim.opt.guifont = "Hasklug Nerd Font Complete:h16"
 vim.opt.completeopt = "menuone,noselect"              		-- completion options
 vim.opt.pumheight = 10                                		-- popup menu height
 -- vim.opt.guicursor:append(",a:Cursor/Cursor")				-- color cursor output

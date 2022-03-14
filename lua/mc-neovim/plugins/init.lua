@@ -141,7 +141,7 @@ return packer.startup(
 
 		-- Status line
 		use {
-			"hoob3rt/lualine.nvim",
+			"nvim-lualine/lualine.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
             config = function ()
                 require "mc-neovim.plugins.lualine"
@@ -200,13 +200,13 @@ return packer.startup(
 		}
 
 		-- Sidebar
-		use {
-			"sidebar-nvim/sidebar.nvim",
-			cmd = "SidebarNvimToggle",
-			config = function()
-				require "mc-neovim.plugins.sidebar"
-			end
-		}
+		-- use {
+		-- 	"sidebar-nvim/sidebar.nvim",
+		-- 	cmd = "SidebarNvimToggle",
+		-- 	config = function()
+		-- 		require "mc-neovim.plugins.sidebar"
+		-- 	end
+		-- }
 
 		-- File tree explorer
         use {

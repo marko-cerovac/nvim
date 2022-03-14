@@ -28,3 +28,11 @@ require("mc-neovim.core.mappings")
 
 -- Plugins
 require("mc-neovim.plugins")
+
+if vim.g.neovide then
+
+	-- neovide ui
+	require("mc-neovim.ui.neovide")
+
+end
+

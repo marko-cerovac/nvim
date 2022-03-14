@@ -15,6 +15,7 @@ telescope.setup{
 			}
 		},
 		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+		prompt_prefix = " "
 	},
 }
 

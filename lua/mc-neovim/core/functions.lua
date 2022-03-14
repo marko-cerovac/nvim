@@ -57,9 +57,7 @@ functions.run_code = function ()
 	else
 		vim.cmd("vertical new")
 	end
-	vim.cmd "terminal"
-	local command = vim.api.nvim_replace_termcodes("<C-l>" .. vim.g.autorun_executable .. "<CR>", true, true, true)
-	vim.api.nvim_feedkeys(command, 'n', true)
+	vim.cmd("terminal " .. vim.g.autorun_executable)
 end
 
 return functions

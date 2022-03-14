@@ -28,7 +28,7 @@ wk.setup {
 -- Standalone mappings
 wk.register({
     ["<leader>e"] = "explore",
-    ["<leader>b"] = "sidebar",
+    -- ["<leader>b"] = "sidebar",
     ["<leader>v"] = "vert-split terminal",
     ["<leader>h"] = "remove highlight",
 	["<leader>k"] = "comment line",

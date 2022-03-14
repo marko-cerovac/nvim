@@ -82,4 +82,4 @@ map('n', "<leader>e", "<cmd>PackerLoad nvim-tree.lua<CR><cmd>NvimTreeToggle<CR>"
 map('n', "<leader>si", "<cmd>IndentBlanklineToggle<CR>", opts)
 
 -- Toggle Sidebar.nvim
-map('n', "<leader>b", "<cmd>SidebarNvimToggle<CR>", opts)
+-- map('n', "<leader>b", "<cmd>SidebarNvimToggle<CR>", opts)

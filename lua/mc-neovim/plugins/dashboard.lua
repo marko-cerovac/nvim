@@ -48,7 +48,7 @@ vim.g.dashboard_custom_section = {
             description = {"  File Explorer                SPC f e"},
             command = function ()
 				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope file_browser hidden=true"
+            	vim.cmd "Telescope file_browser"
             end},
 
 
