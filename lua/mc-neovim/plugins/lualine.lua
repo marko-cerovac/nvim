@@ -1,6 +1,9 @@
 require("lualine").setup{
 	options = {
-		theme = "auto"
+		theme = "auto",
+		globalstatus = true,
+		-- component_separators = '|',
+		-- section_separators = { left = '▌', right = '▐'},
 	},
 	extensions = {
 		"nvim-tree"

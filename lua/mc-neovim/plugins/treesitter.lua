@@ -44,9 +44,9 @@ require"nvim-treesitter.configs".setup {
 			node_decremental = "grm",
 		},
 	},
-	indent = {
-		enable = true
-	},
+	-- indent = {
+	-- 	enable = true
+	-- },
 }
 
 vim.cmd [[set foldexpr=nvim_treesitter#foldexpr()]]

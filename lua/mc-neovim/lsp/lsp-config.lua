@@ -6,46 +6,32 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Mappings.
-	local options = { noremap=true, silent=true }
+	local options = { noremap=true, silent=true, buffer = true }
 
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+	vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, options)
+	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, options)
+	vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, options)
+	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, options)
+	vim.keymap.set("n", "<leader>cwa", function() vim.lsp.buf.add_workspace_folder() end, options)
+	vim.keymap.set("n", "<leader>cwx", function() vim.lsp.buf.remove_workspace_folder() end, options)
+	vim.keymap.set("n", "<leader>cwl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, options)
+	vim.keymap.set("n", "<leader>ct", function() vim.lsp.buf.type_definition() end, options)
+	vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.formatting() end, options)
+	vim.keymap.set("v", "<leader>cf", function() vim.lsp.buf.range_formatting() end, options)
 
-	buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
-	buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
-	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
-	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
-	buf_set_keymap("n", "<leader>cwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", options)
-	buf_set_keymap("n", "<leader>cwx", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", options)
-	buf_set_keymap("n", "<leader>cwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", options)
-	buf_set_keymap("n", "<leader>ct", "<cmd>lua vim.lsp.buf.type_definition()<CR>", options)
-	buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
-	buf_set_keymap("v", "<leader>cf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", options)
-
-	buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", options)
-	buf_set_keymap("n", "<leader>ch", "<cmd>Lspsaga lsp_finder<CR>", options)
-	buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", options)
-	buf_set_keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", options)
-	buf_set_keymap("x", "<leader>ca", ":<c-u>Lspsaga range_code_action<CR>", options)
-	buf_set_keymap("n", "<leader>cs", "<cmd>Lspsaga signature_help<CR>", options)
-	buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga preview_definition<CR>", options)
-	buf_set_keymap("n", "<leader>cl", "<cmd>Lspsaga show_line_diagnostics<CR>", options)
-	buf_set_keymap("n", "[c", "<cmd>Lspsaga diagnostic_jump_prev<CR>", options)
-	buf_set_keymap("n", "]c", "<cmd>Lspsaga diagnostic_jump_next<CR>", options)
-	buf_set_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", options)
-	buf_set_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", options)
-	buf_set_keymap("n", "<leader>tf", "<cmd>Lspsaga open_floterm<CR>", options)
-	buf_set_keymap("n", "<leader>tq", "<cmd>Lspsaga close_floterm<CR>", options)
-
-	-- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
-	-- buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
-	-- buf_set_keymap("n", "<leader>cq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", options)
-	-- buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
-	-- buf_set_keymap("n", "<leader>cl", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({border="rounded"})<CR>", options)
-	-- buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", options)
-	-- buf_set_keymap("n", "[c", "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts={border="rounded"}})<CR>", options)
-	-- buf_set_keymap("n", "]c", "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts={border="rounded"}})<CR>", options)
+	vim.keymap.set("n", "K", function () return require('lspsaga.hover').render_hover_doc() end, options)
+	vim.keymap.set("n", "<leader>ch", function () return require("lspsaga.provider").lsp_finder() end, options)
+	vim.keymap.set("n", "<leader>cr", function () return require('lspsaga.rename').rename() end, options)
+	vim.keymap.set("n", "<leader>ca", function () return require('lspsaga.codeaction').code_action() end, options)
+	vim.keymap.set("v", "<leader>ca", function () return require('lspsaga.codeaction').range_code_action() end, options)
+	vim.keymap.set("n", "<leader>cs", function () return require('lspsaga.signaturehelp').signature_help() end, options)
+	vim.keymap.set("n", "<leader>cp", function () return require('lspsaga.provider').preview_definition() end, options)
+	vim.keymap.set("n", "<leader>cl", function () return require('lspsaga.diagnostic').show_line_diagnostics() end, options)
+	vim.keymap.set("n", "<leader>cL", function () return require('lspsaga.diagnostic').show_cursor_diagnostics() end, options)
+	vim.keymap.set("n", "[c", "<cmd>Lspsaga diagnostic_jump_next<CR>", options)
+	vim.keymap.set("n", "]c", "<cmd>Lspsaga diagnostic_jump_prev<CR>", options)
+	vim.keymap.set("n", "<C-u>", function() return require('lspsaga.action').smart_scroll_with_saga(-1) end, options)
+	vim.keymap.set("n", "<C-d>", function() return require('lspsaga.action').smart_scroll_with_saga(1) end, options)
 
 	-- Rounded hover borders
 	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
@@ -94,24 +80,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "LspDiagnosticsSignWarning", numhl = ""})
 -- vim.fn.sign_define("DiagnosticSignHint", {text = " ", texthl = "LspDiagnosticsSignHint", numhl = ""})
 -- vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "LspDiagnosticsSignInformation", numhl = ""})
-
-
--- Use a loop to conveniently call "setup" on multiple servers and
--- map buffer local keybindings when the language server attaches
---[[ local servers = {
-	"pyright",
-	"tsserver",
-	"clangd",
-	"bashls",
-}
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup {
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = 150,
-		}
-	}
-end ]]
 
 return {
 	-- Enable code snippets

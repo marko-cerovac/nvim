@@ -85,7 +85,7 @@ return packer.startup(
 			},
 			config = function()
 				require "mc-neovim.lsp.completion"
-				require "mc-neovim.lsp.snippets"
+				-- require "mc-neovim.lsp.snippets"
 			end,
 		}
 
@@ -113,6 +113,19 @@ return packer.startup(
 					{ noremap = true, silent = true }
 				)
             end
+		}
+
+		-- Cmake integration
+		use {
+			"cdelledonne/vim-cmake",
+			ft = {
+				"cpp",
+				"cmake"
+			},
+			config = function ()
+				vim.g.cmake_link_compile_commands = true
+				vim.g.cmake_jump_on_completion = true
+			end
 		}
 
 		-- Debugg adapter protocol

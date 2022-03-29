@@ -28,9 +28,11 @@ dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- Define debugg signs
-vim.fn.sign_define("DapBreakpoint", {text="ﭦ ", texthl = "DapBreakpoint", numhl = ""})
+-- vim.fn.sign_define("DapBreakpoint", {text="ﱣ ", texthl = "DapBreakpoint", numhl = ""})
+-- vim.fn.sign_define("DapStopped", {text="喇", texthl = "DapStopped", numhl = ""})
+vim.fn.sign_define("DapBreakpoint", {text=" ", texthl = "DapBreakpoint", numhl = ""})
+-- vim.fn.sign_define("DapBreakpoint", {text="ﭦ ", texthl = "DapBreakpoint", numhl = ""})
 vim.fn.sign_define("DapStopped", {text=" ", texthl = "DapStopped", numhl = ""})
--- vim.fn.sign_define("DapBreakpoint", {text=" ", texthl = "DapBreakpoint", numhl = ""})
 
 -- dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 

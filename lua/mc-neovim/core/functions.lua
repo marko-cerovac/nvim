@@ -37,7 +37,7 @@ end
 functions.run_code = function ()
 	-- if the executable path is unknown, prompt the user
 	if vim.g.autorun_executable == nil or vim.g.autorun_executable == 0 then
-		vim.g.autorun_executable = vim.fn.input("Input executable to autorun: ", vim.fn.getcwd() .. "/", "file_in_path")
+		vim.g.autorun_executable = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file_in_path")
 		if vim.g.autorun_executable == '' then
 			vim.g.autorun_executable = nil
 			return

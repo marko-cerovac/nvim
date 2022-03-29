@@ -21,6 +21,7 @@ vim.opt.number = true                                		-- line numbers
 vim.opt.relativenumber = true                        		-- relative line numbers
 vim.opt.wrap = false                                 		-- word wrapping
 vim.opt.cursorline = true                            		-- cursor line
+-- vim.opt.laststatus = 3 										-- global statusline
 -- vim.opt.cursorlineopt = "number"							-- set cursorline style
 vim.opt.incsearch = true                              		-- incremental search
 vim.opt.splitright = true                             		-- split vertical windows right

@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Map leader to Space
@@ -63,17 +63,17 @@ map('n', "<leader><tab>", ":!", { noremap = true })
 
 -- Compiling code
 -- map('n', "<leader>cc", ":make<CR>", opts)
-map('n', "<leader>cc", ":lua require('mc-neovim.core.functions').build_system()<CR>", opts)
+map('n', "<leader>cc", function() require('mc-neovim.core.functions').build_system() end, opts)
 
 -- Running code
-map('n', "<leader>cg", ":lua require('mc-neovim.core.functions').run_code()<CR>", opts)
+map('n', "<leader>cg", function() require('mc-neovim.core.functions').run_code() end, opts)
 
 -- Toggling settings
-map('n', "<leader>sn", ":lua vim.wo.number = not vim.wo.number<CR>", opts)
-map('n', "<leader>sr", ":lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", opts)
-map('n', "<leader>sc", ":lua require('mc-neovim.core.functions').cursor_line()<CR>", opts)
-map('n', "<leader>sm", ":lua require('mc-neovim.core.functions').mouse()<CR>", opts)
-map('n', "<leader>sl", ":lua vim.wo.list = not vim.wo.list<CR>", opts)
+map('n', "<leader>sn", function() vim.wo.number = not vim.wo.number end, opts)
+map('n', "<leader>sr", function() vim.wo.relativenumber = not vim.wo.relativenumber end, opts)
+map('n', "<leader>sc", function() require('mc-neovim.core.functions').cursor_line() end, opts)
+map('n', "<leader>sm", function() require('mc-neovim.core.functions').mouse() end, opts)
+map('n', "<leader>sl", function() vim.wo.list = not vim.wo.list end, opts)
 
 -- Toggle Nvim-Tree
 map('n', "<leader>e", "<cmd>PackerLoad nvim-tree.lua<CR><cmd>NvimTreeToggle<CR>", opts)
