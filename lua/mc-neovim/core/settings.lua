@@ -17,6 +17,7 @@ vim.opt.autoindent = true                             		-- auto indenting
 vim.opt.smartcase = true                              		-- search smart case
 
 vim.opt.colorcolumn = "999"									-- color column
+vim.opt.signcolumn = "yes:2" 								-- sign column
 vim.opt.number = true                                		-- line numbers
 vim.opt.relativenumber = true                        		-- relative line numbers
 vim.opt.wrap = false                                 		-- word wrapping

@@ -37,6 +37,10 @@ map('n', "<S-TAB>", ":bprevious<CR>", opts)
 -- map('n', "gb", ":bnext<CR>", opts)
 -- map('n', "gB", ":bprevious<CR>", opts)
 
+-- Switch U and ctrl-r
+map('n', "U", "<C-r>", opts)
+map('n', "<C-r>", "U", opts)
+
 -- Indenting lines
 map('v', '<', "<gv", opts)
 map('v', '>', ">gv", opts)

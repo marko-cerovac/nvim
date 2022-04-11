@@ -14,7 +14,8 @@ require("bufferline").setup {
 		indicator_icon = '▎',
 		-- indicator_icon = "▎ ",
 		buffer_close_icon = '',
-		diagnostics = "nvim_lsp",
+		-- diagnostics = "nvim_lsp",
+		diagnostics = false,
 
 		diagnostics_indicator = function(_, _, diagnostics_dict, _)
 			local s = ' '

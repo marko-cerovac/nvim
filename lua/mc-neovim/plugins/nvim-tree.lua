@@ -49,7 +49,6 @@ vim.g.nvim_tree_icons = {
 
 -- following options are the default
 require"nvim-tree".setup {
-	auto_close          = true,
 	hijack_cursor       = true,
 	update_cwd          = true,
 	diagnostics = { enable = true, },

@@ -13,7 +13,7 @@ require("material").setup({
 	contrast_filetypes = {
 		"packer",
 		"qf",
-		"Trouble",
+		-- "Trouble",
 		-- "dapui_scopes",
 		-- "dapui_breakpoints",
 		-- "dapui_stacks",

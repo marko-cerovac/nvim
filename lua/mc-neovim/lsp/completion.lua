@@ -109,6 +109,7 @@ cmp.setup {
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "treesitter" },
+		-- { name = 'nvim_lsp_signature_help' },
 		{ name = "neorg" },
 	},
 	documentation = {
@@ -117,6 +118,23 @@ cmp.setup {
 		winhighlight = "",
 	}
 }
+
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  })
+})
+
+cmp.setup.cmdline(':', {
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	},
+	{
+		{ name = "cmdline" }
+	})
+})
 
 --[[ require("luasnip").config.set_config {
 	history = false,

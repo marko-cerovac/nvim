@@ -78,6 +78,9 @@ return packer.startup(
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-nvim-lua",
+				-- "hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-nvim-lsp-document-symbol",
+				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-calc",
 				"L3MON4D3/LuaSnip",
@@ -102,7 +105,10 @@ return packer.startup(
 		-- Lsp Diagnostics
 		use {
 			"folke/lsp-trouble.nvim",
-			keys = { "<leader>cd" },
+			keys = {
+				"<leader>cd",
+				"gr"
+			},
 			requires = "kyazdani42/nvim-web-devicons",
             config = function ()
 				require("trouble").setup {}
@@ -110,6 +116,12 @@ return packer.startup(
 					"n",
 					"<leader>cd",
 					"<cmd>TroubleToggle<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"gr",
+					"<cmd>TroubleToggle lsp_references<CR>",
 					{ noremap = true, silent = true }
 				)
             end
@@ -211,6 +223,18 @@ return packer.startup(
 				require "mc-neovim.plugins.whichkey"
 			end
 		}
+
+		-- User defined modes
+		-- use {
+		-- 	"Iron-E/nvim-libmodal",
+		-- 	opt = true,
+		-- 	config = function ()
+		-- 		vim.keymap.set( 'n', "<leader>d", function ()
+		-- 			require "mc-neovim.debugger.debuggmode"
+		-- 		end)
+		-- 		require "mc-neovim.debugger.debuggmode"
+		-- 	end
+		-- }
 
 		-- Sidebar
 		-- use {
