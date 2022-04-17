@@ -14,7 +14,7 @@ telescope.setup{
 				['<S-Tab>'] = actions.move_selection_next,
 			}
 		},
-		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+		-- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 		prompt_prefix = " "
 	},
 }

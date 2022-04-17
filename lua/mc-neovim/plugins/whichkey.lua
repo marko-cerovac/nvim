@@ -1,24 +1,23 @@
 local wk = require("which-key")
 
 wk.setup {
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = " ", -- symbol used in the command line area that shows your active key combo
-      group = " ", -- symbol prepended to a group
-    },
-    window = {
-      -- border = "rounded", -- none, single, double, shadow
-      border = "single", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    },
-    layout = {
-      height = { min = 3, max = 25 }, -- min and max height of the columns
-      width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 18, -- spacing between columns
-	  align = "center", -- align columns left, center or right
-     },
+	icons = {
+		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+		separator = " ", -- symbol used in the command line area that shows your active key combo
+		group = " ", -- symbol prepended to a group
+	},
+	window = {
+		border = vim.g.border_style, -- none, single, double, shadow
+		position = "bottom", -- bottom, top
+		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+	},
+	layout = {
+		height = { min = 3, max = 25 }, -- min and max height of the columns
+		width = { min = 20, max = 50 }, -- min and max width of the columns
+		spacing = 18, -- spacing between columns
+		align = "center", -- align columns left, center or right
+	},
 	ignore_missing = true
 }
 
@@ -27,10 +26,10 @@ wk.setup {
 
 -- Standalone mappings
 wk.register({
-    ["<leader>e"] = "explore",
-    -- ["<leader>b"] = "sidebar",
-    ["<leader>v"] = "vert-split terminal",
-    ["<leader>h"] = "remove highlight",
+	["<leader>e"] = "explore",
+	-- ["<leader>b"] = "sidebar",
+	["<leader>v"] = "vert-split terminal",
+	["<leader>h"] = "remove highlight",
 	["<leader>k"] = "comment line",
 	["<leader>d"] = "debugg"
 })
@@ -87,28 +86,28 @@ wk.register({ g = { name = "git", }, }, { prefix = "<leader>" })
 
 -- Terminal
 wk.register({
-    t = {
-        name = "terminal",
-        v = "vertical split",
-        s = "horizontal split",
-        t = "new tab",
-    }
+	t = {
+		name = "terminal",
+		v = "vertical split",
+		s = "horizontal split",
+		t = "new tab",
+	}
 }, { prefix = "<leader>" })
 
 -- Settings
 wk.register({
-    s = {
-        name = "settings",
-        n = "set numbers",
+	s = {
+		name = "settings",
+		n = "set numbers",
 		b = "set bufferline",
-        r = "set relative numbers",
-        c = "set cursorline",
-        i = "set indentline",
+		r = "set relative numbers",
+		c = "set cursorline",
+		i = "set indentline",
 		l = "set listchars",
 		m = "set mouse",
-        s = "toggle material style",
+		s = "toggle material style",
 		z = "set colorizer",
-    }
+	}
 }, { prefix = "<leader>" })
 
 -- Find
@@ -116,17 +115,17 @@ wk.register({ f = { name = "find", } }, { prefix = "<leader>" })
 
 -- Window
 wk.register({
-    w = {
-        name = "window",
-        v = "vertical split",
-        s = "horizontal split",
-        t = "tab split",
-        r = "rotate",
+	w = {
+		name = "window",
+		v = "vertical split",
+		s = "horizontal split",
+		t = "tab split",
+		r = "rotate",
 		h = "move left",
 		j = "move down",
 		k = "move up",
 		l = "move right",
-        -- l = "load session",
-        -- a = "archive session"
-    }
+		-- l = "load session",
+		-- a = "archive session"
+	}
 }, { prefix = "<leader>" })

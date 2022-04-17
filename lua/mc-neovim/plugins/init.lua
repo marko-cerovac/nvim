@@ -34,7 +34,7 @@ local packer = require("packer")
 
 packer.init({
 	display = {
-		prompt_border = "single",
+		prompt_border = vim.g.border_style,
 	}
 })
 

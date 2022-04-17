@@ -112,29 +112,31 @@ cmp.setup {
 		-- { name = 'nvim_lsp_signature_help' },
 		{ name = "neorg" },
 	},
-	documentation = {
-		-- border = 'rounded',
-		border = "single",
-		winhighlight = "",
+	window = {
+		completion = cmp.config.window.bordered({
+			winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+		}),
+		documentation = cmp.config.window.bordered({
+			winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+		})
 	}
 }
 
-cmp.setup.cmdline('/', {
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp_document_symbol' }
-  }, {
-    { name = 'buffer' }
-  })
-})
+-- cmp.setup.cmdline('/', {
+--   sources = cmp.config.sources({
+--     { name = 'nvim_lsp_document_symbol' }
+--   }, {
+--     { name = 'buffer' }
+--   })
+-- })
 
-cmp.setup.cmdline(':', {
-	sources = cmp.config.sources({
-		{ name = 'path' }
-	},
-	{
-		{ name = "cmdline" }
-	})
-})
+-- cmp.setup.cmdline(':', {
+-- 	sources = cmp.config.sources({
+-- 		{ name = 'path' }
+-- 	}, {
+-- 		{ name = "cmdline" }
+-- 	})
+-- })
 
 --[[ require("luasnip").config.set_config {
 	history = false,

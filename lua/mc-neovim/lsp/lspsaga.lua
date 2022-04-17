@@ -13,5 +13,5 @@ require("lspsaga").setup {
 	},
 	rename_prompt_prefix = "➤ Rename: ",
 	rename_prompt_populate = false,
-	-- border_style = "round",
+	border_style = "round",
 }

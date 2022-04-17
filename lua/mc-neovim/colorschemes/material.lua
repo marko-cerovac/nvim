@@ -20,7 +20,7 @@ require("material").setup({
 		-- "dapui_watches"
 	},
 	disable = {
-		-- borders = true,
+		borders = true,
 		eob_lines = true
 	},
 	lualine_style = "stealth"

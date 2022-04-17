@@ -47,8 +47,7 @@ require("gitsigns").setup {
 		delay = 200,
 	},
 	preview_config = {
-		-- border = "rounded",
-		border = "single",
+		border = vim.g.border_style,
 	},
 }
 

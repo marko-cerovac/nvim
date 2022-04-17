@@ -11,7 +11,7 @@ require("dapui").setup({
     size = 5,
   },
   floating = {
-	border = "single", -- Border style. Can be "single", "double", or "rounded"
+	border = vim.g.border_style, -- Border style. Can be "single", "double", or "rounded"
   },
 })
 

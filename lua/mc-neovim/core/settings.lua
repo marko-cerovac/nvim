@@ -41,6 +41,7 @@ vim.opt.pumheight = 10                                		-- popup menu height
 -- vim.opt.guicursor:append(",a:Cursor/Cursor")				-- color cursor output
 vim.opt.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 
+vim.g.border_style = "rounded" 								-- floating window border style
 
 -- Open terminal in insert mode
 local terminal_group = vim.api.nvim_create_augroup("Terminal", { clear = true })
