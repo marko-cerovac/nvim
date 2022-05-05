@@ -61,6 +61,7 @@ wk.register({
 		h = "finder",
 		l = "line diagnostics",
 		L = "cursor diagnostics",
+		o = "outline",
 		p = "preview definition",
 		r = "rename",
 		s = "signature help",

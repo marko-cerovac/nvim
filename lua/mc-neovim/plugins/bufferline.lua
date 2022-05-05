@@ -27,9 +27,9 @@ require("bufferline").setup {
 		end,
 
 		offsets = {
-			{filetype = "NvimTree", text = "File Explorer", text_align =  "center", highlight = "NvimTreeRootFolder" },
-			{filetype = "SidebarNvim", text = "Sidebar", text_align =  "center", highlight = "NvimTreeRootFolder" },
-			{filetype = "packer", text = "Packer" , text_align =  "center", highlight = "NvimTreeRootFolder" }
+			{filetype = "NvimTree", text = "File Explorer", text_align =  "center", highlight = "NvimTreeNormal" },
+			{filetype = "SidebarNvim", text = "Sidebar", text_align =  "center", highlight = "NvimTreeNormal" },
+			{filetype = "packer", text = "Packer" , text_align =  "center", highlight = "NvimTreeNormal" }
 		},
 
 		show_close_icon = false,
@@ -57,6 +57,3 @@ require("which-key").register({
 		x = {"<cmd>BufferLinePickClose<CR>", "select to close"},
 	},
 }, { prefix = "<leader>" })
-
--- reload the colorscheme
-vim.cmd("colorscheme " .. vim.g.colors_name)

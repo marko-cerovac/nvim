@@ -5,9 +5,9 @@ require("lualine").setup{
 		-- component_separators = '|',
 		-- section_separators = { left = '▌', right = '▐'},
 	},
-	extensions = {
-		"nvim-tree"
-	},
+	-- extensions = {
+	-- 	"nvim-tree"
+	-- },
     sections = {
         lualine_a = {"mode"},
         lualine_b = { {"branch"}, {"diff"}, {"diagnostics", sources = {"nvim_diagnostic"}, always_visible = false} },

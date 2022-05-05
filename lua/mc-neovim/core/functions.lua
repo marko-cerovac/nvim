@@ -37,7 +37,16 @@ end
 functions.run_code = function ()
 	-- if the executable path is unknown, prompt the user
 	if vim.g.autorun_executable == nil or vim.g.autorun_executable == 0 then
-		vim.g.autorun_executable = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file_in_path")
+		vim.ui.input(
+			{
+				prompt = "Path to executable: ",
+				default = vim.fn.getcwd() .. "/",
+				completion = "file_in_path"
+			},
+			function (input)
+				vim.g.autorun_executable = input
+			end
+		)
 		if vim.g.autorun_executable == '' then
 			vim.g.autorun_executable = nil
 			return
@@ -46,7 +55,14 @@ functions.run_code = function ()
 
 	-- if the terminal split is unknown, prompt the user
 	if vim.g.autorun_term_variant == nil or vim.g.autorun_term_variant == 0 then
-		vim.g.autorun_term_variant = vim.fn.input("Input terminal variant [ v | s | t | c ]: ")
+		vim.ui.input(
+			{
+				prompt = "Input terminal variant [ v | s | t | c ]: ",
+			},
+			function (input)
+				vim.g.autorun_term_variant = input
+			end
+		)
 	end
 	if vim.g.autorun_term_variant == 's' then
 		vim.cmd("split new")

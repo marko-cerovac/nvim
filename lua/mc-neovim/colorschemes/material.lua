@@ -13,6 +13,8 @@ require("material").setup({
 	contrast_filetypes = {
 		"packer",
 		"qf",
+		"Outline",
+		-- "terminal"
 		-- "Trouble",
 		-- "dapui_scopes",
 		-- "dapui_breakpoints",
@@ -20,14 +22,19 @@ require("material").setup({
 		-- "dapui_watches"
 	},
 	disable = {
-		borders = true,
+		-- borders = true,
 		eob_lines = true
 	},
 	lualine_style = "stealth"
 })
 
 -- Enable style toggling
-vim.api.nvim_set_keymap('n', "<leader>ss", ":lua require('material.functions').toggle_style()<CR>", { noremap = true, silent = true })
+vim.keymap.set( 'n', "<leader>ss",
+	function ()
+		return require('material.functions').toggle_style()
+	end,
+	{ noremap = true, silent = true }
+)
 
 -- Enable the colorscheme
 vim.cmd "colorscheme material"

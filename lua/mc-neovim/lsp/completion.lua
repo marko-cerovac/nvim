@@ -1,5 +1,5 @@
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 local icons = {
 	Text = '',
@@ -90,7 +90,7 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { 'i', 's' }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -99,7 +99,7 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { 'i', 's' }),
 	},
 	sources = {
 		{ name = "nvim_lsp" },
@@ -109,7 +109,7 @@ cmp.setup {
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "treesitter" },
-		-- { name = 'nvim_lsp_signature_help' },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "neorg" },
 	},
 	window = {
@@ -122,21 +122,23 @@ cmp.setup {
 	}
 }
 
--- cmp.setup.cmdline('/', {
---   sources = cmp.config.sources({
---     { name = 'nvim_lsp_document_symbol' }
---   }, {
---     { name = 'buffer' }
---   })
--- })
+cmp.setup.cmdline('/', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp_document_symbol" }
+	}, {
+		{ name = "buffer" }
+	})
+})
 
--- cmp.setup.cmdline(':', {
--- 	sources = cmp.config.sources({
--- 		{ name = 'path' }
--- 	}, {
--- 		{ name = "cmdline" }
--- 	})
--- })
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" }
+	}, {
+		{ name = "cmdline" }
+	})
+})
 
 --[[ require("luasnip").config.set_config {
 	history = false,

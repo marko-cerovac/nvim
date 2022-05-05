@@ -21,13 +21,3 @@ vim.g.tokyonight_sidebars = {
 vim.g.tokyonight_dark_sidebar = true
 
 vim.g.tokyonight_dark_float = true
-
--- vim.g.tokyonight_lualine_bold = true
-
---[[ require("lualine").setup {
-	options = {
-		theme = "auto"
-	}
-} ]]
-
--- vim.cmd "colorscheme tokyonight"

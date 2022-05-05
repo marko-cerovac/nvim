@@ -53,6 +53,7 @@ require("which-key").register({
 		q = { wrap("close"),				"quit" },
 		-- i = { ":lua require('dap.ui.widgets').hover()<CR>",	"evaluate expression" },
 		g = { wrap("run_to_cursor"),		"run to cursor" },
+		x = { wrap("clear_breakpoints"), 	"clear breakpoints" },
 		-- r = {wrap(repl.toggle()<CR><C-w>l", "toggle repl"},
 		-- g = { wrap("session"),				"get Session" },
 		-- i = {wrap(.widgets").hover()<CR>", "hover"},

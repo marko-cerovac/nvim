@@ -27,7 +27,7 @@ vim.g.dashboard_custom_header = {
     [[                            N E O V I M                           ]]
 }
 
--- vim.g.dashboard_disable_statusline = 1
+vim.g.dashboard_disable_statusline = 1
 
 vim.g.dashboard_custom_section = {
     a = {

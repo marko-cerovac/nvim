@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 -- Map leader to Space
 map('n', "<Space>", "<NOP>", opts)
@@ -38,8 +38,8 @@ map('n', "<S-TAB>", ":bprevious<CR>", opts)
 -- map('n', "gB", ":bprevious<CR>", opts)
 
 -- Switch U and ctrl-r
-map('n', "U", "<C-r>", opts)
-map('n', "<C-r>", "U", opts)
+-- map('n', "U", "<C-r>", opts)
+-- map('n', "<C-r>", "U", opts)
 
 -- Indenting lines
 map('v', '<', "<gv", opts)
@@ -60,10 +60,10 @@ map('n', "<leader>v", ":vertical new<CR>:terminal<CR>", opts)
 map('n', "<leader>tv", ":vertical new<CR>:terminal<CR>", opts)
 map('n', "<leader>ts", ":split new<CR>:terminal<CR>", opts)
 map('n', "<leader>tt", ":tab new<CR>:terminal<CR>", opts)
-map('t', "<Esc>", "<C-\\><C-n>", { silent = true })
+map('t', "<Esc>", "<C-\\><C-n>", opts)
 
 -- External command
-map('n', "<leader><tab>", ":!", { noremap = true })
+map('n', "<leader><tab>", ":!")
 
 -- Compiling code
 -- map('n', "<leader>cc", ":make<CR>", opts)
@@ -84,6 +84,3 @@ map('n', "<leader>e", "<cmd>PackerLoad nvim-tree.lua<CR><cmd>NvimTreeToggle<CR>"
 
 -- Toggle indent lines
 map('n', "<leader>si", "<cmd>IndentBlanklineToggle<CR>", opts)
-
--- Toggle Sidebar.nvim
--- map('n', "<leader>b", "<cmd>SidebarNvimToggle<CR>", opts)

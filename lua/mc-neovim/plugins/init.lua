@@ -18,17 +18,7 @@ vim.cmd [[
 	augroup end
 ]]
 
--- Filetypes for which lsp should be added
-local lspFiletypes = {
-	"lua",
-	"c",
-	"cpp",
-	"make",
-	"cmake",
-	"bash",
-	"zsh",
-	"sh",
-}
+local lspFiletypes = require("mc-neovim.lsp.filetypes")
 
 local packer = require("packer")
 
@@ -78,7 +68,7 @@ return packer.startup(
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-nvim-lua",
-				-- "hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-nvim-lsp-document-symbol",
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-path",
@@ -112,20 +102,42 @@ return packer.startup(
 			requires = "kyazdani42/nvim-web-devicons",
             config = function ()
 				require("trouble").setup {}
-				vim.api.nvim_set_keymap(
-					"n",
+				vim.keymap.set(
+					'n',
 					"<leader>cd",
 					"<cmd>TroubleToggle<CR>",
-					{ noremap = true, silent = true }
+					{ silent = true }
 				)
-				vim.api.nvim_set_keymap(
-					"n",
+				vim.keymap.set(
+					'n',
 					"gr",
 					"<cmd>TroubleToggle lsp_references<CR>",
-					{ noremap = true, silent = true }
+					{ silent = true }
 				)
             end
 		}
+
+		-- Lsp outline
+		-- use {
+		-- 	'simrat39/symbols-outline.nvim',
+		-- 	keys = "<leader>co",
+		-- 	config = function ()
+		-- 		vim.keymap.set(
+		-- 			'n',
+		-- 			"<leader>co",
+		-- 			"<cmd>SymbolsOutline<CR>",
+		-- 			{ silent = true }
+		-- 		)
+		-- 	end,
+		-- 	setup = function()
+		-- 		vim.g.symbols_outline = {
+		-- 			position = "left",
+		-- 			highlight_covered_item = false,
+		-- 			auto_preview = false,
+		-- 			preview_bg_highlight = "NormalFloat"
+		-- 		}
+		-- 	end
+		-- }
 
 		-- Cmake integration
 		use {
@@ -223,27 +235,6 @@ return packer.startup(
 				require "mc-neovim.plugins.whichkey"
 			end
 		}
-
-		-- User defined modes
-		-- use {
-		-- 	"Iron-E/nvim-libmodal",
-		-- 	opt = true,
-		-- 	config = function ()
-		-- 		vim.keymap.set( 'n', "<leader>d", function ()
-		-- 			require "mc-neovim.debugger.debuggmode"
-		-- 		end)
-		-- 		require "mc-neovim.debugger.debuggmode"
-		-- 	end
-		-- }
-
-		-- Sidebar
-		-- use {
-		-- 	"sidebar-nvim/sidebar.nvim",
-		-- 	cmd = "SidebarNvimToggle",
-		-- 	config = function()
-		-- 		require "mc-neovim.plugins.sidebar"
-		-- 	end
-		-- }
 
 		-- File tree explorer
         use {
@@ -344,14 +335,14 @@ return packer.startup(
 						prefer_single_line_comments = true,
 					}
 				)
-				vim.api.nvim_set_keymap(
-					"n",
+				vim.keymap.set(
+					'n',
 					"<leader>k",
 					"<Plug>kommentary_line_default",
 					{}
 				)
-				vim.api.nvim_set_keymap(
-					"x",
+				vim.keymap.set(
+					'x',
 					"<leader>k",
 					"<Plug>kommentary_visual_default",
 					{}
@@ -368,11 +359,11 @@ return packer.startup(
 				require("colorizer").setup({
 					names = false;
 				})
-			vim.api.nvim_set_keymap(
-				"n",
+			vim.keymap.set(
+				'n',
 				"<leader>sz",
 				":ColorizerToggle<CR>",
-				{ noremap = true, silent = true }
+				{ silent = true }
 			)
 
             end

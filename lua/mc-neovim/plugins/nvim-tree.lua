@@ -2,7 +2,7 @@ local tree_cb = require"nvim-tree.config".nvim_tree_callback
 
 -- vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" } --empty by default
 -- vim.g.nvim_tree_indent_markers = 1 --0 by default, this option shows indent markers when folders are open
-vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
+-- vim.g.nvim_tree_git_hl = 0 --0 by default, will enable file highlight for git attributes (can be used without the icons).
 vim.g.nvim_tree_highlight_opened_files = 1 --0 by default, will enable folder and file icon highlight for opened files/directories.
 vim.g.nvim_tree_icon_padding = " " --one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
 vim.g.nvim_tree_symlink_arrow = " >> " -- defaults to " ➛ ". used as a separator between symlinks' source and target.
