@@ -200,7 +200,8 @@ return packer.startup(
 			"akinsho/bufferline.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
 			opt = true,
-			keys = { "<leader>sb" },
+			-- keys = { "<leader>sb" },
+			event = "WinNew",
 			config = function ()
 				require "mc-neovim.plugins.bufferline"
 			end

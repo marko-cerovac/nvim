@@ -1,7 +1,7 @@
 require("lualine").setup{
 	options = {
 		theme = "auto",
-		globalstatus = true,
+		-- globalstatus = true,
 		-- component_separators = '|',
 		-- section_separators = { left = '▌', right = '▐'},
 	},

@@ -100,7 +100,7 @@ wk.register({
 	s = {
 		name = "settings",
 		n = "set numbers",
-		b = "set bufferline",
+		-- b = "set bufferline",
 		r = "set relative numbers",
 		c = "set cursorline",
 		i = "set indentline",

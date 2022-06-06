@@ -1,7 +1,7 @@
 --        ___           ___
 --       /\  \         /\__\       Marko Cerovac
 --      |::\  \       /:/  /       marko.cerovac16@gmail.com
---      |:|:\  \     /:/  /        https://github.com/marko-cerovac
+--      |:|:\  \     /:/  /        https://github.com/marko-cerovac/nvim
 --    __|:|\:\  \   /:/  /  ___
 --   /::::|_\:\__\ /:/__/  /\__\
 --   \:\~~\  \/__/ \:\  \ /:/  /
