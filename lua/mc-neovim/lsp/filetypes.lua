@@ -7,6 +7,7 @@ local lspFiletypes = {
 	"bash",
 	"zsh",
 	"sh",
+	"rust"
 }
 
 return lspFiletypes

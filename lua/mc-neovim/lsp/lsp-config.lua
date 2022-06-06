@@ -16,8 +16,8 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>cwx", function() vim.lsp.buf.remove_workspace_folder() end, options)
 	vim.keymap.set("n", "<leader>cwl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, options)
 	vim.keymap.set("n", "<leader>ct", function() vim.lsp.buf.type_definition() end, options)
-	vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.formatting() end, options)
-	vim.keymap.set("v", "<leader>cf", function() vim.lsp.buf.range_formatting() end, options)
+	vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, options)
+	vim.keymap.set("v", "<leader>cf", function() vim.lsp.buf.range_format({ async = true }) end, options)
 
 	vim.keymap.set("n", "K", function () return require('lspsaga.hover').render_hover_doc() end, options)
 	vim.keymap.set("n", "<leader>ch", function () return require("lspsaga.provider").lsp_finder() end, options)
@@ -43,7 +43,8 @@ local on_attach = function(client, bufnr)
 	})
 
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	-- if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec([[
 			 augroup lsp_document_highlight
 			   autocmd! * <buffer>

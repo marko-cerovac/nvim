@@ -45,7 +45,7 @@ cmp.setup {
 		format = function(entry, vim_item)
 			-- load lspkind icons
 			vim_item.kind = string.format(
-				" %s  [ %s ] ",
+				" %s  %s ",
 				icons[vim_item.kind],
 				vim_item.kind
 			)
@@ -56,7 +56,8 @@ cmp.setup {
 				buffer = "(﬘ buff)",
 				calc= "( calc)",
 				luasnip = "( snip)",
-				path = "( path)"
+				path = "( path)",
+				neorg = "(לּ org)"
 			})[entry.source.name]
 
 			return vim_item

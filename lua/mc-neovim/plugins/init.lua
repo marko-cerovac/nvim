@@ -118,29 +118,29 @@ return packer.startup(
 		}
 
 		-- Lsp outline
-		-- use {
-		-- 	'simrat39/symbols-outline.nvim',
-		-- 	keys = "<leader>co",
-		-- 	config = function ()
-		-- 		vim.keymap.set(
-		-- 			'n',
-		-- 			"<leader>co",
-		-- 			"<cmd>SymbolsOutline<CR>",
-		-- 			{ silent = true }
-		-- 		)
-		-- 	end,
-		-- 	setup = function()
-		-- 		vim.g.symbols_outline = {
-		-- 			position = "left",
-		-- 			highlight_covered_item = false,
-		-- 			auto_preview = false,
-		-- 			preview_bg_highlight = "NormalFloat"
-		-- 		}
-		-- 	end
-		-- }
+		--[[ use {
+			'simrat39/symbols-outline.nvim',
+			keys = "<leader>co",
+			config = function ()
+				vim.keymap.set(
+					'n',
+					"<leader>co",
+					"<cmd>SymbolsOutline<CR>",
+					{ silent = true }
+				)
+			end,
+			setup = function()
+				vim.g.symbols_outline = {
+					position = "left",
+					highlight_covered_item = false,
+					auto_preview = false,
+					preview_bg_highlight = "NormalFloat"
+				}
+			end
+		} ]]
 
 		-- Cmake integration
-		use {
+		--[[ use {
 			"cdelledonne/vim-cmake",
 			ft = {
 				"cpp",
@@ -150,7 +150,17 @@ return packer.startup(
 				vim.g.cmake_link_compile_commands = true
 				vim.g.cmake_jump_on_completion = true
 			end
-		}
+		} ]]
+
+		-- Rust tools
+		--[[ use {
+			"simrat39/rust-tools.nvim",
+			ft = "rust",
+			requires = "nvim-lspconfig",
+			config = function ()
+				require("rust-tools").setup()
+			end
+		} ]]
 
 		-- Debugg adapter protocol
 		use {
@@ -301,13 +311,13 @@ return packer.startup(
                 require "mc-neovim.plugins.dashboard"
             end
         }
-		-- use {
-		-- 	"startup-nvim/startup.nvim",
-		-- 	requires = { "nvim-lua/plenary.nvim" },
-		-- 	config = function()
-		-- 		require"startup".setup()
-		-- 	end
-		-- }
+		--[[ use {
+			"startup-nvim/startup.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require"startup".setup()
+			end
+		} ]]
 
 		-- Indent line
         use {
@@ -332,7 +342,7 @@ return packer.startup(
 				require("kommentary.config").configure_language(
 					"default",
 					{
-						prefer_single_line_comments = true,
+						-- prefer_single_line_comments = true,
 					}
 				)
 				vim.keymap.set(

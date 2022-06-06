@@ -13,9 +13,7 @@ require("material").setup({
 	contrast_filetypes = {
 		"packer",
 		"qf",
-		"Outline",
 		-- "terminal"
-		-- "Trouble",
 		-- "dapui_scopes",
 		-- "dapui_breakpoints",
 		-- "dapui_stacks",
@@ -23,8 +21,13 @@ require("material").setup({
 	},
 	disable = {
 		-- borders = true,
-		eob_lines = true
+		eob_lines = true,
 	},
+	-- custom_highlights = {
+	-- 	DapUIValue = { link = "NormalContrast" },
+	-- 	DapUIVariable = { link = "NormalContrast" },
+	-- 	DapUIFrameName = { link = "NormalContrast" },
+	-- },
 	lualine_style = "stealth"
 })
 

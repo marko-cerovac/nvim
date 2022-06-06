@@ -9,10 +9,10 @@ vim.opt.shiftwidth = 4										-- shift width
 vim.opt.smartindent = true                           		-- smart indenting
 vim.opt.smartcase = true                              		-- search smart case
 
-vim.opt.signcolumn = "yes:2" 								-- sign column
+vim.opt.signcolumn = "yes" 									-- sign column
 vim.opt.number = true                                		-- line numbers
 vim.opt.relativenumber = true                        		-- relative line numbers
-vim.opt.wrap = true                                 		-- word wrapping
+vim.opt.wrap = false                                 		-- word wrapping
 vim.opt.cursorline = true                            		-- cursor line
 -- vim.opt.laststatus = 3 										-- global statusline
 -- vim.opt.cursorlineopt = "number"							-- set cursorline style
@@ -30,6 +30,7 @@ vim.opt.completeopt = "menuone,noselect"              		-- completion options
 vim.opt.pumheight = 10                                		-- popup menu height
 -- vim.opt.guicursor:append(",a:Cursor/Cursor")				-- color cursor output
 vim.opt.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
+-- vim.o.guicursor = vim.o.guicursor .. ",a:Cursor/Cursor"
 
 vim.g.border_style = "rounded" 								-- floating window border style
 
