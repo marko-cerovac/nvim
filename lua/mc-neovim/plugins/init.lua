@@ -45,7 +45,9 @@ return packer.startup(
 		-- Language Server Protocol
         use {
             "neovim/nvim-lspconfig",
-			ft = lspFiletypes;
+			opt = true,
+			after = "nvim-lsp-installer",
+			-- ft = lspFiletypes;
             config = function()
                 require "mc-neovim.lsp.lsp-config"
             end
@@ -54,8 +56,8 @@ return packer.startup(
 		-- Language server installer
         use {
 			"williamboman/nvim-lsp-installer",
-			opt = true,
-			after = "nvim-lspconfig",
+			ft = lspFiletypes;
+			-- after = "nvim-lspconfig",
             config = function()
                 require "mc-neovim.lsp.lsp-install"
             end
@@ -74,6 +76,7 @@ return packer.startup(
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-calc",
 				"L3MON4D3/LuaSnip",
+				"rafamadriz/friendly-snippets",
 				"saadparwaiz1/cmp_luasnip"
 			},
 			config = function()
@@ -200,7 +203,6 @@ return packer.startup(
 			"akinsho/bufferline.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
 			opt = true,
-			-- keys = { "<leader>sb" },
 			event = "WinNew",
 			config = function ()
 				require "mc-neovim.plugins.bufferline"
@@ -308,10 +310,18 @@ return packer.startup(
 		-- Startscreen
         use {
             "glepnir/dashboard-nvim",
-            setup = function()
+            config = function()
                 require "mc-neovim.plugins.dashboard"
             end
         }
+
+		--[[ use {
+			"goolord/alpha-nvim",
+			setup = function ()
+				require("alpha").setup(require("alpha.themes.dashboard").config)
+				-- require "mc-neovim.plugins.alpha"
+			end
+		} ]]
 		--[[ use {
 			"startup-nvim/startup.nvim",
 			requires = { "nvim-lua/plenary.nvim" },

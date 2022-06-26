@@ -1,98 +1,103 @@
-vim.g.dashboard_default_executive = "telescope.nvim"
+local dashboard = require("dashboard")
 
-vim.g.dashboard_custom_header = {
-    [[                                                                  ]],
-    [[                                                                  ]],
-    [[                                                                  ]],
-    [[                                                                  ]],
-    [[                         .|.            |.                        ]],
-    [[                       .cc|:;           |::.                      ]],
-    [[                     .cccc|:::;         |::::.                    ]],
-    [[                    |ccccc|::::;        |:::::|                   ]],
-    [[                    |ccccc|::::::;      |:::::|                   ]],
-    [[         ___        |ccccc|:::::::;     |:::::|         ___       ]],
-    [[        /\  \       |ccccc| ;:::::::;   |:::::|        /\__\      ]],
-    [[       |::\  \      |ccccc|  ;:::::::;  |:::::|       /:/  /      ]],
-    [[       |:|:\  \     |ccccc|   ;:::::::; |:::::|      /:/  /       ]],
-    [[     __|:|\:\  \    |ccccc|     ;:::::::|:::::|     /:/  /  ___   ]],
-    [[    /::::|_\:\__\   |ccccc|      ;::::::|:::::|    /:/__/  /\__\  ]],
-    [[    \:\~~\  \/__/   |ccccc|        ;::::|:::::|    \:\  \ /:/  /  ]],
-    [[     \:\  \          .cccc|         ;:::|::::.      \:\  /:/  /   ]],
-    [[      \:\  \           .cc|           ;;|::.         \:\/:/  /    ]],
-    [[       \:\__\            .|            .|.            \::/  /     ]],
-    [[        \/__/                                          \/__/      ]],
-    [[                                                                  ]],
-    [[                                                                  ]],
-    [[                            N E O V I M                           ]]
+dashboard.preview_file_height = 32
+dashboard.preview_file_width = 68
+
+local custom_header = function ()
+local header = {
+	[[                                                                  ]],
+	[[                                                                  ]],
+	[[                                                                  ]],
+	[[                                                                  ]],
+	[[                                                                  ]],
+	[[                         .|.            |.                        ]],
+	[[                       .cc|:;           |::.                      ]],
+	[[                     .cccc|:::;         |::::.                    ]],
+	[[                    |ccccc|::::;        |:::::|                   ]],
+	[[                    |ccccc|::::::;      |:::::|                   ]],
+	[[         ___        |ccccc|:::::::;     |:::::|         ___       ]],
+	[[        /\  \       |ccccc| ;:::::::;   |:::::|        /\__\      ]],
+	[[       |::\  \      |ccccc|  ;:::::::;  |:::::|       /:/  /      ]],
+	[[       |:|:\  \     |ccccc|   ;:::::::; |:::::|      /:/  /       ]],
+	[[     __|:|\:\  \    |ccccc|     ;:::::::|:::::|     /:/  /  ___   ]],
+	[[    /::::|_\:\__\   |ccccc|      ;::::::|:::::|    /:/__/  /\__\  ]],
+	[[    \:\~~\  \/__/   |ccccc|        ;::::|:::::|    \:\  \ /:/  /  ]],
+	[[     \:\  \          .cccc|         ;:::|::::.      \:\  /:/  /   ]],
+	[[      \:\  \           .cc|           ;;|::.         \:\/:/  /    ]],
+	[[       \:\__\            .|            .|.            \::/  /     ]],
+	[[        \/__/                                          \/__/      ]],
+	[[                                                                  ]],
+	[[                                                                  ]],
+	[[                            N E O V I M                           ]],
+	[[                                                                  ]],
+	[[                                                                  ]],
+}
+	return header
+end
+dashboard.custom_header = custom_header()
+
+dashboard.custom_center = {
+	{
+		icon = "פּ  ",
+		desc = "File Tree                              ",
+		shortcut = "SPC e",
+		action = function ()
+					vim.cmd "PackerLoad nvim-tree.lua"
+					vim.cmd "NvimTreeToggle"
+		end
+	},
+	{
+		icon = "  ",
+		desc = "File Explorer                        ",
+		shortcut = "SPC f e",
+		action = function ()
+					vim.cmd "PackerLoad telescope.nvim"
+					vim.cmd "Telescope file_browser"
+		end
+	},
+	{
+		icon = "  ",
+		desc = "Recently Used Files                  ",
+		shortcut = "SPC f r",
+		action = function ()
+					vim.cmd "PackerLoad telescope.nvim"
+					vim.cmd "Telescope oldfiles"
+		end
+	},
+	{
+		icon = "  ",
+		desc = "Find Word                            ",
+		shortcut = "SPC f g",
+		action = function ()
+					vim.cmd "PackerLoad telescope.nvim"
+					vim.cmd "Telescope live_grep"
+		end
+	},
+	{
+		icon = "  ",
+		desc = "Open a Terminal                      ",
+		shortcut = "SPC t o",
+		action = "terminal"
+	},
+	{
+		icon = "  ",
+		desc = "Settings                             ",
+		shortcut = "SPC f s",
+		action = function ()
+					vim.cmd "PackerLoad telescope.nvim"
+					require("mc-neovim.plugins.telescope").neovim_rc()
+		end
+	},
+	{
+		icon = "  ",
+		desc = "Quit                                        ",
+		action = "q!"
+	},
 }
 
-vim.g.dashboard_disable_statusline = 1
+local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+dashboard.custom_footer = { "NeoVim loaded " .. plugins_count .. " plugins" }
 
-vim.g.dashboard_custom_section = {
-    a = {
-            description = {"פּ  File Tree                    SPC e  "},
-            command = function ()
-				vim.cmd "PackerLoad nvim-tree.lua"
-				vim.cmd "NvimTreeToggle"
-            end },
-
-    --[[ b = {
-            description = {"  Find File                    SPC f f"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope find_files"
-            end}, ]]
-
-    c = {
-            description = {"  File Explorer                SPC f e"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope file_browser"
-            end},
-
-
-    d = {
-            description = {"  Recently Used Files          SPC f r"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope oldfiles"
-            end},
-
-    e = {
-            description = {"  Find Word                    SPC f g"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope live_grep"
-            end},
-
-    f = {
-            description = {"  Open a Terminal              SPC t o"},
-            command = "terminal"},
-
-    --[[ g = {
-            description = {"  Change Colorscheme           SPC f t"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-            	vim.cmd "Telescope colorscheme"
-            end}, ]]
-
-    h = {
-            description = {"  Settings                     SPC f s"},
-            command = function ()
-				vim.cmd "PackerLoad telescope.nvim"
-				require("mc-neovim.plugins.telescope").neovim_rc()
-            end},
-
-    i = {
-            description = {"  Quit                                "},
-            command = "q!"}
-}
-
-vim.g.dashboard_session_directory = "~/.cache/vim/session"
-
-vim.g.dashboard_custom_footer = {
+--[[ dashboard.custom_footer = {
 	"The editor of the Beast"
-}
-
--- vim.api.nvim_set_keymap("n", "<leader>wl", [[<cmd>SessionLoad<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<leader>wa", [[<cmd>SessionSave<CR>]], { noremap = true, silent = true })
+} ]]

@@ -29,7 +29,7 @@ end
 -- Load mappings
 require("which-key").register({
 	f = {
-		name = "find",
+		name = " find",
 		a = {"<cmd>Telescope lsp_code_actions<CR>", "code actions"},
 		b = {"<cmd>Telescope buffers<CR>", "buffers"},
 		-- c = {"<cmd>Telescope lsp_references<CR>", "code references"},
@@ -39,7 +39,6 @@ require("which-key").register({
 		g = {"<cmd>Telescope live_grep<CR>", "grep files"},
 		h = {"<cmd>Telescope help_tags<CR>", "help"},
 		o = {"<cmd>Telescope vim_options<CR>", "options"},
-		m = {"<cmd>Telescope man_pages<CR>", "manual pages"},
 		r = {"<cmd>Telescope oldfiles<CR>", "recent files"},
 		s = {"<cmd>PackerLoad telescope.nvim<CR><cmd>lua require('mc-neovim.plugins.telescope').neovim_rc()<CR>", "neovim settings"},
 		t = {"<cmd>Telescope colorscheme<CR>", "colorschemes"},
@@ -48,7 +47,7 @@ require("which-key").register({
 
 require("which-key").register({
 	g = {
-		name = "git",
+		name = " git",
 		b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "branches"},
 		c = {"<cmd>lua require('telescope.builtin').git_commits()<CR>", "commits"},
 		f = {"<cmd>lua require('telescope.builtin').git_files()<CR>", "files"},

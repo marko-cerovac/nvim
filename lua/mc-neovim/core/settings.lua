@@ -15,6 +15,7 @@ vim.opt.relativenumber = true                        		-- relative line numbers
 vim.opt.wrap = false                                 		-- word wrapping
 vim.opt.cursorline = true                            		-- cursor line
 vim.opt.laststatus = 3 										-- global statusline
+vim.opt.cmdheight = 0 										-- hide the cmd line
 -- vim.opt.cursorlineopt = "number"							-- set cursorline style
 vim.opt.splitright = true                             		-- split vertical windows right
 vim.opt.splitbelow = true                             		-- split horizontal windows below
@@ -24,11 +25,11 @@ vim.opt.showmode = false                              		-- mode message
 -- vim.opt.mouse = "a"                                   		-- mouse
 vim.opt.foldenable = false									-- disable auto folding
 vim.opt.foldmethod = "expr"									-- folding method
+vim.opt.fillchars = "fold: " 								-- remove fold dots
 
 vim.opt.termguicolors = true                          		-- gui colors
 vim.opt.completeopt = "menuone,noselect"              		-- completion options
 vim.opt.pumheight = 10                                		-- popup menu height
--- vim.opt.guicursor:append(",a:Cursor/Cursor")				-- color cursor output
 vim.opt.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 -- vim.o.guicursor = vim.o.guicursor .. ",a:Cursor/Cursor"
 

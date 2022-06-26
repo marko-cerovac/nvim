@@ -76,6 +76,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	},
 }
 
+--[[ local lsp_flags = {
+	debounce_text_changes = 150
+} ]]
+
 -- Define signs
 -- vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "LspDiagnosticsSignError", numhl = ""})
 -- vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "LspDiagnosticsSignWarning", numhl = ""})
@@ -86,5 +90,7 @@ return {
 	-- Enable code snippets
 	capabilities = capabilities,
 	-- map buffer local bindings
-	on_attach = on_attach
+	on_attach = on_attach,
+	-- add flags
+	-- lsp_flags = lsp_flags
 }
