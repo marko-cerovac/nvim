@@ -20,16 +20,18 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("v", "<leader>cf", function() vim.lsp.buf.range_format({ async = true }) end, options)
 
 	vim.keymap.set("n", "K", function () return require('lspsaga.hover').render_hover_doc() end, options)
-	vim.keymap.set("n", "<leader>ch", function () return require("lspsaga.provider").lsp_finder() end, options)
-	vim.keymap.set("n", "<leader>cr", function () return require('lspsaga.rename').rename() end, options)
+	vim.keymap.set("n", "<leader>ch", function () return require("lspsaga.finder").lsp_finder() end, options)
+	vim.keymap.set("n", "<leader>cr", function () return require('lspsaga.rename').lsp_rename() end, options)
 	vim.keymap.set("n", "<leader>ca", function () return require('lspsaga.codeaction').code_action() end, options)
 	vim.keymap.set("v", "<leader>ca", function () return require('lspsaga.codeaction').range_code_action() end, options)
 	vim.keymap.set("n", "<leader>cs", function () return require('lspsaga.signaturehelp').signature_help() end, options)
-	vim.keymap.set("n", "<leader>cp", function () return require('lspsaga.provider').preview_definition() end, options)
+	vim.keymap.set("n", "<leader>cp", function () return require('lspsaga.definition').preview_definition() end, options)
 	vim.keymap.set("n", "<leader>cl", function () return require('lspsaga.diagnostic').show_line_diagnostics() end, options)
 	vim.keymap.set("n", "<leader>cL", function () return require('lspsaga.diagnostic').show_cursor_diagnostics() end, options)
-	vim.keymap.set("n", "[c", "<cmd>Lspsaga diagnostic_jump_next<CR>", options)
-	vim.keymap.set("n", "]c", "<cmd>Lspsaga diagnostic_jump_prev<CR>", options)
+	vim.keymap.set("n", "[c",function () return require("lspsaga.diagnostic").goto_next() end, options)
+	vim.keymap.set("n", "]c",function () return require("lspsaga.diagnostic").goto_prev() end, options)
+	--[[ vim.keymap.set("n", "[c", "<cmd>Lspsaga diagnostic_jump_next<CR>", options)
+	vim.keymap.set("n", "]c", "<cmd>Lspsaga diagnostic_jump_prev<CR>", options) ]]
 	vim.keymap.set("n", "<C-u>", function() return require('lspsaga.action').smart_scroll_with_saga(-1) end, options)
 	vim.keymap.set("n", "<C-d>", function() return require('lspsaga.action').smart_scroll_with_saga(1) end, options)
 
@@ -81,10 +83,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 } ]]
 
 -- Define signs
--- vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "LspDiagnosticsSignError", numhl = ""})
--- vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "LspDiagnosticsSignWarning", numhl = ""})
--- vim.fn.sign_define("DiagnosticSignHint", {text = " ", texthl = "LspDiagnosticsSignHint", numhl = ""})
--- vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "LspDiagnosticsSignInformation", numhl = ""})
+vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError", numhl = ""})
+vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarning", numhl = ""})
+vim.fn.sign_define("DiagnosticSignHint", {text = " ", texthl = "DiagnosticSignHint", numhl = ""})
+vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInformation", numhl = ""})
 
 return {
 	-- Enable code snippets

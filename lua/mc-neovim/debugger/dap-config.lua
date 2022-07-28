@@ -46,7 +46,24 @@ dap.configurations.rust = dap.configurations.cpp
 	request = "launch",
 	type = "java"
 } ]]
+--[[ dap.configurations.java = {
+     -- You need to extend the classPath to list your dependencies.
+     -- `nvim-jdtls` would automatically add the `classPaths` property if it is missing
+    classPaths = {},
 
+    -- If using multi-module projects, remove otherwise.
+    projectName = "yourProjectName",
+
+    javaExec = "/bin/java",
+    mainClass = "your.package.name.MainClassName",
+
+    -- If using the JDK9+ module system, this needs to be extended
+    -- `nvim-jdtls` would automatically populate this property
+    modulePaths = {},
+    name = "Launch Main",
+    request = "launch",
+    type = "java"
+} ]]
 
 -- Define debugg signs
 -- vim.fn.sign_define("DapBreakpoint", {text="ﱣ ", texthl = "DapBreakpoint", numhl = ""})
@@ -71,7 +88,7 @@ require("which-key").register({
 		j = { wrap("step_over"),			"step over" },
 		p = { wrap("pause"),				"pause" },
 		-- r = { wrap("repl.open"),			"open repl" },
-		q = { wrap("close"),				"quit" },
+		q = { wrap("terminate"),				"quit" },
 		-- i = { ":lua require('dap.ui.widgets').hover()<CR>",	"evaluate expression" },
 		g = { wrap("run_to_cursor"),		"run to cursor" },
 		x = { wrap("clear_breakpoints"), 	"clear breakpoints" },

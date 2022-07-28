@@ -22,10 +22,13 @@ vim.opt.splitbelow = true                             		-- split horizontal wind
 vim.opt.updatetime = 250                              		-- update time
 vim.opt.timeoutlen = 300                              		-- timeout length
 vim.opt.showmode = false                              		-- mode message
--- vim.opt.mouse = "a"                                   		-- mouse
+vim.opt.mouse = "a"                                   		-- enable mouse
 vim.opt.foldenable = false									-- disable auto folding
 vim.opt.foldmethod = "expr"									-- folding method
 vim.opt.fillchars = "fold: " 								-- remove fold dots
+
+-- custom statusline
+-- vim.opt.statusline = "%!v:lua.require('mc-neovim.core.statusline').run()"
 
 vim.opt.termguicolors = true                          		-- gui colors
 vim.opt.completeopt = "menuone,noselect"              		-- completion options

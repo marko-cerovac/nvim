@@ -39,8 +39,8 @@ dashboard.custom_header = custom_header()
 dashboard.custom_center = {
 	{
 		icon = "פּ  ",
-		desc = "File Tree                              ",
-		shortcut = "SPC e",
+		desc = "File Tree                            ",
+		shortcut = "SPC e  ",
 		action = function ()
 					vim.cmd "PackerLoad nvim-tree.lua"
 					vim.cmd "NvimTreeToggle"

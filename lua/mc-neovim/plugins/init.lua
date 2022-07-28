@@ -11,11 +11,11 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Reload packer after sourcing this file
-vim.cmd [[
-	augroup packer_user_config
-	  autocmd!
-	  autocmd BufWritePost init.lua source <afile> | PackerSync
-	augroup end
+ vim.cmd [[
+ 	augroup packer_user_config
+ 	  autocmd!
+ 	  autocmd BufWritePost init.lua source <afile> | PackerSync
+ 	augroup end
 ]]
 
 local lspFiletypes = require("mc-neovim.lsp.filetypes")
@@ -76,8 +76,8 @@ return packer.startup(
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-calc",
 				"L3MON4D3/LuaSnip",
-				"rafamadriz/friendly-snippets",
 				"saadparwaiz1/cmp_luasnip"
+				-- "rafamadriz/friendly-snippets",
 			},
 			config = function()
 				require "mc-neovim.lsp.completion"
@@ -87,7 +87,8 @@ return packer.startup(
 
 		-- Lsp UI
 		use {
-			"tami5/lspsaga.nvim",
+			"glepnir/lspsaga.nvim",
+			branch = "main",
 			opt = true,
 			after = "nvim-lspconfig",
             config = function()
@@ -165,6 +166,15 @@ return packer.startup(
 			end
 		} ]]
 
+		-- Nvim-jdtls
+		--[[ use {
+			'mfussenegger/nvim-jdtls',
+			ft = "java",
+			config = function ()
+				require "mc-neovim.lsp.java-jdtls"
+			end
+		} ]]
+
 		-- Debugg adapter protocol
 		use {
 			"mfussenegger/nvim-dap",
@@ -216,13 +226,13 @@ return packer.startup(
 				require "mc-neovim.colorschemes.material"
 			end
 		}
-		use {
+		--[[ use {
 			"folke/tokyonight.nvim",
 			event = "ColorSchemePre",
 			config = function ()
 				require "mc-neovim.colorschemes.tokyonight"
 			end
-		}
+		} ]]
 		use {
 			"shaunsingh/nord.nvim",
 			event = "ColorSchemePre",
@@ -230,6 +240,20 @@ return packer.startup(
 				require "mc-neovim.colorschemes.nord"
 			end
 		}
+		use {
+			"rose-pine/neovim",
+			event = "ColorSchemePre",
+			config = function ()
+				require "mc-neovim.colorschemes.rose-pine"
+			end
+		}
+		--[[ use {
+			"navarasu/onedark.nvim",
+			event = "ColorSchemePre",
+			config = function ()
+				require "mc-neovim.colorschemes.onedark"
+			end
+		} ]]
 
 		-- Autopairs
         use {
