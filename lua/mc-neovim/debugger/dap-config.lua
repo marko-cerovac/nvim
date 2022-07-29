@@ -70,7 +70,7 @@ dap.configurations.rust = dap.configurations.cpp
 -- vim.fn.sign_define("DapStopped", {text="喇", texthl = "DapStopped", numhl = ""})
 vim.fn.sign_define("DapBreakpoint", {text=" ", texthl = "DapBreakpoint", numhl = ""})
 -- vim.fn.sign_define("DapBreakpoint", {text="ﭦ ", texthl = "DapBreakpoint", numhl = ""})
-vim.fn.sign_define("DapStopped", {text=" ", texthl = "DapStopped", numhl = ""})
+vim.fn.sign_define("DapStopped", {text=" ", texthl = "DapStopped", numhl = "", linehl = "Visual"})
 
 -- dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 

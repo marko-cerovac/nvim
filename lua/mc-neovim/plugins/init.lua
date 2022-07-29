@@ -18,8 +18,6 @@ end
  	augroup end
 ]]
 
-local lspFiletypes = require("mc-neovim.lsp.filetypes")
-
 local packer = require("packer")
 
 packer.init({
@@ -45,8 +43,7 @@ return packer.startup(
 		-- Language Server Protocol
         use {
             "neovim/nvim-lspconfig",
-			opt = true,
-			after = "nvim-lsp-installer",
+			-- after = "nvim-lsp-installer",
 			-- ft = lspFiletypes;
             config = function()
                 require "mc-neovim.lsp.lsp-config"
@@ -54,14 +51,23 @@ return packer.startup(
         }
 
 		-- Language server installer
-        use {
-			"williamboman/nvim-lsp-installer",
-			ft = lspFiletypes;
-			-- after = "nvim-lspconfig",
-            config = function()
-                require "mc-neovim.lsp.lsp-install"
-            end
-        }
+		use {
+			"williamboman/mason.nvim",
+			config = function()
+				require("mason").setup({
+					ui = {
+						border = vim.g.border_style
+					}
+				})
+			end
+		}
+
+		use {
+			"williamboman/mason-lspconfig.nvim",
+			config = function ()
+				require("mason-lspconfig").setup()
+			end
+		}
 
 		-- Completion engine
 		use {
@@ -77,11 +83,9 @@ return packer.startup(
 				"hrsh7th/cmp-calc",
 				"L3MON4D3/LuaSnip",
 				"saadparwaiz1/cmp_luasnip"
-				-- "rafamadriz/friendly-snippets",
 			},
 			config = function()
 				require "mc-neovim.lsp.completion"
-				-- require "mc-neovim.lsp.snippets"
 			end,
 		}
 
@@ -89,7 +93,6 @@ return packer.startup(
 		use {
 			"glepnir/lspsaga.nvim",
 			branch = "main",
-			opt = true,
 			after = "nvim-lspconfig",
             config = function()
                 require "mc-neovim.lsp.lspsaga"
@@ -99,19 +102,14 @@ return packer.startup(
 		-- Lsp Diagnostics
 		use {
 			"folke/lsp-trouble.nvim",
-			keys = {
+			cmd = "Trouble",
+			--[[ keys = {
 				"<leader>cd",
 				"gr"
-			},
+			}, ]]
 			requires = "kyazdani42/nvim-web-devicons",
             config = function ()
 				require("trouble").setup {}
-				vim.keymap.set(
-					'n',
-					"<leader>cd",
-					"<cmd>TroubleToggle<CR>",
-					{ silent = true }
-				)
 				vim.keymap.set(
 					'n',
 					"gr",
@@ -120,41 +118,6 @@ return packer.startup(
 				)
             end
 		}
-
-		-- Lsp outline
-		--[[ use {
-			'simrat39/symbols-outline.nvim',
-			keys = "<leader>co",
-			config = function ()
-				vim.keymap.set(
-					'n',
-					"<leader>co",
-					"<cmd>SymbolsOutline<CR>",
-					{ silent = true }
-				)
-			end,
-			setup = function()
-				vim.g.symbols_outline = {
-					position = "left",
-					highlight_covered_item = false,
-					auto_preview = false,
-					preview_bg_highlight = "NormalFloat"
-				}
-			end
-		} ]]
-
-		-- Cmake integration
-		--[[ use {
-			"cdelledonne/vim-cmake",
-			ft = {
-				"cpp",
-				"cmake"
-			},
-			config = function ()
-				vim.g.cmake_link_compile_commands = true
-				vim.g.cmake_jump_on_completion = true
-			end
-		} ]]
 
 		-- Rust tools
 		--[[ use {
@@ -226,13 +189,13 @@ return packer.startup(
 				require "mc-neovim.colorschemes.material"
 			end
 		}
-		--[[ use {
+		use {
 			"folke/tokyonight.nvim",
 			event = "ColorSchemePre",
 			config = function ()
 				require "mc-neovim.colorschemes.tokyonight"
 			end
-		} ]]
+		}
 		use {
 			"shaunsingh/nord.nvim",
 			event = "ColorSchemePre",
@@ -338,21 +301,6 @@ return packer.startup(
                 require "mc-neovim.plugins.dashboard"
             end
         }
-
-		--[[ use {
-			"goolord/alpha-nvim",
-			setup = function ()
-				require("alpha").setup(require("alpha.themes.dashboard").config)
-				-- require "mc-neovim.plugins.alpha"
-			end
-		} ]]
-		--[[ use {
-			"startup-nvim/startup.nvim",
-			requires = { "nvim-lua/plenary.nvim" },
-			config = function()
-				require"startup".setup()
-			end
-		} ]]
 
 		-- Indent line
         use {
