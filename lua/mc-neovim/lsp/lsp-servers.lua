@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local settings = require("ma-neovim.lsp.lsp-config")
+local settings = require("mc-neovim.lsp.lsp-config")
 
 lspconfig["sumenko_lua"].setup {
 	on_attach = settings.on_attach,

@@ -1,8 +1,6 @@
 -- Set the theme style
 vim.g.material_style = "deep ocean"
 
-local colors = require("material.colors")
-
 require("material").setup({
 	contrast = {
 		sidebars = true,
@@ -15,6 +13,7 @@ require("material").setup({
 	contrast_filetypes = {
 		"packer",
 		"qf",
+		"lspsagaoutline",
 		-- "terminal",
 		-- "dapui_scopes",
 		-- "dapui_breakpoints",
@@ -25,16 +24,25 @@ require("material").setup({
 		-- borders = true,
 		eob_lines = true,
 	},
-	custom_highlights = {
-		StatusLine = { bg = colors.bg_alt },
-		StatusLineNC = { bg = colors.bg_alt },
+	-- custom_highlights = {
 	-- 	DapUIValue = { link = "NormalContrast" },
 	-- 	DapUIVariable = { link = "NormalContrast" },
 	-- 	DapUIFrameName = { link = "NormalContrast" },
-	},
+	-- },
 	lualine_style = "stealth"
 
 })
+
+vim.keymap.set('n', "<leader>sb",
+	function ()
+		if vim.g.material_style == "deep ocean" then
+			vim.g.material_style = "lighter"
+		else
+			vim.g.material_style = "deep ocean"
+		end
+		vim.cmd "colorscheme material"
+	end
+)
 
 -- Enable style toggling
 vim.keymap.set( 'n', "<leader>ss",

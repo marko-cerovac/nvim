@@ -120,14 +120,14 @@ return packer.startup(
 		}
 
 		-- Rust tools
-		--[[ use {
+		use {
 			"simrat39/rust-tools.nvim",
 			ft = "rust",
 			requires = "nvim-lspconfig",
 			config = function ()
-				require("rust-tools").setup()
+				require "mc-neovim.lsp.rust-tools"
 			end
-		} ]]
+		}
 
 		-- Nvim-jdtls
 		--[[ use {

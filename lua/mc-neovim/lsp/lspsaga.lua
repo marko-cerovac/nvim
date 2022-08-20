@@ -58,18 +58,18 @@ saga.init_lsp_saga({
 		click_support = false,
 	}, ]]
 	-- show outline
-	--[[ show_outline = {
-		win_position = 'right',
+	show_outline = {
+		win_position = 'left',
 		-- set the special filetype in there which in left like nvimtree neotree defx
 		left_with = '',
-		win_width = 30,
+		win_width = 40,
 		auto_enter = true,
 		auto_preview = true,
 		virt_text = '┃',
-		jump_key = 'o',
+		jump_key = '<CR>',
 		-- auto refresh when change buffer
 		auto_refresh = true,
-	}, ]]
+	},
 	-- if you don't use nvim-lspconfig you must pass your server name and
 	-- the related filetypes into this table
 	-- like server_filetype_map = { metals = { "sbt", "scala" } }

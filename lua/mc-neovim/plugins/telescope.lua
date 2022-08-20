@@ -3,6 +3,7 @@ local actions = require ("telescope.actions")
 
 telescope.setup{
 	defaults = {
+		theme = "ivy",
 		mappings = {
 			n = {
 				['s'] = actions.select_horizontal,
@@ -14,7 +15,6 @@ telescope.setup{
 				['<S-Tab>'] = actions.move_selection_next,
 			}
 		},
-		-- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 		prompt_prefix = " "
 	},
 }
@@ -30,18 +30,18 @@ end
 require("which-key").register({
 	f = {
 		name = " find",
-		a = {"<cmd>Telescope lsp_code_actions<CR>", "code actions"},
+		-- a = {"<cmd>Telescope lsp_code_actions theme=cursor<CR>", "code actions"},
 		b = {"<cmd>Telescope buffers<CR>", "buffers"},
 		-- c = {"<cmd>Telescope lsp_references<CR>", "code references"},
-		c = {"<cmd>Telescope lsp_document_symbols<CR>", "code outllne"},
+		c = {"<cmd>Telescope lsp_document_symbols theme=cursor<CR>", "code outllne"},
 		e = {"<cmd>Telescope file_browser<CR>", "file explorer"},
-		f = {"<cmd>Telescope find_files<CR>", "files"},
-		g = {"<cmd>Telescope live_grep<CR>", "grep files"},
-		h = {"<cmd>Telescope help_tags<CR>", "help"},
-		o = {"<cmd>Telescope vim_options<CR>", "options"},
+		f = {"<cmd>Telescope find_files theme=ivy<CR>", "files"},
+		g = {"<cmd>Telescope live_grep theme=ivy<CR>", "grep files"},
+		h = {"<cmd>Telescope help_tags theme=ivy<CR>", "help"},
+		o = {"<cmd>Telescope vim_options theme=ivy<CR>", "options"},
 		r = {"<cmd>Telescope oldfiles<CR>", "recent files"},
 		s = {"<cmd>PackerLoad telescope.nvim<CR><cmd>lua require('mc-neovim.plugins.telescope').neovim_rc()<CR>", "neovim settings"},
-		t = {"<cmd>Telescope colorscheme<CR>", "colorschemes"},
+		t = {"<cmd>Telescope colorscheme theme=ivy<CR>", "colorschemes"},
 	},
 }, { prefix = "<leader>" })
 

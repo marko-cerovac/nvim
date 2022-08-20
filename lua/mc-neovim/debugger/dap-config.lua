@@ -67,10 +67,10 @@ dap.configurations.rust = dap.configurations.cpp
 
 -- Define debugg signs
 -- vim.fn.sign_define("DapBreakpoint", {text="ﱣ ", texthl = "DapBreakpoint", numhl = ""})
--- vim.fn.sign_define("DapStopped", {text="喇", texthl = "DapStopped", numhl = ""})
-vim.fn.sign_define("DapBreakpoint", {text=" ", texthl = "DapBreakpoint", numhl = ""})
+vim.fn.sign_define("DapBreakpoint", {text="", texthl = "DapBreakpoint", numhl = ""})
 -- vim.fn.sign_define("DapBreakpoint", {text="ﭦ ", texthl = "DapBreakpoint", numhl = ""})
-vim.fn.sign_define("DapStopped", {text=" ", texthl = "DapStopped", numhl = "", linehl = "Visual"})
+-- vim.fn.sign_define("DapStopped", {text=" ", texthl = "DapStopped", numhl = "", linehl = "Visual"})
+vim.fn.sign_define("DapStopped", {text="", texthl = "DapStopped", numhl = ""})
 
 -- dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 
@@ -83,9 +83,9 @@ require("which-key").register({
 		name = "debugg",
 		b = { wrap("toggle_breakpoint"),	"toggle breakpoint" },
 		c = { wrap("continue"),				"continue" },
-		h = { wrap("step_out"),				"step out" },
-		l = { wrap("step_into"),			"step into" },
-		j = { wrap("step_over"),			"step over" },
+		-- h = { wrap("step_out"),				"step out" },
+		-- l = { wrap("step_into"),			"step into" },
+		-- j = { wrap("step_over"),			"step over" },
 		p = { wrap("pause"),				"pause" },
 		-- r = { wrap("repl.open"),			"open repl" },
 		q = { wrap("terminate"),				"quit" },
@@ -99,3 +99,8 @@ require("which-key").register({
 		-- e = {"", "set exception"}
 	},
 }, { prefix = "<leader>" })
+
+vim.keymap.set ('n', "<Up>", require("dap").continue, { silent = true, noremap = true })
+vim.keymap.set ('n', "<Down>", require("dap").step_over, { silent = true, noremap = true })
+vim.keymap.set ('n', "<Left>", require("dap").step_out, { silent = true, noremap = true })
+vim.keymap.set ('n', "<Right>", require("dap").step_into, { silent = true, noremap = true })

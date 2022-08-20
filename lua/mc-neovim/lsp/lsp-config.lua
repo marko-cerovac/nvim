@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>cs", function() require('lspsaga.signaturehelp').signature_help() end, bufopts)
 	vim.keymap.set("n", "<leader>cp", function() require('lspsaga.definition').preview_definition() end, bufopts)
 	vim.keymap.set("n", "<leader>cl", function() require('lspsaga.diagnostic').show_line_diagnostics() end, bufopts)
-	vim.keymap.set("n", "<leader>cL", function() require('lspsaga.diagnostic').show_cursor_diagnostics() end, bufopts)
+	vim.keymap.set("n", "<leader>co", "<cmd>LSoutlineToggle<CR>", bufopts)
 	vim.keymap.set("n", "[c", function() require("lspsaga.diagnostic").goto_next() end, bufopts)
 	vim.keymap.set("n", "]c", function() require("lspsaga.diagnostic").goto_prev() end, bufopts)
 	vim.keymap.set("n", "<C-u>", function() return require('lspsaga.action').smart_scroll_with_saga(-1) end, bufopts)
@@ -62,10 +62,10 @@ local on_attach = function(client, bufnr)
 
 	-- Highlight symbol under cursor
 	if client.server_capabilities.documentHighlightProvider then
-			vim.api.nvim_create_augroup('lsp_document_highlight', {
+		vim.api.nvim_create_augroup('lsp_document_highlight', {
 			clear = false
 		})
-			vim.api.nvim_clear_autocmds({
+		vim.api.nvim_clear_autocmds({
 			buffer = bufnr,
 			group = 'lsp_document_highlight',
 		})
@@ -88,9 +88,9 @@ local win = require "lspconfig.ui.windows"
 local _default_opts = win.default_opts
 
 win.default_opts = function(options)
-  local opts = _default_opts(options)
-  opts.border = vim.g.border_style
-  return opts
+	local opts = _default_opts(options)
+	opts.border = vim.g.border_style
+	return opts
 end
 
 vim.keymap.set("n", "gr", "<cmd>PackerLoad lsp-trouble.nvim<CR><cmd>TroubleToggle lsp_references<CR>", { silent = true, noremap = true })
@@ -120,10 +120,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 } ]]
 
 -- Define signs
---[[ vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError", numhl = ""})
-vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarning", numhl = ""})
+vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError", numhl = ""})
+vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarn", numhl = ""})
 vim.fn.sign_define("DiagnosticSignHint", {text = " ", texthl = "DiagnosticSignHint", numhl = ""})
-vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInformation", numhl = ""}) ]]
+vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInfo", numhl = ""})
 
 --[[ local lsp_servers = {
 	"clangd",
@@ -136,47 +136,62 @@ vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSig
 } ]]
 
 require("lspconfig")["clangd"].setup{
-    on_attach = on_attach,
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["rust-analyzer"] = {}
-    } ]]
+	--[[ settings = {
+		["clangd"] = {}
+	} ]]
 }
 require("lspconfig")["cmake"].setup{
-    on_attach = on_attach,
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["cmake"] = {}
-    } ]]
+	--[[ settings = {
+		["cmake"] = {}
+	} ]]
 }
 require("lspconfig")["bashls"].setup{
-    on_attach = on_attach,
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["bashls"] = {}
-    } ]]
+	--[[ settings = {
+		["bashls"] = {}
+	} ]]
 }
 require("lspconfig")["jdtls"].setup{
-    on_attach = on_attach,
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["jdtls"] = {}
-    } ]]
+	--[[ settings = {
+		["jdtls"] = {}
+	} ]]
 }
 require("lspconfig")["sumneko_lua"].setup{
-    on_attach = on_attach,
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["sumneko_lua"] = {}
-    } ]]
+	--[[ settings = {
+		["sumneko_lua"] = {}
+	} ]]
 }
-require("lspconfig")["rust_analyzer"].setup{
-    on_attach = on_attach,
+--[[ require("lspconfig")["rust_analyzer"].setup{
+	on_attach = on_attach,
 	capabilities = capabilities,
-    --[[ settings = {
-      ["rust_analyzer"] = {}
-    } ]]
-}
+	settings = {
+		["rust_analyzer"] = {
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			cargo = {
+				buildScripts = {
+					enable = true,
+				},
+			},
+			procMacro = {
+				enable = true
+			},
+		}
+	}
+} ]]
 
 
 --[[ return {
