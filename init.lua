@@ -1,38 +1,10 @@
---        ___           ___
---       /\  \         /\__\       Marko Cerovac
---      |::\  \       /:/  /       marko.cerovac16@gmail.com
---      |:|:\  \     /:/  /        https://github.com/marko-cerovac/nvim
---    __|:|\:\  \   /:/  /  ___
---   /::::|_\:\__\ /:/__/  /\__\
---   \:\~~\  \/__/ \:\  \ /:/  /
---    \:\  \        \:\  /:/  /    Group: NeoVim
---     \:\  \        \:\/:/  /     File: init.lua
---      \:\__\        \::/  /      Desc: NeoVim config
---       \/__/         \/__/
+-- New lua settup from scratch
 
+-- Load user settings
+require "user.core.settings"
 
-if vim.g.vscode then
+-- Load user autocommands
+require "user.core.autocommands"
 
-	-- VSCode ui
-	require("mc-neovim.ui.vscode")
-
-	return
-
-end
-
--- Settings
-require("mc-neovim.core.settings")
-
--- Mappings
-require("mc-neovim.core.mappings")
-
--- Plugins
-require("mc-neovim.plugins")
-
-if vim.g.neovide then
-
-	-- neovide ui
-	require("mc-neovim.ui.neovide")
-
-end
-
+-- Load user keymaps
+require "user.core.keymaps"
