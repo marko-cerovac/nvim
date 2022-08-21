@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local border_opts = { border = vim.g.border_style }
+-- local border_opts = { border = vim.g.border_style }
 
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
@@ -7,7 +7,7 @@ if not status_ok then
 	return
 end
 
-local status_ok, telescope = pcall(require, "telescope")
+local status_ok, telescope = pcall(require, "telescope.builtin")
 if not status_ok then
 	vim.notify "Module telescope not found"
 	return
@@ -18,23 +18,20 @@ local on_attach = function(client, bufnr)
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
 	-- TODO: if borders dont show, uncomment these
-	-- map("n", "K", function() vim.lsp.buf.hover({ border_opts }) end, bufopts)
 	map("n", "K", vim.lsp.buf.hover, bufopts)
-	map("n", "gD", telescope.builtin.lsp_definitions, bufopts)
-	map("n", "gd", telescope.builtin.lsp_type_definitions, bufopts)
-	map("n", "gi", telescope.builtin.lsp_implementations, bufopts)
-	-- map("n", "gl", function () vim.diagnostic.open_float({ border_opts }) end, bufopts)
+	map("n", "gD", telescope.lsp_definitions, bufopts)
+	map("n", "gd", telescope.lsp_type_definitions, bufopts)
+	map("n", "gi", telescope.lsp_implementations, bufopts)
 	map("n", "gl", vim.diagnostic.open_float, bufopts)
-	map("n", "gr", telescope.builtin.lsp_references, bufopts)
-	-- map("n", "[c", function () vim.diagnostic.goto_prev({ float = { border_opts }}) end, bufopts)
+	map("n", "gr", telescope.lsp_references, bufopts)
 	map("n", "[c", vim.diagnostic.goto_prev, bufopts)
-	-- map("n", "]c", function () vim.diagnostic.goto_next({ float = { border_opts }}) end, bufopts)
 	map("n", "]c", vim.diagnostic.goto_next, bufopts)
 
 	map("n", "<leader>cr", vim.lsp.buf.rename, bufopts)
 	map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	map("n", "<leader>cf", vim.lsp.buf.formatting, bufopts)
-	map("n", "<leader>fd", telescope.builtin.diagnostics, bufopts)
+	map("n", "<leader>cd", telescope.diagnostics, bufopts)
+	map("n", "<leader>co", telescope.lsp_document_symbols, bufopts)
 	map("n", "<leader>cs", vim.lsp.buf.signature_help, bufopts)
 	map("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, bufopts)
 	map("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -79,110 +76,126 @@ vim.diagnostic.config ({
 })
 
 -- Borders for LspInfo winodw
-local win = lspconfig.ui.windows
-local _default_opts = win.default_opts
+-- local win = lspconfig.ui.windows
+-- local _default_opts = win.default_opts
+-- 
+-- win.default_opts = function(options)
+	-- 	local win_opts = _default_opts(options)
+	-- 	win_opts.border = vim.g.border_style
+	-- 	return win_opts
+	-- end
 
-win.default_opts = function(options)
-	local win_opts = _default_opts(options)
-	win_opts.border = vim.g.border_style
-	return win_opts
-end
-
--- Rounded hover borders
---[[ local handlers =  {
-	["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover,
+	-- Rounded hover borders
+	--[[ local handlers =  {
+		["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover,
 		{border = vim.g.border_style}
-	),
-	["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help,
+		),
+		["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help,
 		{border = vim.g.border_style, focusable = false, relative = "cursor" }
-	),
-} ]]
--- TODO: if borders dont show, delete this
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or vim.g.border_style
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
+		),
+	} ]]
+	-- TODO: if borders dont show, delete this
+	local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+		opts = opts or {}
+		opts.border = opts.border or vim.g.border_style
+		return orig_util_open_floating_preview(contents, syntax, opts, ...)
+	end
 
 
--- Enable code snippets
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
--- local completionItem = capabilities.textDocument.completion.completionItem
+	-- Enable code snippets
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+	-- local completionItem = capabilities.textDocument.completion.completionItem
 
--- TODO: if completion works great, delete this
---[[ completionItem.snippetSupport = true
-completionItem.preselectSupport = true
-completionItem.insertReplaceSupport = true
-completionItem.labelDetailsSupport = true
-completionItem.deprecatedSupport = true
-completionItem.commitCharactersSupport = true
-completionItem.tagSupport = { valueSet = { 1 } }
-completionItem.resolveSupport = {
-	properties = {
-		"documentation",
-		"detail",
-		"additionalTextEdits",
-	},
-} ]]
+	-- TODO: if completion works great, delete this
+	--[[ completionItem.snippetSupport = true
+	completionItem.preselectSupport = true
+	completionItem.insertReplaceSupport = true
+	completionItem.labelDetailsSupport = true
+	completionItem.deprecatedSupport = true
+	completionItem.commitCharactersSupport = true
+	completionItem.tagSupport = { valueSet = { 1 } }
+	completionItem.resolveSupport = {
+		properties = {
+			"documentation",
+			"detail",
+			"additionalTextEdits",
+		},
+	} ]]
 
-vim.fn.sign_define("DiagnosticSignError",
-{text = " ", texthl = "DiagnosticSignError", numhl = ""}
-)
-vim.fn.sign_define("DiagnosticSignWarn",
-{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
-)
-vim.fn.sign_define("DiagnosticSignHint",
-{text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
-)
-vim.fn.sign_define("DiagnosticSignInfo",
-{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
-)
+	vim.fn.sign_define("DiagnosticSignError",
+	{text = " ", texthl = "DiagnosticSignError", numhl = ""}
+	)
+	vim.fn.sign_define("DiagnosticSignWarn",
+	{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
+	)
+	vim.fn.sign_define("DiagnosticSignHint",
+	{text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
+	)
+	vim.fn.sign_define("DiagnosticSignInfo",
+	{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
+	)
 
-local lsp_flags = {
-	-- This is the default in Nvim 0.7+
-	debounce_text_changes = 150,
-}
+	local lsp_flags = {
+		-- This is the default in Nvim 0.7+
+		debounce_text_changes = 150,
+	}
 
-lspconfig["sumenko_lua"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["sumneko_lua"].setup {
+		settings = {
+			Lua = {
+				runtime = {
+					version = 'LuaJIT',
+				},
+				diagnostics = {
+					globals = {'vim'},
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
 
-lspconfig["rust_analyzer"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["rust_analyzer"].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
 
-lspconfig["clangd"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["clangd"].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
 
-lspconfig["cmake"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["cmake"].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
 
-lspconfig["bashls"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["bashls"].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
 
-lspconfig["jdtls"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- handlers = handlers,
-	flags = lsp_flags
-}
+	lspconfig["jdtls"].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- handlers = handlers,
+		flags = lsp_flags
+	}
