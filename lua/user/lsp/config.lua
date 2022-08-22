@@ -15,30 +15,30 @@ end
 
 local on_attach = function(client, bufnr)
 
-	local bufopts = { noremap=true, silent=true, buffer=bufnr }
+	local bufopts = { silent=true, buffer=bufnr }
 
 	-- TODO: if borders dont show, uncomment these
 	map("n", "K", vim.lsp.buf.hover, bufopts)
-	map("n", "gD", telescope.lsp_definitions, bufopts)
-	map("n", "gd", telescope.lsp_type_definitions, bufopts)
+	map("n", "gD", telescope.lsp_type_definitions, bufopts)
+	map("n", "gd", telescope.lsp_definitions, bufopts)
 	map("n", "gi", telescope.lsp_implementations, bufopts)
 	map("n", "gl", vim.diagnostic.open_float, bufopts)
 	map("n", "gr", telescope.lsp_references, bufopts)
 	map("n", "[c", vim.diagnostic.goto_prev, bufopts)
 	map("n", "]c", vim.diagnostic.goto_next, bufopts)
 
-	map("n", "<leader>cr", vim.lsp.buf.rename, bufopts)
-	map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-	map("n", "<leader>cf", vim.lsp.buf.formatting, bufopts)
-	map("n", "<leader>cd", telescope.diagnostics, bufopts)
-	map("n", "<leader>co", telescope.lsp_document_symbols, bufopts)
-	map("n", "<leader>cs", vim.lsp.buf.signature_help, bufopts)
-	map("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, bufopts)
-	map("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, bufopts)
-	map("n", "<leader>cwl", function()
+	map("n", "<Leader>cr", vim.lsp.buf.rename, bufopts)
+	map("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
+	map("n", "<Leader>cf", vim.lsp.buf.formatting, bufopts)
+	map("n", "<Leader>cd", telescope.diagnostics, bufopts)
+	map("n", "<Leader>co", telescope.lsp_document_symbols, bufopts)
+	map("n", "<Leader>cs", vim.lsp.buf.signature_help, bufopts)
+	map("n", "<Leader>cwa", vim.lsp.buf.add_workspace_folder, bufopts)
+	map("n", "<Leader>cwr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	map("n", "<Leader>cwl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, bufopts)
-	map("n", "<leader>cq", vim.diagnostic.setloclist, bufopts)
+	map("n", "<Leader>cq", vim.diagnostic.setloclist, bufopts)
 
 	-- Highlight symbol under cursor
 	if client.server_capabilities.documentHighlightProvider then
@@ -146,10 +146,10 @@ vim.diagnostic.config ({
 		settings = {
 			Lua = {
 				runtime = {
-					version = 'LuaJIT',
+					version = "LuaJIT",
 				},
 				diagnostics = {
-					globals = {'vim'},
+					globals = {"vim"},
 				},
 				workspace = {
 					library = vim.api.nvim_get_runtime_file("", true),

@@ -1,22 +1,25 @@
--- Escaping insert mode
--- vim.api.nvim_set_keymap('i', "fj", "<Esc>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('i', "jf", "<Esc>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('i', "kj", "<Esc>", { silent = true, noremap = true })
-
--- Window Navigation
--- vim.api.nvim_set_keymap('n', "<C-j>", ":call VSCodeNotify("workbench.action.navigateDown")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('n', "<C-j>", ":call VSCodeNotify("workbench.action.navigateDown")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('n', "<C-k>", ":call VSCodeNotify("workbench.action.navigateUp")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('n', "<C-k>", ":call VSCodeNotify("workbench.action.navigateUp")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('x', "<C-h>", ":call VSCodeNotify("workbench.action.navigateLeft")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('x', "<C-h>", ":call VSCodeNotify("workbench.action.navigateLeft")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('x', "<C-l>", ":call VSCodeNotify("workbench.action.navigateRight")<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('x', "<C-l>", ":call VSCodeNotify("workbench.action.navigateRight")<CR>", { silent = true, noremap = true })
-
--- Tab navigation
--- vim.api.nvim_set_keymap('n', "<Tab>", ":Tabnext<CR>", { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('n', "<S-Tab>", ":Tabprev<CR>", { silent = true, noremap = true })
+local map = vim.keymap.set
+local opts = { silent = true }
 
 -- Open which-key
-vim.api.nvim_set_keymap('n', "<Space>", ":call VSCodeNotify('whichkey.show')<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('x', "<Space>", ":<C-u>call <SID>openWhichKeyInVisualMode()<CR>", { silent = true, noremap = true })
+map("n", "<Space>", ":call VSCodeNotify('whichkey.show')<CR>", opts)
+map("x", "<Space>", ":<C-u>call <SID>openWhichKeyInVisualMode()<CR>", opts)
+
+-- Escaping insert mode
+-- map("i", "fj", "<Esc>", opts)
+-- map("i", "jf", "<Esc>", opts)
+-- map("i", "kj", "<Esc>", opts)
+
+-- Window Navigation
+-- map("n", "<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", opts)
+-- map("n", "<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", opts)
+-- map("n", "<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", opts)
+-- map("n", "<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", opts)
+-- map("x", "<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", opts)
+-- map("x", "<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", opts)
+-- map("x", "<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", opts)
+-- map("x", "<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", opts)
+
+-- Tab navigation
+-- map("n", "<Tab>", ":Tabnext<CR>", opts)
+-- map("n", "<S-Tab>", ":Tabprev<CR>", opts)

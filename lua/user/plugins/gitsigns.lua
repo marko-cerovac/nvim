@@ -23,7 +23,7 @@ gs.setup {
 
 	on_attach = function (bufnr)
 		local map = vim.keymap.set
-		local opts = { noremap = true, silent = true }
+		local opts = { silent = true }
 
 		map("n", "]g", function()
 			if vim.wo.diff then return "]c" end
@@ -37,12 +37,12 @@ gs.setup {
 			return "<Ignore>"
 		end, {expr=true})
 
-		map ({"n", "v"}, "<leader>ga", gs.stage_hunk, opts)
-		map ({"n", "v"}, "<leader>gr", gs.reset_hunk, opts)
-		map ({"n", "v"}, "<leader>gR", gs.reset_buffer, opts)
-		map ({"n", "v"}, "<leader>gp", gs.preview_hunk, opts)
-		map ({"n", "v"}, "<leader>gl", gs.toggle_current_line_blame, opts)
-		map ({"n", "v"}, "<leader>gd", gs.diffthis, opts)
+		map ({"n", "v"}, "<Leader>ga", gs.stage_hunk, opts)
+		map ({"n", "v"}, "<Leader>gr", gs.reset_hunk, opts)
+		map ({"n", "v"}, "<Leader>gR", gs.reset_buffer, opts)
+		map ({"n", "v"}, "<Leader>gp", gs.preview_hunk, opts)
+		map ({"n", "v"}, "<Leader>gl", gs.toggle_current_line_blame, opts)
+		map ({"n", "v"}, "<Leader>gd", gs.diffthis, opts)
 
 		-- Text object
 		map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")

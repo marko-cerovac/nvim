@@ -1,9 +1,17 @@
+local status_ok, material = pcall(require, "material")
+if not status_ok then
+	vim.notify "Module material not found"
+	return
+end
+
+local map = vim.keymap.set
+local opts = { silent = true }
+
 -- Set the theme style
 vim.g.material_style = "deep ocean"
 
-require("material").setup({
+material.setup({
 	contrast = {
-		sidebars = true,
 		cursor_line = true,
 	},
 	italics = {
@@ -30,24 +38,18 @@ require("material").setup({
 	lualine_style = "stealth"
 })
 
-vim.keymap.set('n', "[t",
-	function ()
-		if vim.g.material_style == "deep ocean" then
-			vim.g.material_style = "lighter"
-		else
-			vim.g.material_style = "deep ocean"
-		end
-		vim.cmd "colorscheme material"
+-- Toggle light/dark background
+map("n", "[t", function ()
+	if vim.g.material_style == "deep ocean" then
+		vim.g.material_style = "lighter"
+	else
+		vim.g.material_style = "deep ocean"
 	end
-)
+	vim.cmd "colorscheme material"
+end, opts)
 
 -- Enable style toggling
-vim.keymap.set( 'n', "]t",
-	function ()
-		return require('material.functions').toggle_style()
-	end,
-	{ noremap = true, silent = true }
-)
+map( "n", "]t", function () return require("material.functions").toggle_style() end, opts)
 
 -- Enable the colorscheme
 vim.cmd "colorscheme material"

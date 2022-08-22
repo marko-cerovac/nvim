@@ -1,5 +1,9 @@
 -- load packer
-local packer = require "user.util.packer_init"
+local status_ok, packer = pcall(require, "user.util.packer_init")
+if not status_ok then
+	vim.notify "Module user.packer_init not found"
+	return
+end
 
 return packer.startup(
 function(use)
@@ -81,7 +85,7 @@ function(use)
 	use {
 		"mfussenegger/nvim-dap",
 		keys = {
-			"<leader>b",
+			"<Leader>b",
 			"<M-;>",
 			"<Up>",
 		},
@@ -99,11 +103,19 @@ function(use)
 		end
 	}
 
-	-- Colorscheme
+	-- Colorschemes
 	use {
 		"marko-cerovac/material.nvim",
 		config = function ()
 			require "user.themes.material"
+		end
+	}
+
+	use {
+		"rose-pine/neovim",
+		event = "ColorSchemePre",
+		config = function ()
+			require "user.themes.rose-pine"
 		end
 	}
 
@@ -155,26 +167,19 @@ function(use)
 	}
 
 	-- Commenting plugin
-	-- use {
-	-- 	'numToStr/Comment.nvim',
-	-- 	keys = {
-	-- 		"<leader>k",
-	-- 		"<leader>K",
-	-- 	},
-	-- 	config = function()
-	-- 		require('Comment').setup({
-	-- 			toggler = {
-	-- 				line = "<leader>k",
-	-- 				block = "<leader>K",
-	-- 			},
-	-- 			mappings = {
-	-- 				basic = true,
-	-- 				extra = false,
-	-- 				extended = false,
-	-- 			}
-	-- 		})
-	-- 	end
-	-- }
+	use {
+		"b3nj5m1n/kommentary",
+		keys = {
+			"<Leader>k",
+			"<Leader>/",
+		},
+		setup = function ()
+			vim.g.kommentary_create_default_mappings = false
+		end,
+		config = function ()
+			require "user.plugins.kommentary"
+		end
+	}
 
 	-- Colorizer
 	use {

@@ -5,7 +5,7 @@ if not status_ok then
 end
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 dap.adapters.cppdbg = {
 	id = "cppdbg",
@@ -32,8 +32,8 @@ dap.configurations.cpp = {
 		stopOnEntry = true,
 		setupCommands = {
 			{
-				text = '-enable-pretty-printing',
-				description =  'enable pretty printing',
+				text = "-enable-pretty-printing",
+				description =  "enable pretty printing",
 				ignoreFailures = false
 			},
 		},

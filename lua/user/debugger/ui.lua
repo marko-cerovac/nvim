@@ -5,7 +5,7 @@ if not status_ok then
 end
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 dapui.setup({
 	mappings = {

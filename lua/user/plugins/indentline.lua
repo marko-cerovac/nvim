@@ -1,6 +1,6 @@
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
-	char = '│',
+	char = "│",
     show_current_context = true,
     show_current_context_start = false,
 	show_first_indent_level = true,
@@ -18,8 +18,8 @@ require("indent_blankline").setup {
 }
 
 -- Toggle indent line
-vim.keymap.set('n', "<leader>si", "<Cmd>IndentBlanklineToggle!<CR>", { silent = true })
--- vim.keymap.set('n', "<leader>si", "<Cmd>IndentBlanklineToggle<CR>", { silent = true })
+vim.keymap.set("n", "<leader>si", "<Cmd>IndentBlanklineToggle!<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>si", "<Cmd>IndentBlanklineToggle<CR>", { silent = true })
 
--- vim.cmd 'IndentBlanklineRefresh'
-vim.cmd 'IndentBlanklineToggle'
+-- vim.cmd "IndentBlanklineRefresh"
+vim.cmd "IndentBlanklineToggle"

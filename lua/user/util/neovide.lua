@@ -5,7 +5,6 @@ vim.opt.mouse = "a"
 vim.g.neovide_cursor_vfx_mode = "sonicboom"
 
 -- Font and cursor options
--- vim.o.guicursor = vim.o.guicursor .. ",a:Cursor/Cursor"
 vim.opt.guifont = "Hasklug Nerd Font:h7.5"
 
 -- Disable transparant floating windows
@@ -13,5 +12,5 @@ vim.opt.guifont = "Hasklug Nerd Font:h7.5"
 vim.g.neovide_floating_opacity = 1.0
 
 -- Enable system clipboard
-vim.keymap.set('', "<M-p>", '"+p')
-vim.keymap.set('v', "<M-y>", '*y')
+vim.keymap.set('n', "<M-p>", '"+p', {})
+vim.keymap.set('v', "<M-y>", '*y', {})

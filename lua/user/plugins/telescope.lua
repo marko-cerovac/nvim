@@ -7,7 +7,7 @@ end
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
 telescope.setup{
 	-- defaults = {
@@ -65,7 +65,7 @@ require("telescope").load_extension("ui-select")
 local neovim_settings = function()
     builtin.find_files({
         prompt_title = "NeoVim Settings",
-        cwd = os.getenv("HOME") .. "/.config/nvim/lua/user",
+        cwd = vim.fn.stdpath "config" .. "/lua/user",
     })
 end
 
@@ -73,9 +73,9 @@ end
 map("n", "gb", builtin.buffers, opts)
 map("n", "gc", builtin.commands, opts)
 map("n", "gs", neovim_settings, opts)
-map("n", "<leader>e", telescope.extensions.file_browser.file_browser, opts)
-map("n", "<leader>fg", builtin.live_grep, opts)
-map("n", "<leader>gf", builtin.git_files, opts)
-map("n", "<leader>gc", builtin.git_commits, opts)
-map("n", "<leader>fr", builtin.oldfiles, opts)
-map("n", "<leader>ft", builtin.colorscheme, opts)
+map("n", "<Leader>e", telescope.extensions.file_browser.file_browser, opts)
+map("n", "<Leader>fg", builtin.live_grep, opts)
+map("n", "<Leader>gf", builtin.git_files, opts)
+map("n", "<Leader>gc", builtin.git_commits, opts)
+map("n", "<Leader>fr", builtin.oldfiles, opts)
+map("n", "<Leader>ft", builtin.colorscheme, opts)

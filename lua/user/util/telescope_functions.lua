@@ -31,8 +31,14 @@ end
 functions.neovim_settings = function ()
     builtin.find_files({
         prompt_title = "NeoVim Settings",
-        cwd = os.getenv("HOME") .. "/.config/nvim/lua/user",
+        cwd = vim.fn.stdpath "config" .. "/lua/user",
     })
+end
+
+functions.material_styles = function ()
+	builtin.planets({
+
+	})
 end
 
 return functions
