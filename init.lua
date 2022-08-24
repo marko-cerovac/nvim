@@ -1,4 +1,8 @@
--- VSCodium u
+-- NeoVim config
+-- Author: Marko Cerovac
+-- Repo: https://github.com/marko-cerovac/nvim
+
+-- VSCodium
 if vim.g.vscode then
 	require("user.util.vscode")
 	return
