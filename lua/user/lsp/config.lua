@@ -65,137 +65,98 @@ end
 
 vim.diagnostic.config ({
 	virtual_text = {
-		-- prefix = "●", -- Could be "■", "▎", "x"
-		-- prefix = "",
-		prefix = "",
+		prefix = "", -- Could be "■", "▎", "x", "●"
 	},
 	signs = true,
 	underline = true,
-	update_in_insert = false
+	update_in_insert = false,
+	float = {
+		border = vim.g.border_style,
+		style = "minimal",
+	}
 
 })
 
--- Borders for LspInfo winodw
--- local win = lspconfig.ui.windows
--- local _default_opts = win.default_opts
--- 
--- win.default_opts = function(options)
-	-- 	local win_opts = _default_opts(options)
-	-- 	win_opts.border = vim.g.border_style
-	-- 	return win_opts
-	-- end
+-- Borders for LspInfo window
+--[[ local win = lspconfig.ui.windows
+local _default_opts = win.default_opts
 
-	-- Rounded hover borders
-	--[[ local handlers =  {
-		["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover,
-		{border = vim.g.border_style}
-		),
-		["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help,
-		{border = vim.g.border_style, focusable = false, relative = "cursor" }
-		),
-	} ]]
-	-- TODO: if borders dont show, delete this
-	local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-		opts = opts or {}
-		opts.border = opts.border or vim.g.border_style
-		return orig_util_open_floating_preview(contents, syntax, opts, ...)
-	end
+win.default_opts = function(options)
+	local win_opts = _default_opts(options)
+	win_opts.border = vim.g.border_style
+	return win_opts
+end ]]
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or vim.g.border_style
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 
-	-- Enable code snippets
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-	-- local completionItem = capabilities.textDocument.completion.completionItem
+-- Enable code snippets
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-	-- TODO: if completion works great, delete this
-	--[[ completionItem.snippetSupport = true
-	completionItem.preselectSupport = true
-	completionItem.insertReplaceSupport = true
-	completionItem.labelDetailsSupport = true
-	completionItem.deprecatedSupport = true
-	completionItem.commitCharactersSupport = true
-	completionItem.tagSupport = { valueSet = { 1 } }
-	completionItem.resolveSupport = {
-		properties = {
-			"documentation",
-			"detail",
-			"additionalTextEdits",
-		},
-	} ]]
+vim.fn.sign_define("DiagnosticSignError",
+{text = " ", texthl = "DiagnosticSignError", numhl = ""}
+)
+vim.fn.sign_define("DiagnosticSignWarn",
+{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
+)
+vim.fn.sign_define("DiagnosticSignHint",
+{text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
+)
+vim.fn.sign_define("DiagnosticSignInfo",
+{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
+)
 
-	vim.fn.sign_define("DiagnosticSignError",
-	{text = " ", texthl = "DiagnosticSignError", numhl = ""}
-	)
-	vim.fn.sign_define("DiagnosticSignWarn",
-	{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
-	)
-	vim.fn.sign_define("DiagnosticSignHint",
-	{text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
-	)
-	vim.fn.sign_define("DiagnosticSignInfo",
-	{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
-	)
-
-	local lsp_flags = {
-		-- This is the default in Nvim 0.7+
-		debounce_text_changes = 150,
-	}
-
-	lspconfig["sumneko_lua"].setup {
-		settings = {
-			Lua = {
-				runtime = {
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					globals = {"vim"},
-				},
-				workspace = {
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				telemetry = {
-					enable = false,
-				},
+lspconfig["sumneko_lua"].setup {
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				globals = {"vim"},
+			},
+			telemetry = {
+				enable = false,
 			},
 		},
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+	},
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}
 
-	lspconfig["rust_analyzer"].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+lspconfig["rust_analyzer"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}
 
-	lspconfig["clangd"].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+lspconfig["clangd"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}
 
-	lspconfig["cmake"].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+lspconfig["cmake"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}
 
-	lspconfig["bashls"].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+lspconfig["bashls"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}
 
-	lspconfig["jdtls"].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- handlers = handlers,
-		flags = lsp_flags
-	}
+lspconfig["jdtls"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- handlers = handlers,
+}

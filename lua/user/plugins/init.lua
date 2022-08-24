@@ -62,7 +62,6 @@ function(use)
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-path",
 		},
@@ -113,9 +112,18 @@ function(use)
 
 	use {
 		"rose-pine/neovim",
+		as = "rose-pine",
 		event = "ColorSchemePre",
 		config = function ()
 			require "user.themes.rose-pine"
+		end
+	}
+
+	use {
+		"olimorris/onedarkpro.nvim",
+		event = "ColorSchemePre",
+		config = function ()
+			require "user.themes.onedarkpro"
 		end
 	}
 

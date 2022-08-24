@@ -58,9 +58,9 @@ telescope.setup{
 }
 
 -- Load extensions
-require("telescope").load_extension("fzy_native")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("ui-select")
+telescope.load_extension "fzy_native"
+telescope.load_extension "file_browser"
+telescope.load_extension "ui-select"
 
 local neovim_settings = function()
     builtin.find_files({
