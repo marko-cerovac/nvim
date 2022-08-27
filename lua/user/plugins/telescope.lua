@@ -6,12 +6,12 @@ end
 
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
+local themes = require "telescope.themes"
 local map = vim.keymap.set
 local opts = { silent = true }
 
 telescope.setup{
-	-- defaults = {
-	defaults = require("telescope.themes").get_ivy {
+	defaults = themes.get_ivy {
 		mappings = {
 			i = {
 				["<C-j>"] = actions.cycle_history_next,
@@ -29,12 +29,12 @@ telescope.setup{
 	pickers = {
 		buffers = {
 			mappings = {
-				 i = {
-				 	["<C-x>"] = "delete_buffer"
-				 },
-				 n = {
-				 	["x"] = "delete_buffer"
-				 }
+				i = {
+					["<C-x>"] = "delete_buffer"
+				},
+				n = {
+					["x"] = "delete_buffer"
+				}
 			}
 		},
 		commands = { theme = "dropdown" },
@@ -47,12 +47,8 @@ telescope.setup{
 		file_browser = {
 			hijack_netrw = true,
 		},
-		fzy_native = {
-			override_generic_sorter = true,
-			override_file_sorter = true,
-		},
-		ui_select = {
-			require("telescope.themes").get_cursor {}
+		["ui-select"] = {
+			themes.get_cursor {}
 		},
 	}
 }
@@ -63,10 +59,10 @@ telescope.load_extension "file_browser"
 telescope.load_extension "ui-select"
 
 local neovim_settings = function()
-    builtin.find_files({
-        prompt_title = "NeoVim Settings",
-        cwd = vim.fn.stdpath "config" .. "/lua/user",
-    })
+	builtin.find_files({
+		prompt_title = "NeoVim Settings",
+		cwd = vim.fn.stdpath "config" .. "/lua/user",
+	})
 end
 
 -- Set keymaps

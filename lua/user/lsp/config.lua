@@ -1,5 +1,4 @@
 local map = vim.keymap.set
--- local border_opts = { border = vim.g.border_style }
 
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
@@ -17,7 +16,6 @@ local on_attach = function(client, bufnr)
 
 	local bufopts = { silent=true, buffer=bufnr }
 
-	-- TODO: if borders dont show, uncomment these
 	map("n", "K", vim.lsp.buf.hover, bufopts)
 	map("n", "gD", telescope.lsp_type_definitions, bufopts)
 	map("n", "gd", telescope.lsp_definitions, bufopts)
@@ -26,7 +24,6 @@ local on_attach = function(client, bufnr)
 	map("n", "gr", telescope.lsp_references, bufopts)
 	map("n", "[c", vim.diagnostic.goto_prev, bufopts)
 	map("n", "]c", vim.diagnostic.goto_next, bufopts)
-
 	map("n", "<Leader>cr", vim.lsp.buf.rename, bufopts)
 	map("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 	map("n", "<Leader>cf", vim.lsp.buf.formatting, bufopts)
@@ -62,7 +59,7 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-
+-- UI config
 vim.diagnostic.config ({
 	virtual_text = {
 		prefix = "", -- Could be "■", "▎", "x", "●"
@@ -77,16 +74,16 @@ vim.diagnostic.config ({
 
 })
 
--- Borders for LspInfo window
---[[ local win = lspconfig.ui.windows
+-- Set borders for :LspInfo window
+local win = require('lspconfig.ui.windows')
 local _default_opts = win.default_opts
-
 win.default_opts = function(options)
-	local win_opts = _default_opts(options)
-	win_opts.border = vim.g.border_style
-	return win_opts
-end ]]
+	local opts = _default_opts(options)
+	opts.border = vim.g.border_style
+	return opts
+end
 
+-- Set borders for any floating lsp window
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts = opts or {}
@@ -99,17 +96,22 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+-- Set lsp signs
 vim.fn.sign_define("DiagnosticSignError",
-{text = " ", texthl = "DiagnosticSignError", numhl = ""}
+{text = " ", texthl = "DiagnosticSignError", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignError", numhl = ""}
 )
 vim.fn.sign_define("DiagnosticSignWarn",
-{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
+{text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
 )
 vim.fn.sign_define("DiagnosticSignHint",
-{text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
+{text = " ", texthl = "DiagnosticSignHint", numhl = ""}
+-- {text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
 )
 vim.fn.sign_define("DiagnosticSignInfo",
-{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
+{text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
 )
 
 lspconfig["sumneko_lua"].setup {
@@ -128,35 +130,29 @@ lspconfig["sumneko_lua"].setup {
 	},
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }
 
 lspconfig["rust_analyzer"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }
 
 lspconfig["clangd"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }
 
 lspconfig["cmake"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }
 
 lspconfig["bashls"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }
 
 lspconfig["jdtls"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	-- handlers = handlers,
 }

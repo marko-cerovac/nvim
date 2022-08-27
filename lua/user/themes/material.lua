@@ -18,8 +18,6 @@ material.setup({
 		comments = true,
 		functions = true,
 	},
-	contrast_filetypes = {
-	},
 	disable = {
 		-- borders = true,
 		eob_lines = true,

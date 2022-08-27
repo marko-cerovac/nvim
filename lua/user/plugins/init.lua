@@ -23,22 +23,14 @@ function(use)
 	use {
 		"nvim-telescope/telescope.nvim",
 		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-fzy-native.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
-			"nvim-telescope/telescope-ui-select.nvim"
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-fzy-native.nvim", run = "make" },
+			{ "nvim-telescope/telescope-file-browser.nvim" },
+			{ "nvim-telescope/telescope-ui-select.nvim" }
 		},
 		config = function()
 			require "user.plugins.telescope"
 
-		end
-	}
-
-	-- Language Server Protocol
-	use {
-		"neovim/nvim-lspconfig",
-		config = function()
-			require "user.lsp.config"
 		end
 	}
 
@@ -49,6 +41,14 @@ function(use)
 		config = function()
 			require("mason").setup({ ui = { border = vim.g.border_style } })
 			require("mason-lspconfig").setup()
+		end
+	}
+
+	-- Language Server Protocol
+	use {
+		"neovim/nvim-lspconfig",
+		config = function()
+			require "user.lsp.config"
 		end
 	}
 

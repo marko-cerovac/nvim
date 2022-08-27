@@ -17,13 +17,14 @@ onedarkpro.setup({
 	plugins = {
 		all = false,
 		native_lsp = true,
+		packer = true,
 		treesitter = true,
 		telescope = true,
 		nvim_cmp = true,
 		nvim_dap = true,
 		nvim_dap_ui = true,
 		indentline = true,
-		gitsigns_nvim = true,
+		gitsigns = true,
 	},
 	options = {
 		bold = true,
