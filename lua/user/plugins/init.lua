@@ -1,7 +1,7 @@
 -- load packer
 local status_ok, packer = pcall(require, "user.util.packer_init")
 if not status_ok then
-	vim.notify "Module user.packer_init not found"
+	vim.notify ("Module user.packer_init not found", vim.log.levels.ERROR)
 	return
 end
 
@@ -10,9 +10,16 @@ function(use)
 
 	use "wbthomason/packer.nvim"
 
+	-- Use precompiled cache
+	use {
+		"lewis6991/impatient.nvim",
+		rocks = "mpack",
+	}
+
 	-- Treesitter
 	use {
 		"nvim-treesitter/nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter-textobjects",
 		run = ":TSUpdate",
 		config = function ()
 			require "user.plugins.treesitter"
@@ -69,16 +76,6 @@ function(use)
 			require "user.lsp.completion"
 		end,
 	}
-
-	-- Rust tools
-	--[[ use {
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-		requires = "nvim-lspconfig",
-		config = function ()
-			require "user.lsp.rust-tools"
-		end
-	} ]]
 
 	-- Debugg adapter protocol
 	use {

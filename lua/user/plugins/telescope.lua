@@ -1,6 +1,6 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
-	vim.notify "Module telescope not found"
+	vim.notify ("Module telescope not found", vim.log.levels.WARN)
 	return
 end
 
@@ -30,10 +30,10 @@ telescope.setup{
 		buffers = {
 			mappings = {
 				i = {
-					["<C-x>"] = "delete_buffer"
+					["<C-d>"] = "delete_buffer"
 				},
 				n = {
-					["x"] = "delete_buffer"
+					["d"] = "delete_buffer"
 				}
 			}
 		},
@@ -44,7 +44,7 @@ telescope.setup{
 		lsp_type_definitions = { theme = "cursor" },
 	},
 	extensions = {
-		file_browser = {
+		["file_browser"] = {
 			hijack_netrw = true,
 		},
 		["ui-select"] = {

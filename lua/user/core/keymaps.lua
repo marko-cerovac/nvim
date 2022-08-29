@@ -1,11 +1,6 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
--- Map leader to ;
--- map("n", "<Space>", ";", opts)
--- map('n', ";", "<NOP>", opts)
--- vim.g.mapleader = ';'
-
 -- Map leader to space
 map("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = ' '
