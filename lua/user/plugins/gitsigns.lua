@@ -23,7 +23,7 @@ gs.setup {
 
 	on_attach = function (bufnr)
 		local map = vim.keymap.set
-		local opts = { silent = true }
+		local opts = { silent = true, buffer = bufnr }
 
 		map("n", "]g", function()
 			if vim.wo.diff then return "]c" end

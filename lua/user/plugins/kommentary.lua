@@ -4,6 +4,6 @@ local map = vim.keymap.set
 --     prefer_single_line_comments = true,
 -- })
 
-map("n", "<leader>k", "<Plug>kommentary_line_default", {})
-map("x", "<leader>k", "<Plug>kommentary_visual_default", {})
-map("n", "<leader>/", "<Plug>kommentary_motion_default", {})
+map("n", "<Leader>k", "<Plug>kommentary_line_default", {})
+map("x", "<Leader>k", "<Plug>kommentary_visual_default", {})
+map("n", "<Leader>/", "<Plug>kommentary_motion_default", {})

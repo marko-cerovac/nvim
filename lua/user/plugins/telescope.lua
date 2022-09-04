@@ -1,6 +1,6 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
-	vim.notify ("Module telescope not found", vim.log.levels.WARN)
+	vim.notify("Module telescope not found", vim.log.levels.WARN)
 	return
 end
 
@@ -10,12 +10,12 @@ local themes = require "telescope.themes"
 local map = vim.keymap.set
 local opts = { silent = true }
 
-telescope.setup{
+telescope.setup {
 	defaults = themes.get_ivy {
 		mappings = {
 			i = {
-				["<C-j>"] = actions.cycle_history_next,
-				["<C-k>"] = actions.cycle_history_prev,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
 				["<C-s>"] = actions.select_horizontal,
 			},
 			n = {
@@ -24,7 +24,9 @@ telescope.setup{
 				["t"] = actions.select_tab,
 			}
 		},
-		prompt_prefix = " "
+		prompt_prefix = " ",
+		selection_caret = " ",
+		multi_icon = "落",
 	},
 	pickers = {
 		buffers = {
@@ -48,7 +50,8 @@ telescope.setup{
 			hijack_netrw = true,
 		},
 		["ui-select"] = {
-			themes.get_cursor {}
+			-- themes.get_cursor {}
+			themes.get_dropdown {}
 		},
 	}
 }

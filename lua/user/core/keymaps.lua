@@ -41,7 +41,7 @@ map('i', "jf", "<Esc>", opts)
 map('i', "fj", "<Esc>", opts)
 
 -- Removing search highlight
-map('n', "<leader>h", ":noh<CR>", opts)
+map('n', "<Leader>h", ":noh<CR>", opts)
 map('n', "<M-;>", ":noh<CR>", opts)
 
 -- Opening terminal

@@ -18,7 +18,7 @@ require("indent_blankline").setup {
 }
 
 -- Toggle indent line
-vim.keymap.set("n", "<leader>si", "<Cmd>IndentBlanklineToggle<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>si", "<Cmd>IndentBlanklineToggle<CR>", { silent = true })
 
 -- vim.cmd "IndentBlanklineRefresh"
 vim.cmd "IndentBlanklineToggle"

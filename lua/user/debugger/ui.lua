@@ -54,7 +54,7 @@ dapui.setup({
 })
 
 map("n", "ge", dapui.eval, opts)
-map("n", "<leader>dd", dapui.toggle, opts)
-map("n", "<leader>dc", function() dapui.float_element("console", { enter = true }) end, opts)
-map("n", "<leader>dr", function() dapui.float_element("repl", { enter = true }) end, opts)
-map("n", "<leader>dw", function() dapui.float_element("watches", { enter = true }) end, opts)
+map("n", "<Leader>dd", dapui.toggle, opts)
+map("n", "<Leader>dc", function() dapui.float_element("console", { enter = true }) end, opts)
+map("n", "<Leader>dr", function() dapui.float_element("repl", { enter = true }) end, opts)
+map("n", "<Leader>dw", function() dapui.float_element("watches", { enter = true }) end, opts)

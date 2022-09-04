@@ -1,6 +1,6 @@
 local status_ok, cmp = pcall(require, "cmp")
 if not status_ok then
-	vim.notify ("Module cmp not found", vim.log.levels.WARN)
+	vim.notify("Module cmp not found", vim.log.levels.WARN)
 	return
 end
 local status_ok, luasnip = pcall(require, "luasnip")

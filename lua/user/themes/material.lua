@@ -37,7 +37,7 @@ material.setup({
 })
 
 -- Toggle light/dark background
-map("n", "[t", function ()
+map("n", "[t", function()
 	if vim.g.material_style == "deep ocean" then
 		vim.g.material_style = "lighter"
 	else
@@ -46,8 +46,21 @@ map("n", "[t", function ()
 	vim.cmd "colorscheme material"
 end, opts)
 
--- Enable style toggling
-map( "n", "]t", function () return require("material.functions").toggle_style() end, opts)
+map("n", "]t", function()
+	vim.ui.select({
+			"oceanic",
+			"deep ocean",
+			"palenight",
+			"lighter",
+			"darker"
+	},
+	{ prompt = "Select Material style" },
+	function(choice)
+		vim.g.material_style = choice
+		vim.cmd "colorscheme material"
+	end
+	)
+end, opts)
 
 -- Enable the colorscheme
 vim.cmd "colorscheme material"

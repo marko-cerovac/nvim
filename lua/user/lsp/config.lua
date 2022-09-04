@@ -2,13 +2,13 @@ local map = vim.keymap.set
 
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
-	vim.notify ("Module lspconfig not found", vim.log.levels.WARN)
+	vim.notify("Module lspconfig not found", vim.log.levels.WARN)
 	return
 end
 
 local status_ok, telescope = pcall(require, "telescope.builtin")
 if not status_ok then
-	vim.notify ("Module telescope not found", vim.log.levels.WARN)
+	vim.notify("Module telescope not found", vim.log.levels.WARN)
 	return
 end
 
@@ -24,12 +24,14 @@ local on_attach = function(client, bufnr)
 	map("n", "gr", telescope.lsp_references, bufopts)
 	map("n", "[c", vim.diagnostic.goto_prev, bufopts)
 	map("n", "]c", vim.diagnostic.goto_next, bufopts)
-	map("n", "<Leader>cr", vim.lsp.buf.rename, bufopts)
 	map("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 	map("n", "<Leader>cf", vim.lsp.buf.formatting, bufopts)
 	map("n", "<Leader>cd", telescope.diagnostics, bufopts)
 	map("n", "<Leader>co", telescope.lsp_document_symbols, bufopts)
 	map("n", "<Leader>cs", vim.lsp.buf.signature_help, bufopts)
+	map("n", "<Leader>cr", function ()
+		require("user.util.lsp_rename").rename()
+	end, bufopts)
 	map("n", "<Leader>cwa", vim.lsp.buf.add_workspace_folder, bufopts)
 	map("n", "<Leader>cwr", vim.lsp.buf.remove_workspace_folder, bufopts)
 	map("n", "<Leader>cwl", function()
@@ -67,11 +69,11 @@ vim.diagnostic.config ({
 	signs = true,
 	underline = true,
 	update_in_insert = false,
+	severity_sort = true,
 	float = {
 		border = vim.g.border_style,
 		style = "minimal",
 	}
-
 })
 
 -- Set borders for :LspInfo window
@@ -135,6 +137,27 @@ lspconfig["sumneko_lua"].setup {
 lspconfig["rust_analyzer"].setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
+    --[[ settings = {
+        ["rust-analyzer"] = {
+			checkOnSave = {
+				command = "clippy"
+			},
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    } ]]
 }
 
 lspconfig["clangd"].setup {
