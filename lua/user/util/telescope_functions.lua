@@ -1,8 +1,4 @@
-local status_ok, builtin = pcall(require, "telescope.builtin")
-if not status_ok then
-	vim.notify "Module telescope.actions not found"
-	return
-end
+local builtin = require "telescope.builtin"
 
 local functions = {}
 

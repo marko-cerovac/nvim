@@ -1,9 +1,4 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-	vim.notify("Module telescope not found", vim.log.levels.WARN)
-	return
-end
-
+local telescope = require "telescope"
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
 local themes = require "telescope.themes"

@@ -1,8 +1,4 @@
-local status_ok, ts = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-	vim.notify("Module treesitter not found", vim.log.levels.WARN)
-	return
-end
+local ts = require "nvim-treesitter.configs"
 
 ts.setup {
 	ensure_installed = { "c", "cpp", "make", "lua", "rust", "bash", "java" },
@@ -15,13 +11,12 @@ ts.setup {
 				["ab"] = "@block.outer",
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
 				["ai"] = "@conditional.outer",
 				["ii"] = "@conditional.inner",
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
-				["ak"] = "@comment.outer",
+				--[[ ["ac"] = "@class.outer",
+				["ic"] = "@class.inner", ]]
 			},
 		},
 		move = {

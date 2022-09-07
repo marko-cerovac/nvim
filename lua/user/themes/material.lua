@@ -1,8 +1,4 @@
-local status_ok, material = pcall(require, "material")
-if not status_ok then
-	vim.notify "Module material not found"
-	return
-end
+local material = require "material"
 
 local map = vim.keymap.set
 local opts = { silent = true }

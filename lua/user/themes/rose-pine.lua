@@ -1,8 +1,4 @@
-local status_ok, rose_pine = pcall(require, "rose-pine")
-if not status_ok then
-	vim.notify "Module rose-pine not found"
-	return
-end
+local rose_pine = require "rose-pine"
 
 rose_pine.setup({
 	dark_variant = "moon",

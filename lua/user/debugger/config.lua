@@ -1,8 +1,4 @@
-local status_ok, dap = pcall(require, "dap")
-if not status_ok then
-	vim.notify "Module nvim-dap not found"
-	return
-end
+local dap = require "dap"
 
 local map = vim.keymap.set
 local opts = { silent = true }

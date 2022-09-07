@@ -1,8 +1,4 @@
-local status_ok, gs = pcall(require, "gitsigns")
-if not status_ok then
-	vim.notify "Module gitsigns not found"
-	return
-end
+local gs = require "gitsigns"
 
 gs.setup {
 	signs = {

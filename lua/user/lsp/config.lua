@@ -1,16 +1,7 @@
+local lspconfig = require "lspconfig"
+local telescope = require "telescope.builtin"
+
 local map = vim.keymap.set
-
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-	vim.notify("Module lspconfig not found", vim.log.levels.WARN)
-	return
-end
-
-local status_ok, telescope = pcall(require, "telescope.builtin")
-if not status_ok then
-	vim.notify("Module telescope not found", vim.log.levels.WARN)
-	return
-end
 
 local on_attach = function(client, bufnr)
 

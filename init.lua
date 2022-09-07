@@ -6,7 +6,7 @@
 local status_ok = pcall(require, "impatient")
 if not status_ok then
 	vim.notify "Module impatient not found"
-	vim.notify "Starting without precompiled cache, run :LuaCacheClear"
+	vim.notify "Starting without precompiled cache"
 	vim.notify "Run :LuaCacheClear to setup precompiled cache"
 end
 

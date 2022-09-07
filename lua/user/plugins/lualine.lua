@@ -1,7 +1,4 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-	vim.notify("Module lualine not found", vim.log.levels.WARN)
-end
+local lualine = require "lualine"
 
 lualine.setup{
 	options = {

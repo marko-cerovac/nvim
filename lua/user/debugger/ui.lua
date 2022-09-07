@@ -1,8 +1,4 @@
-local status_ok, dapui = pcall(require, "dapui")
-if not status_ok then
-	vim.notify "Module dap-ui not found"
-	return
-end
+local dapui = require "dapui"
 
 local map = vim.keymap.set
 local opts = { silent = true }

@@ -59,6 +59,14 @@ function(use)
 		end
 	}
 
+	-- Snippet engine
+	use {
+		"L3MON4D3/LuaSnip",
+		config = function ()
+			require "user.lsp.snippets"
+		end
+	}
+
 	-- Completion engine
 	use {
 		"hrsh7th/nvim-cmp",
@@ -81,6 +89,7 @@ function(use)
 	use {
 		"mfussenegger/nvim-dap",
 		keys = {
+			"<Leader>dd",
 			"<Leader>b",
 			"<M-;>",
 			"<Up>",
