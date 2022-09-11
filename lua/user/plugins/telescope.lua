@@ -35,17 +35,12 @@ telescope.setup {
 			}
 		},
 		commands = { theme = "dropdown" },
-		lsp_references = { theme = "cursor" },
-		lsp_implementations = { theme = "cursor" },
-		lsp_definitions = { theme = "cursor" },
-		lsp_type_definitions = { theme = "cursor" },
 	},
 	extensions = {
 		["file_browser"] = {
 			hijack_netrw = true,
 		},
 		["ui-select"] = {
-			-- themes.get_cursor {}
 			themes.get_dropdown {}
 		},
 	}

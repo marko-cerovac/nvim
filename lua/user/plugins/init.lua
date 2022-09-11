@@ -31,8 +31,14 @@ function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzy-native.nvim", run = "make" },
-			{ "nvim-telescope/telescope-file-browser.nvim" },
+			{
+				"nvim-telescope/telescope-fzy-native.nvim",
+				run = "make"
+			},
+			{
+				"nvim-telescope/telescope-file-browser.nvim",
+				requires = "kyazdani42/nvim-web-devicons"
+			},
 			{ "nvim-telescope/telescope-ui-select.nvim" }
 		},
 		config = function()
@@ -113,23 +119,6 @@ function(use)
 		"marko-cerovac/material.nvim",
 		config = function ()
 			require "user.themes.material"
-		end
-	}
-
-	use {
-		"rose-pine/neovim",
-		as = "rose-pine",
-		event = "ColorSchemePre",
-		config = function ()
-			require "user.themes.rose-pine"
-		end
-	}
-
-	use {
-		"olimorris/onedarkpro.nvim",
-		event = "ColorSchemePre",
-		config = function ()
-			require "user.themes.onedarkpro"
 		end
 	}
 

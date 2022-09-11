@@ -15,8 +15,8 @@ ts.setup {
 				["ii"] = "@conditional.inner",
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
-				--[[ ["ac"] = "@class.outer",
-				["ic"] = "@class.inner", ]]
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
 			},
 		},
 		move = {
