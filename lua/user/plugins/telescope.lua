@@ -6,44 +6,44 @@ local map = vim.keymap.set
 local opts = { silent = true }
 
 telescope.setup {
-	defaults = themes.get_ivy {
-		mappings = {
-			i = {
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
-				["<C-s>"] = actions.select_horizontal,
-			},
-			n = {
-				["s"] = actions.select_horizontal,
-				["v"] = actions.select_vertical,
-				["t"] = actions.select_tab,
-			}
-		},
-		prompt_prefix = " ",
-		selection_caret = " ",
-		multi_icon = "落",
-	},
-	pickers = {
-		buffers = {
-			mappings = {
-				i = {
-					["<C-d>"] = "delete_buffer"
-				},
-				n = {
-					["d"] = "delete_buffer"
-				}
-			}
-		},
-		commands = { theme = "dropdown" },
-	},
-	extensions = {
-		["file_browser"] = {
-			hijack_netrw = true,
-		},
-		["ui-select"] = {
-			themes.get_dropdown {}
-		},
-	}
+    defaults = themes.get_ivy {
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-s>"] = actions.select_horizontal,
+            },
+            n = {
+                ["s"] = actions.select_horizontal,
+                ["v"] = actions.select_vertical,
+                ["t"] = actions.select_tab,
+            },
+        },
+        prompt_prefix = " ",
+        selection_caret = " ",
+        multi_icon = "落",
+    },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<C-d>"] = "delete_buffer",
+                },
+                n = {
+                    ["d"] = "delete_buffer",
+                },
+            },
+        },
+        commands = { theme = "dropdown" },
+    },
+    extensions = {
+        ["file_browser"] = {
+            hijack_netrw = true,
+        },
+        ["ui-select"] = {
+            themes.get_dropdown {},
+        },
+    },
 }
 
 -- Load extensions
@@ -52,10 +52,10 @@ telescope.load_extension "file_browser"
 telescope.load_extension "ui-select"
 
 local neovim_settings = function()
-	builtin.find_files({
-		prompt_title = "NeoVim Settings",
-		cwd = vim.fn.stdpath "config" .. "/lua/user",
-	})
+    builtin.find_files {
+        prompt_title = "NeoVim Settings",
+        cwd = vim.fn.stdpath "config" .. "/lua/user",
+    }
 end
 
 -- Set keymaps

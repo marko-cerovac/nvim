@@ -12,5 +12,5 @@ vim.opt.guifont = "Hasklug Nerd Font:h7.5"
 vim.g.neovide_floating_opacity = 1.0
 
 -- Enable system clipboard
-vim.keymap.set('n', "<M-p>", '"+p', {})
-vim.keymap.set('v', "<M-y>", '*y', {})
+vim.keymap.set("n", "<M-p>", '"+p', {})
+vim.keymap.set("v", "<M-y>", "*y", {})
