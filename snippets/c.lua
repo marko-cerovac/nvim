@@ -12,7 +12,7 @@ return {
 		}}
 		]],
 		{
-			c(1, { t "int argc, char** argv", t "" }),
+			c(1, { t "", t "int argc, char** argv" }),
 			i(0, "// write some code...")
 		})
 	),
@@ -28,7 +28,7 @@ return {
 		}}
 		]],
 		{
-			c(1, { t "int argc, char** argv", t "" }),
+			c(1, { t "", t "int argc, char** argv" }),
 			i(0, "// write some code...")
 		})
 	),
@@ -43,7 +43,7 @@ return {
 		}}
 		]],
 		{
-			c(1, { t "int argc, char** argv", t "" }),
+			c(1, { t "", t "int argc, char** argv" }),
 			i(0, "// write some code...")
 		})
 	)

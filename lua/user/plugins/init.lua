@@ -1,6 +1,6 @@
 -- load packer
-local status_ok, packer = pcall(require, "user.util.packer_init")
-if not status_ok then
+local ok, packer = pcall(require, "user.util.packer_init")
+if not ok then
     vim.notify("Module user.packer_init not found", vim.log.levels.ERROR)
     return
 end

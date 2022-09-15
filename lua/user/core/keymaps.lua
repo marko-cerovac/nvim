@@ -52,6 +52,3 @@ map("t", "<Esc>", "<C-\\><C-n>", opts)
 
 -- External command
 map("n", "<Leader><Tab>", ":!")
-
--- Toggle indent lines
-map("n", "<Leader>si", "<cmd>IndentBlanklineToggle<CR>", opts)
