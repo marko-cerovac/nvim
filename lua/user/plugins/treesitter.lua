@@ -12,8 +12,11 @@ ts.setup {
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
                 ["ai"] = "@conditional.outer",
+                ["ii"] = "@conditional.inner",
                 ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
                 ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
             },
         },
         move = {
