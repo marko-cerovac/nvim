@@ -65,6 +65,7 @@ return packer.startup(function(use)
     -- Snippet engine
     use {
         "L3MON4D3/LuaSnip",
+		event = "InsertEnter",
         config = function()
             require "user.lsp.snippets"
         end,
@@ -72,20 +73,21 @@ return packer.startup(function(use)
 
     -- Completion engine
     use {
-        "hrsh7th/nvim-cmp",
-        requires = {
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
-            "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-path",
-        },
-        config = function()
-            require "user.lsp.completion"
-        end,
+		{
+			"hrsh7th/nvim-cmp",
+			event = "InsertEnter",
+			requires = "L3MON4D3/LuaSnip",
+			config = function()
+				require "user.lsp.completion"
+			end,
+		},
+		{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
     }
 
     -- Debugg adapter protocol

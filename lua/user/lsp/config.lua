@@ -85,7 +85,22 @@ end
 
 -- Enable code snippets
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem = {
+	snippetSupport = true,
+	preselectSupport = true,
+	insertReplaceSupport = true,
+	labelDetailsSupport = true,
+	deprecatedSupport = true,
+	commitCharactersSupport = true,
+	tagSupport = { valueSet = { 1 } },
+	resolveSupport = {
+		properties = {
+		  'documentation',
+		  'detail',
+		  'additionalTextEdits',
+		}
+	},
+}
 
 -- Set lsp signs
 vim.fn.sign_define(
@@ -118,6 +133,14 @@ lspconfig["sumneko_lua"].setup {
             diagnostics = {
                 globals = { "vim" },
             },
+			--[[ workspace = {
+				library = {
+					[vim.fn.expand "$VIMRUNTIME/lua"] = true,
+					[vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+				},
+				maxPreload = 100000,
+				preloadFileSize = 10000,
+			}, ]]
             telemetry = {
                 enable = false,
             },
