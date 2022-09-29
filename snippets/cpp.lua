@@ -2,7 +2,7 @@
 return {
 	s("sst",
 		fmt([[
-		#include<iostream>
+		#include <iostream>
 
 		int main({})
 		{{

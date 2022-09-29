@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local map  = vim.keymap.set
 local opts = { silent = true }
 
 -- Map leader to space
@@ -49,6 +49,9 @@ map("n", "<Leader>v", ":vertical new<CR>:terminal<CR>", opts)
 map("n", "<Leader>ts", ":split new<CR>:terminal<CR>", opts)
 map("n", "<Leader>tt", ":tab new<CR>:terminal<CR>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
+
+-- Align code
+map("v", "g=", "! column -t -s= -o=<CR>")
 
 -- External command
 map("n", "<Leader><Tab>", ":!")

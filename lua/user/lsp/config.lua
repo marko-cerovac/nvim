@@ -1,9 +1,9 @@
-local lspconfig = require "lspconfig"
 local telescope = require "telescope.builtin"
 
-local map = vim.keymap.set
+local M = {}
 
-local on_attach = function(client, bufnr)
+M.on_attach = function(client, bufnr)
+    local map     = vim.keymap.set
     local bufopts = { silent = true, buffer = bufnr }
 
     map("n", "K", vim.lsp.buf.hover, bufopts)
@@ -84,114 +84,44 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 -- Enable code snippets
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem = {
-	snippetSupport = true,
-	preselectSupport = true,
-	insertReplaceSupport = true,
-	labelDetailsSupport = true,
-	deprecatedSupport = true,
-	commitCharactersSupport = true,
-	tagSupport = { valueSet = { 1 } },
-	resolveSupport = {
-		properties = {
-		  'documentation',
-		  'detail',
-		  'additionalTextEdits',
-		}
-	},
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem = {
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+        properties = {
+            'documentation',
+            'detail',
+            'additionalTextEdits',
+        }
+    },
 }
 
 -- Set lsp signs
 vim.fn.sign_define(
     "DiagnosticSignError",
     { text = " ", texthl = "DiagnosticSignError", numhl = "" }
-    -- {text = " ", texthl = "DiagnosticSignError", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignError", numhl = ""}
 )
 vim.fn.sign_define(
     "DiagnosticSignWarn",
     { text = " ", texthl = "DiagnosticSignWarn", numhl = "" }
-    -- {text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignWarn", numhl = ""}
 )
 vim.fn.sign_define(
     "DiagnosticSignHint",
     { text = " ", texthl = "DiagnosticSignHint", numhl = "" }
-    -- {text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
+-- {text = "ﴞ ", texthl = "DiagnosticSignHint", numhl = ""}
 )
 vim.fn.sign_define(
     "DiagnosticSignInfo",
     { text = " ", texthl = "DiagnosticSignInfo", numhl = "" }
-    -- {text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
+-- {text = " ", texthl = "DiagnosticSignInfo", numhl = ""}
 )
 
-lspconfig["sumneko_lua"].setup {
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-            },
-            diagnostics = {
-                globals = { "vim" },
-            },
-			--[[ workspace = {
-				library = {
-					[vim.fn.expand "$VIMRUNTIME/lua"] = true,
-					[vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-				},
-				maxPreload = 100000,
-				preloadFileSize = 10000,
-			}, ]]
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig["rust_analyzer"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    --[[ settings = {
-        ["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy"
-			},
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-        }
-    } ]]
-}
-
-lspconfig["clangd"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig["cmake"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig["bashls"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig["jdtls"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+return M

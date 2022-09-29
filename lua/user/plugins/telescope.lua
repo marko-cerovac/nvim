@@ -1,8 +1,9 @@
 local telescope = require "telescope"
-local actions = require "telescope.actions"
-local builtin = require "telescope.builtin"
-local themes = require "telescope.themes"
-local map = vim.keymap.set
+local actions   = require "telescope.actions"
+local builtin   = require "telescope.builtin"
+local themes    = require "telescope.themes"
+
+local map  = vim.keymap.set
 local opts = { silent = true }
 
 telescope.setup {

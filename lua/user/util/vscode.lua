@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local map  = vim.keymap.set
 local opts = { silent = true }
 
 -- Open which-key

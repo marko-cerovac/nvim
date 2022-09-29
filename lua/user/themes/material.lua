@@ -1,6 +1,6 @@
 local material = require "material"
 
-local map = vim.keymap.set
+local map  = vim.keymap.set
 local opts = { silent = true }
 
 -- Set the theme style
@@ -9,6 +9,7 @@ vim.g.material_style = "deep ocean"
 material.setup {
     contrast = {
         cursor_line = true,
+        -- floating_windows = true,
     },
     italics = {
         comments = true,

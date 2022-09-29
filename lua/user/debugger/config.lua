@@ -1,51 +1,64 @@
 local dap = require "dap"
 
-local map = vim.keymap.set
-local opts = { silent = true }
+local map   = vim.keymap.set
+local unmap = vim.keymap.del
+local opts  = { silent = true }
 
-dap.adapters.cppdbg = {
-    id = "cppdbg",
-    type = "executable",
-    command = vim.fn.stdpath "data" .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
-}
-dap.configurations.cpp = {
-    {
-        name = "Launch file",
-        type = "cppdbg",
-        request = "launch",
-        program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        -- args = function ()
-        -- 	local string = vim.fn.input("Program arguments: ")
-        -- 	local cmd_args = {}
-        -- 	for substring in string:gmatch("%S+") do
-        -- 		table.insert(cmd_args, substring)
-        -- 	end
-        -- 	return cmd_args
-        -- end,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = true,
-        setupCommands = {
-            {
-                text = "-enable-pretty-printing",
-                description = "enable pretty printing",
-                ignoreFailures = false,
-            },
-        },
-    },
-}
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
+-- Load adapters and configurations
+require "user.debugger.adapters"
+require "user.debugger.configurations"
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", numhl = "", linehl = "Visual" })
 
-map("n", "<Up>", dap.continue, opts)
-map("n", "<Down>", dap.step_over, opts)
-map("n", "<Left>", dap.step_out, opts)
-map("n", "<Right>", dap.step_into, opts)
+map("n", "<Leader>dd", dap.continue, opts)
 map("n", "<Leader>b", dap.toggle_breakpoint, opts)
 map("n", "<M-;>", dap.toggle_breakpoint, opts)
-map("n", "<Leader>dq", dap.terminate, opts)
 map("n", "<Leader>dx", dap.clear_breakpoints, opts)
+
+dap.listeners.after["event_initialized"]["me"] = function()
+    local dapui = require "dapui"
+
+	map("n", "<Up>", dap.continue, opts)
+	map("n", "<Down>", dap.step_over, opts)
+	map("n", "<Left>", dap.step_out, opts)
+	map("n", "<Right>", dap.step_into, opts)
+    map("n", "<Leader>dq", function ()
+        dap.repl.close()
+        dap.terminate()
+    end, opts)
+    map({"n", "v"}, "ge", dapui.eval, opts)
+    map("n", "<Leader>dd", function ()
+        dapui.toggle(1)
+        dapui.toggle(2)
+    end, opts)
+    map("n", "<Leader>dc", function()
+        dapui.float_element("console", { enter = true })
+    end, opts)
+    map("n", "<M-c>", function()
+        dapui.toggle(3)
+    end, opts)
+    map("n", "<Leader>dw", function()
+        dapui.float_element("watches", { enter = true })
+    end, opts)
+    map("n", "<Leader>ds", function()
+        dapui.float_element("stacks", { enter = true })
+    end, opts)
+end
+
+dap.listeners.before["event_terminated"]["me"] = function()
+    require("dapui").close()
+
+	map("n", "<Up>", "k", opts)
+	map("n", "<Down>", "j", opts)
+	map("n", "<Left>", "h", opts)
+	map("n", "<Right>", "l", opts)
+    map("n", "<Leader>dd", dap.continue, opts)
+    unmap("n", "<M-c>")
+    unmap("n", "<Leader>dq")
+    unmap("n", "<Leader>dc")
+    unmap("n", "<Leader>dw")
+    unmap("n", "<Leader>ds")
+    unmap("n", "ge")
+    unmap("v", "ge")
+end

@@ -1,9 +1,5 @@
 -- load packer
-local ok, packer = pcall(require, "user.util.packer_init")
-if not ok then
-    vim.notify("Module user.packer_init not found", vim.log.levels.ERROR)
-    return
-end
+local packer = require "user.util.packer_init"
 
 return packer.startup(function(use)
     use "wbthomason/packer.nvim"
@@ -58,14 +54,18 @@ return packer.startup(function(use)
     use {
         "neovim/nvim-lspconfig",
         config = function()
-            require "user.lsp.config"
+            -- require "user.lsp.config"
+            require "user.lsp.servers"
         end,
     }
 
     -- Snippet engine
     use {
         "L3MON4D3/LuaSnip",
-		event = "InsertEnter",
+		event = {
+			"InsertEnter",
+			"CmdlineEnter",
+		},
         config = function()
             require "user.lsp.snippets"
         end,
@@ -75,7 +75,7 @@ return packer.startup(function(use)
     use {
 		{
 			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
+			after = "LuaSnip",
 			requires = "L3MON4D3/LuaSnip",
 			config = function()
 				require "user.lsp.completion"
@@ -95,9 +95,9 @@ return packer.startup(function(use)
         "mfussenegger/nvim-dap",
         keys = {
             "<Leader>dd",
+            "<Leader>dc",
             "<Leader>b",
             "<M-;>",
-            "<Up>",
         },
         config = function()
             require "user.debugger.config"

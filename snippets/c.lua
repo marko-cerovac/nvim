@@ -3,7 +3,7 @@ return {
 	-- C simple starter template
 	s("sst",
 		fmt([[
-		#include<stdio.h>
+		#include <stdio.h>
 		
 		int main({})
 		{{
@@ -18,8 +18,8 @@ return {
 	),
 	s("libsst",
 		fmt([[
-		#include<stdio.h>
-		#include<stdlib.h>
+		#include <stdio.h>
+		#include <stdlib.h>
 
 		int main({})
 		{{

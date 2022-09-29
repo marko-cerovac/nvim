@@ -4,6 +4,7 @@ o.swapfile = false
 o.writebackup = false
 o.autochdir = true
 o.clipboard = "unnamedplus"
+o.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
 o.smartindent = true
@@ -24,6 +25,9 @@ o.mouse = "a"
 o.foldenable = false
 o.foldmethod = "expr"
 o.fillchars = "fold: "
-o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
+-- o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 
 vim.g.border_style = "rounded"
+
+-- Disable built in plugins
+require "user.util.disable_plugins"

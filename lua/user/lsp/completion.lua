@@ -1,4 +1,4 @@
-local cmp = require "cmp"
+local cmp     = require "cmp"
 local luasnip = require "luasnip"
 
 local icons = {
@@ -100,12 +100,12 @@ cmp.setup {
         end, { "i", "s" }),
     },
     sources = {
-        { name = "luasnip" },
-        { name = "buffer" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
+        { name = "luasnip" },
         { name = "nvim_lsp_signature_help" },
         { name = "path" },
+        { name = "buffer" },
     },
     window = {
         completion = cmp.config.window.bordered {
