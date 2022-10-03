@@ -109,9 +109,11 @@ cmp.setup {
     },
     window = {
         completion = cmp.config.window.bordered {
+            border = vim.g.border_style,
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         },
         documentation = cmp.config.window.bordered {
+            border = vim.g.border_style,
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         },
     },

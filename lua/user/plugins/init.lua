@@ -22,22 +22,26 @@ return packer.startup(function(use)
 
     -- Telescope
     use {
-        "nvim-telescope/telescope.nvim",
-        requires = {
-            { "nvim-lua/plenary.nvim" },
-            {
-                "nvim-telescope/telescope-fzy-native.nvim",
-                run = "make",
-            },
-            {
-                "nvim-telescope/telescope-file-browser.nvim",
-                requires = "kyazdani42/nvim-web-devicons",
-            },
-            { "nvim-telescope/telescope-ui-select.nvim" },
+        {
+            "nvim-telescope/telescope-file-browser.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
         },
-        config = function()
-            require "user.plugins.telescope"
-        end,
+        {
+            "nvim-telescope/telescope-ui-select.nvim"
+        },
+        {
+            "nvim-telescope/telescope.nvim",
+            requires = {
+                { "nvim-lua/plenary.nvim" },
+                {
+                    "nvim-telescope/telescope-fzy-native.nvim",
+                    run = "make",
+                },
+            },
+            config = function()
+                require "user.plugins.telescope"
+            end,
+        }
     }
 
     -- Language server installer
@@ -95,7 +99,6 @@ return packer.startup(function(use)
         "mfussenegger/nvim-dap",
         keys = {
             "<Leader>dd",
-            "<Leader>dc",
             "<Leader>b",
             "<M-;>",
         },

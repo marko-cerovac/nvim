@@ -2,9 +2,9 @@ local dap = require "dap"
 
 -- LLDB
 dap.adapters.lldb = {
-    type = 'executable',
-    command = '/bin/lldb-vscode',
-    name = 'lldb'
+    type = "executable",
+    command = "/bin/lldb-vscode",
+    name = "lldb"
 }
 
 -- CPPDBG (NOT WORKING CURRENTLY)

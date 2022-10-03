@@ -3,10 +3,10 @@ local dap = require "dap"
 -- LLDB
 dap.configurations.cpp = {
     {
-        name = 'Launch',
-        type = 'lldb',
-        request = 'launch',
-        cwd = '${workspaceFolder}',
+        name = "Launch",
+        type = "lldb",
+        request = "launch",
+        cwd = "${workspaceFolder}",
         stopOnEntry = false,
         program = function()
             if not vim.g.dap_executable then

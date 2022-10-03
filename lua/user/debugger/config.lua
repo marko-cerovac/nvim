@@ -8,8 +8,14 @@ local opts  = { silent = true }
 require "user.debugger.adapters"
 require "user.debugger.configurations"
 
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", numhl = "", linehl = "Visual" })
+vim.fn.sign_define(
+    "DapBreakpoint",
+    { text = "", texthl = "DapBreakpoint", numhl = "" }
+)
+vim.fn.sign_define(
+    "DapStopped",
+    { text = "", texthl = "DapStopped", numhl = "", linehl = "Visual" }
+)
 
 map("n", "<Leader>dd", dap.continue, opts)
 map("n", "<Leader>b", dap.toggle_breakpoint, opts)
@@ -19,16 +25,16 @@ map("n", "<Leader>dx", dap.clear_breakpoints, opts)
 dap.listeners.after["event_initialized"]["me"] = function()
     local dapui = require "dapui"
 
-	map("n", "<Up>", dap.continue, opts)
-	map("n", "<Down>", dap.step_over, opts)
-	map("n", "<Left>", dap.step_out, opts)
-	map("n", "<Right>", dap.step_into, opts)
-    map("n", "<Leader>dq", function ()
+    map("n", "<Up>", dap.continue, opts)
+    map("n", "<Down>", dap.step_over, opts)
+    map("n", "<Left>", dap.step_out, opts)
+    map("n", "<Right>", dap.step_into, opts)
+    map("n", "<Leader>dq", function()
         dap.repl.close()
         dap.terminate()
     end, opts)
-    map({"n", "v"}, "ge", dapui.eval, opts)
-    map("n", "<Leader>dd", function ()
+    map({ "n", "v" }, "ge", dapui.eval, opts)
+    map("n", "<Leader>dd", function()
         dapui.toggle(1)
         dapui.toggle(2)
     end, opts)
@@ -49,10 +55,10 @@ end
 dap.listeners.before["event_terminated"]["me"] = function()
     require("dapui").close()
 
-	map("n", "<Up>", "k", opts)
-	map("n", "<Down>", "j", opts)
-	map("n", "<Left>", "h", opts)
-	map("n", "<Right>", "l", opts)
+    map("n", "<Up>", "k", opts)
+    map("n", "<Down>", "j", opts)
+    map("n", "<Left>", "h", opts)
+    map("n", "<Right>", "l", opts)
     map("n", "<Leader>dd", dap.continue, opts)
     unmap("n", "<M-c>")
     unmap("n", "<Leader>dq")

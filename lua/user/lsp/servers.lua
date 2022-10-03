@@ -1,72 +1,57 @@
 local lspconfig   = require "lspconfig"
 local user_config = require "user.lsp.config"
 
-lspconfig["sumneko_lua"].setup {
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-            },
-            diagnostics = {
-                globals = { "vim" },
-            },
-			--[[ workspace = {
-				library = {
-					[vim.fn.expand "$VIMRUNTIME/lua"] = true,
-					[vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-				},
-				maxPreload = 100000,
-				preloadFileSize = 10000,
-			}, ]]
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-}
-lspconfig["rust_analyzer"].setup {
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-    --[[ settings = {
-        ["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy"
-			},
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
+require("mason-lspconfig").setup_handlers({
+    function(server_name)
+        lspconfig[server_name].setup {
+            on_attach    = user_config.on_attach,
+            capabilities = user_config.capabilities
         }
-    } ]]
-}
-lspconfig["clangd"].setup {
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-}
-
-lspconfig["cmake"].setup {
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-}
-
-lspconfig["bashls"].setup {
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-}
-
-lspconfig["jdtls"].setup {
-    on_attach = user_config.on_attach,
-    capabilities = user_config.capabilities,
-}
+    end,
+    ["rust_analyzer"] = function()
+        lspconfig.rust_analyzer.setup {
+            on_attach = user_config.on_attach,
+            capabilities = user_config.capabilities,
+            --[[ settings = {
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy"
+                    },
+                    imports = {
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
+                    procMacro = {
+                        enable = true
+                    },
+                }
+            } ]]
+        }
+    end,
+    ["sumneko_lua"] = function()
+        lspconfig.sumneko_lua.setup {
+            settings = {
+                Lua = {
+                    runtime = {
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    telemetry = {
+                        enable = false,
+                    },
+                },
+            },
+            on_attach = user_config.on_attach,
+            capabilities = user_config.capabilities,
+        }
+    end,
+})
