@@ -2,7 +2,7 @@ local builtin = require "telescope.builtin"
 
 local M = {}
 
--- NeoVim settings
+-- neovim settings
 M.neovim_settings = function()
     builtin.find_files {
         prompt_title = "NeoVim Settings",

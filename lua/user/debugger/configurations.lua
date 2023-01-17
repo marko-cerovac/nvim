@@ -27,9 +27,9 @@ dap.configurations.cpp = {
             return cmd_args
         end, ]]
 
-        -- Before debugging execute:
+        -- before debugging execute:
         --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-        -- After debugging execute
+        -- after debugging execute
         --    echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope
         runInTerminal = true,
     },

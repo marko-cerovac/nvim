@@ -1,4 +1,4 @@
--- Automatically install packer.nvim
+-- automatically install packer.nvim
 local needs_bootstraping = false
 local install_path       = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
@@ -17,7 +17,7 @@ end
 
 local packer = require "packer"
 
--- Automatically install plugins on bootstrap
+-- automatically install plugins on bootstrap
 if needs_bootstraping then
     packer.sync()
 end

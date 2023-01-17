@@ -4,7 +4,7 @@ local map   = vim.keymap.set
 local unmap = vim.keymap.del
 local opts  = { silent = true }
 
--- Load adapters and configurations
+-- load adapters and configurations
 require "user.debugger.adapters"
 require "user.debugger.configurations"
 

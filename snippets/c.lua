@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 return {
-	-- C simple starter template
+	-- c simple starter template
 	s("sst",
 		fmt([[
 		#include <stdio.h>
@@ -33,7 +33,7 @@ return {
 		})
 	),
 
-	-- Main function
+	-- main function
 	s("main",
 		fmt([[
 		int main({})

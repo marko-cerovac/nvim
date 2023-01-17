@@ -47,7 +47,7 @@ telescope.setup {
     },
 }
 
--- Load extensions
+-- load extensions
 telescope.load_extension "fzy_native"
 telescope.load_extension "file_browser"
 telescope.load_extension "ui-select"
@@ -59,11 +59,16 @@ local neovim_settings = function()
     }
 end
 
--- Set keymaps
+local browse_folders = function ()
+    telescope.extensions.file_browser.file_browser({ files = false })
+end
+
+-- set keymaps
 map("n", "gb", builtin.buffers, opts)
 map("n", "gc", builtin.commands, opts)
 map("n", "gs", neovim_settings, opts)
 map("n", "<Leader>e", telescope.extensions.file_browser.file_browser, opts)
+map("n", "<Leader>j", browse_folders, opts)
 map("n", "<Leader>fg", builtin.live_grep, opts)
 map("n", "<Leader>gf", builtin.git_files, opts)
 map("n", "<Leader>gc", builtin.git_commits, opts)

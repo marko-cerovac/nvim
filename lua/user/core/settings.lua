@@ -29,5 +29,5 @@ o.fillchars = "fold: "
 
 vim.g.border_style = "rounded"
 
--- Disable built in plugins
+-- disable built in plugins
 require "user.util.disable_plugins"

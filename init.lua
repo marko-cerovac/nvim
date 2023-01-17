@@ -1,8 +1,8 @@
--- NeoVim config
--- Author: Marko Cerovac
--- Repo: https://github.com/marko-cerovac/nvim
+-- neovim config
+-- author: Marko Cerovac
+-- repo: https://github.com/marko-cerovac/nvim
 
--- Use precompiled cache
+-- use precompiled cache
 local ok = pcall(require, "impatient")
 if not ok then
     vim.notify "Module impatient not found"
@@ -10,25 +10,25 @@ if not ok then
     vim.notify "Run :LuaCacheClear to setup precompiled cache"
 end
 
--- VSCodium
+-- vscodium
 if vim.g.vscode then
     require "user.util.vscode"
     return
 end
 
--- Load user settings
+-- load user settings
 require "user.core.settings"
 
--- Load user keymaps
+-- load user keymaps
 require "user.core.keymaps"
 
--- Load user autocommands
+-- load user autocommands
 require "user.core.autocommands"
 
--- Load plugins
+-- load plugins
 require "user.plugins"
 
--- Neovide ui
+-- neovide ui
 if vim.g.neovide then
     require "user.util.neovide"
 end

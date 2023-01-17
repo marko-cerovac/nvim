@@ -4,13 +4,13 @@ local packer = require "user.util.packer_init"
 return packer.startup(function(use)
     use "wbthomason/packer.nvim"
 
-    -- Use precompiled cache
+    -- use precompiled cache
     use {
         "lewis6991/impatient.nvim",
         rocks = "mpack",
     }
 
-    -- Treesitter
+    -- treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
         requires = "nvim-treesitter/nvim-treesitter-textobjects",
@@ -20,7 +20,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Telescope
+    -- telescope
     use {
         {
             "nvim-telescope/telescope-file-browser.nvim",
@@ -44,26 +44,35 @@ return packer.startup(function(use)
         }
     }
 
-    -- Language server installer
+    -- language server installer
     use {
-        "williamboman/mason.nvim",
-        requires = "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason").setup { ui = { border = vim.g.border_style } }
-            require("mason-lspconfig").setup()
-        end,
+        {
+            "williamboman/mason.nvim",
+            -- cmd = "LspStart",
+            config = function()
+                require("mason").setup { ui = { border = vim.g.border_style } }
+            end
+        },
+        {
+            "williamboman/mason-lspconfig.nvim",
+            config = function()
+                require("mason-lspconfig").setup()
+            end,
+            after = "mason.nvim"
+        }
     }
 
-    -- Language Server Protocol
+    -- language server protocol
     use {
         "neovim/nvim-lspconfig",
+        after = "mason.nvim",
         config = function()
             -- require "user.lsp.config"
             require "user.lsp.servers"
         end,
     }
 
-    -- Snippet engine
+    -- snippet engine
     use {
         "L3MON4D3/LuaSnip",
 		event = {
@@ -75,7 +84,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Completion engine
+    -- completion engine
     use {
 		{
 			"hrsh7th/nvim-cmp",
@@ -94,7 +103,7 @@ return packer.startup(function(use)
 		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
     }
 
-    -- Debugg adapter protocol
+    -- debugg adapter protocol
     use {
         "mfussenegger/nvim-dap",
         keys = {
@@ -107,7 +116,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Debugg adapter ui
+    -- debugg adapter ui
     use {
         "rcarriga/nvim-dap-ui",
         after = "nvim-dap",
@@ -116,15 +125,21 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Colorschemes
+    -- colorscheme
     use {
         "marko-cerovac/material.nvim",
         config = function()
             require "user.themes.material"
         end,
     }
+    --[[ use {
+        "folke/tokyonight.nvim",
+        config = function()
+            require "user.themes.tokyonight"
+        end,
+    } ]]
 
-    -- Status line
+    -- status line
     use {
         "nvim-lualine/lualine.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -133,7 +148,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Git integration
+    -- git integration
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
@@ -141,7 +156,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Autopairs
+    -- autopairs
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
@@ -151,7 +166,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Git UI
+    -- git ui
     use {
         "TimUntersberger/neogit",
         requires = "nvim-lua/plenary.nvim",
@@ -161,7 +176,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Indent line
+    -- indent line
     use {
         "lukas-reineke/indent-blankline.nvim",
         cmd = "IndentBlanklineToggle",
@@ -170,7 +185,7 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Commenting plugin
+    -- commenting plugin
     use {
         "b3nj5m1n/kommentary",
         keys = {
@@ -185,9 +200,15 @@ return packer.startup(function(use)
         end,
     }
 
-    -- Colorizer
+    -- colorizer
     use {
         "norcalli/nvim-colorizer.lua",
         cmd = "ColorizerToggle",
+    }
+
+    -- practice
+    use {
+        "ThePrimeagen/vim-be-good",
+        cmd = "VimBeGood"
     }
 end)

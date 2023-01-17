@@ -1,10 +1,9 @@
-local telescope = require "telescope.builtin"
-
 local M = {}
 
 M.on_attach = function(client, bufnr)
-    local map     = vim.keymap.set
-    local bufopts = { silent = true, buffer = bufnr }
+    local map       = vim.keymap.set
+    local bufopts   = { silent = true, buffer = bufnr }
+    local telescope = require "telescope.builtin"
 
     map("n", "K", vim.lsp.buf.hover, bufopts)
     map("n", "gD", telescope.lsp_type_definitions, bufopts)
@@ -15,10 +14,12 @@ M.on_attach = function(client, bufnr)
     map("n", "[c", vim.diagnostic.goto_prev, bufopts)
     map("n", "]c", vim.diagnostic.goto_next, bufopts)
     map("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-    map("n", "<Leader>cf", vim.lsp.buf.formatting, bufopts)
     map("n", "<Leader>cd", telescope.diagnostics, bufopts)
     map("n", "<Leader>co", telescope.lsp_document_symbols, bufopts)
     map("n", "<Leader>cs", vim.lsp.buf.signature_help, bufopts)
+    map("n", "<Leader>cf", function ()
+        vim.lsp.buf.format { async = true }
+    end, bufopts)
     map("n", "<Leader>cr", function()
         require("user.util.lsp_rename").rename()
     end, bufopts)
@@ -29,7 +30,7 @@ M.on_attach = function(client, bufnr)
     end, bufopts)
     map("n", "<Leader>cq", vim.diagnostic.setloclist, bufopts)
 
-    -- Highlight symbol under cursor
+    -- highlight symbol under cursor
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup("lsp_document_highlight", {
             clear = false,
@@ -51,10 +52,10 @@ M.on_attach = function(client, bufnr)
     end
 end
 
--- UI config
+-- ui config
 vim.diagnostic.config {
     virtual_text = {
-        prefix = "", -- Could be "■", "▎", "x", "●"
+        prefix = "", -- could be "■", "▎", "x", "●"
     },
     signs = true,
     underline = true,
@@ -66,7 +67,7 @@ vim.diagnostic.config {
     },
 }
 
--- Set borders for :LspInfo window
+-- set borders for :lspinfo window
 local win = require "lspconfig.ui.windows"
 local _default_opts = win.default_opts
 win.default_opts = function(options)
@@ -75,7 +76,7 @@ win.default_opts = function(options)
     return opts
 end
 
--- Set borders for any floating lsp window
+-- set borders for any floating lsp window
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
@@ -83,7 +84,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
--- Enable code snippets
+-- enable code snippets
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem = {
     snippetSupport = true,
@@ -102,7 +103,7 @@ M.capabilities.textDocument.completion.completionItem = {
     },
 }
 
--- Set lsp signs
+-- set lsp signs
 vim.fn.sign_define(
     "DiagnosticSignError",
     { text = " ", texthl = "DiagnosticSignError", numhl = "" }

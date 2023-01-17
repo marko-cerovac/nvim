@@ -1,16 +1,23 @@
--- Enable mouse
+-- enable mouse
 vim.opt.mouse = "a"
 
--- Cursor effect
-vim.g.neovide_cursor_vfx_mode = "sonicboom"
+-- cursor effect
+vim.g.neovide_cursor_vfx_mode = "ripple"
+vim.g.neovide_cursor_animation_length = 0.07
+vim.g.neovide_cursor_trail_size = 0.6
 
--- Font and cursor options
-vim.opt.guifont = "Hasklug Nerd Font:h7.5"
+-- font and cursor options
+vim.opt.guifont = "hasklug nerd font:h10"
+-- vim.opt.guifont = "hasklug nerd font:h16"
+-- vim.opt.guifont = "hasklug nerd font:h8"
 
--- Disable transparant floating windows
+-- disable transparant floating windows
 -- vim.g.neovide_floating_blur = false
 vim.g.neovide_floating_opacity = 1.0
 
--- Enable system clipboard
-vim.keymap.set("n", "<M-p>", '"+p', {})
-vim.keymap.set("v", "<M-y>", "*y", {})
+-- hide the mouse
+vim.g.neovide_hide_mouse_when_typing = true
+
+-- enable system clipboard
+vim.keymap.set("n", "<m-p>", '"+p', {})
+vim.keymap.set("v", "<m-y>", "*y", {})

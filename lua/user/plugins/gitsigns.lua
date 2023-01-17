@@ -9,7 +9,7 @@ gs.setup {
         changedelete = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
     },
     preview_config = {
-        -- Options passed to nvim_open_win
+        -- options passed to nvim_open_win
         border = vim.g.border_style,
         style = "minimal",
         relative = "cursor",
@@ -42,13 +42,15 @@ gs.setup {
         end, { expr = true })
 
         map({ "n", "v" }, "<Leader>ga", gs.stage_hunk, opts)
+        map({ "n", "v" }, "<Leader>gA", gs.stage_buffer, opts)
+        map({ "n", "v" }, "<Leader>gu", gs.undo_stage_hunk, opts)
         map({ "n", "v" }, "<Leader>gr", gs.reset_hunk, opts)
         map({ "n", "v" }, "<Leader>gR", gs.reset_buffer, opts)
         map({ "n", "v" }, "<Leader>gp", gs.preview_hunk, opts)
         map({ "n", "v" }, "<Leader>gl", gs.toggle_current_line_blame, opts)
         map({ "n", "v" }, "<Leader>gd", gs.diffthis, opts)
 
-        -- Text object
+        -- text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
 }

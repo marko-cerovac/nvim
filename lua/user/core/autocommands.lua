@@ -1,6 +1,4 @@
--- Open terminal in insert mode
-local terminal_group = vim.api.nvim_create_augroup("Terminal", { clear = true })
-
+-- open terminal in insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
     callback = function()
         vim.opt.number = false
@@ -8,5 +6,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.opt.cursorline = false
         vim.cmd "startinsert"
     end,
-    group = terminal_group,
+    group = vim.api.nvim_create_augroup("Terminal", { clear = true })
+})
+
+-- highlight text on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function ()
+        vim.highlight.on_yank { higroup = "Visual", timeout = 150, on_visual = false }
+    end,
+    group = vim.api.nvim_create_augroup("YankHighlight", { clear = true})
 })

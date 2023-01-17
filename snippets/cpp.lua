@@ -41,7 +41,7 @@ return {
 			private:
 
 			{}
-		}}
+		}};
 		]],
 		{
 			i(1, "class name"),
@@ -60,5 +60,21 @@ return {
 			rep(1),
 			i(0)
 		})
-	)
+	),
+
+    s("interface",
+        fmt([[
+        class {}
+        {{
+            public:
+            virtual ~{}() {{}};
+            {}
+        }};
+        ]],
+        {
+            i(1, "ClassName"),
+            rep(1),
+            i(0)
+        })
+    )
 }

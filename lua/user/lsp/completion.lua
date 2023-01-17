@@ -70,7 +70,7 @@ cmp.setup {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-y>"] = cmp.config.disable,
-        ["<C-;>"] = cmp.mapping.close {
+        ["<M-c>"] = cmp.mapping.close {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
