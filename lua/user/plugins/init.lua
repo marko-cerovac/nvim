@@ -67,21 +67,13 @@ require ("lazy").setup({
         end,
     },
 
-    -- snippet engine
+    -- completion engine
     {
-        "L3MON4D3/LuaSnip",
+        "hrsh7th/nvim-cmp",
 		event = {
 			"InsertEnter",
 			"CmdlineEnter",
 		},
-        config = function()
-            require "user.lsp.snippets"
-        end,
-    },
-
-    -- completion engine
-    {
-        "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lua",
@@ -90,7 +82,12 @@ require ("lazy").setup({
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
-            "L3MON4D3/LuaSnip",
+            {
+                "L3MON4D3/LuaSnip",
+                config = function()
+                    require "user.lsp.snippets"
+                end,
+            },
         },
         config = function()
             require "user.lsp.completion"
@@ -128,18 +125,9 @@ require ("lazy").setup({
     {
         "mfussenegger/nvim-dap",
         keys = {
-            {
-                "<Leader>dd",
-                desc = "run code"
-            },
-            {
-                "<Leader>b",
-                desc = "toggle breakpoint"
-            },
-            {
-                "<M-;>",
-                desc = "toggle breakpoint"
-            },
+            { "<Leader>dd", desc = "run code" },
+            { "<Leader>b", desc = "toggle breakpoint" },
+            { "<M-;>", desc = "toggle breakpoint" },
         },
         config = function()
             require "user.debugger.config"
@@ -149,6 +137,11 @@ require ("lazy").setup({
     -- debugg adapter ui
     {
         "rcarriga/nvim-dap-ui",
+        keys = {
+            { "<Leader>dd", desc = "run code" },
+            { "<Leader>b", desc = "toggle breakpoint" },
+            { "<M-;>", desc = "toggle breakpoint" },
+        },
         dependencies = "mfussenegger/nvim-dap",
         config = function()
             require "user.debugger.ui"
