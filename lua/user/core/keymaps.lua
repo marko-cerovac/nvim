@@ -53,3 +53,6 @@ map("v", "g=", "! column -t -s= -o=<CR>")
 
 -- external command
 map("n", "<Leader><Tab>", ":!")
+
+-- disable default keymappings for kommentary
+vim.g.kommentary_create_default_mappings = false

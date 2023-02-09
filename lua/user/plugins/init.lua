@@ -1,79 +1,74 @@
--- load packer
-local packer = require "user.util.packer_init"
+-- bootstrap lazy.nvim
+require "user.util.lazy_init"
 
-return packer.startup(function(use)
-    use "wbthomason/packer.nvim"
-
-    -- use precompiled cache
-    use {
-        "lewis6991/impatient.nvim",
-        rocks = "mpack",
-    }
+require ("lazy").setup({
 
     -- treesitter
-    use {
+    {
         "nvim-treesitter/nvim-treesitter",
-        requires = "nvim-treesitter/nvim-treesitter-textobjects",
-        run = ":TSUpdate",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects"
+        },
+        build = ":TSUpdate",
         config = function()
             require "user.plugins.treesitter"
         end,
-    }
+    },
 
     -- telescope
-    use {
-        {
-            "nvim-telescope/telescope-file-browser.nvim",
-            requires = "kyazdani42/nvim-web-devicons",
-        },
-        {
-            "nvim-telescope/telescope-ui-select.nvim"
-        },
-        {
-            "nvim-telescope/telescope.nvim",
-            requires = {
-                { "nvim-lua/plenary.nvim" },
-                {
-                    "nvim-telescope/telescope-fzy-native.nvim",
-                    run = "make",
-                },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+            {
+                "nvim-telescope/telescope-file-browser.nvim",
+                dependencies = {
+                    "kyazdani42/nvim-web-devicons",
+                }
+
             },
-            config = function()
-                require "user.plugins.telescope"
-            end,
-        }
-    }
+            {
+                "nvim-telescope/telescope-fzy-native.nvim",
+                build = "make",
+            },
+        },
+        config = function()
+            require "user.plugins.telescope"
+        end
+    },
 
     -- language server installer
-    use {
+    {
         {
             "williamboman/mason.nvim",
-            -- cmd = "LspStart",
-            config = function()
-                require("mason").setup { ui = { border = vim.g.border_style } }
-            end
+            opts = {
+                ui = { border = vim.g.border_style }
+            }
         },
         {
             "williamboman/mason-lspconfig.nvim",
-            config = function()
-                require("mason-lspconfig").setup()
-            end,
-            after = "mason.nvim"
+            dependencies = {
+                "williamboman/mason.nvim",
+            },
+            config = true,
         }
-    }
+    },
 
     -- language server protocol
-    use {
+    {
         "neovim/nvim-lspconfig",
-        after = "mason.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
         config = function()
             -- require "user.lsp.config"
             require "user.lsp.servers"
         end,
-    }
+    },
 
     -- snippet engine
-    use {
+    {
         "L3MON4D3/LuaSnip",
 		event = {
 			"InsertEnter",
@@ -82,133 +77,148 @@ return packer.startup(function(use)
         config = function()
             require "user.lsp.snippets"
         end,
-    }
+    },
 
     -- completion engine
-    use {
-		{
-			"hrsh7th/nvim-cmp",
-			after = "LuaSnip",
-			requires = "L3MON4D3/LuaSnip",
-			config = function()
-				require "user.lsp.completion"
-			end,
-		},
-		{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-    }
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-path",
+            "saadparwaiz1/cmp_luasnip",
+            "L3MON4D3/LuaSnip",
+        },
+        config = function()
+            require "user.lsp.completion"
+        end,
+    },
+
+    -- commneting plugin
+    {
+        "b3nj5m1n/kommentary",
+        keys = {
+            {
+                "<leader>k",
+                desc = "comment line"
+            },
+            {
+                "<leader>/",
+                desc = "comment motion"
+            },
+        },
+        config = function()
+            local map = vim.keymap.set
+
+            -- require("kommentary.config").configure_language("default", {
+            --     prefer_single_line_comments = true,
+            -- })
+
+            map("n", "<leader>k", "<Plug>kommentary_line_default", {})
+            map("x", "<leader>k", "<Plug>kommentary_visual_default", {})
+            map("n", "<leader>/", "<Plug>kommentary_motion_default", {})
+        end
+    },
+
 
     -- debugg adapter protocol
-    use {
+    {
         "mfussenegger/nvim-dap",
         keys = {
-            "<Leader>dd",
-            "<Leader>b",
-            "<M-;>",
+            {
+                "<Leader>dd",
+                desc = "run code"
+            },
+            {
+                "<Leader>b",
+                desc = "toggle breakpoint"
+            },
+            {
+                "<M-;>",
+                desc = "toggle breakpoint"
+            },
         },
         config = function()
             require "user.debugger.config"
         end,
-    }
+    },
 
     -- debugg adapter ui
-    use {
+    {
         "rcarriga/nvim-dap-ui",
-        after = "nvim-dap",
+        dependencies = "mfussenegger/nvim-dap",
         config = function()
             require "user.debugger.ui"
         end,
-    }
+    },
 
     -- colorscheme
-    use {
+    {
         "marko-cerovac/material.nvim",
         config = function()
             require "user.themes.material"
         end,
-    }
-    --[[ use {
+    },
+    --[[ {
         "folke/tokyonight.nvim",
+        lazy = true,
         config = function()
             require "user.themes.tokyonight"
         end,
-    } ]]
+    }, ]]
 
     -- status line
-    use {
+    {
         "nvim-lualine/lualine.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
             require "user.plugins.lualine"
         end,
-    }
+    },
 
     -- git integration
-    use {
+    {
         "lewis6991/gitsigns.nvim",
         config = function()
             require "user.plugins.gitsigns"
         end,
-    }
+    },
+
+    -- git ui
+    {
+        "TimUntersberger/neogit",
+        dependencies = "nvim-lua/plenary.nvim",
+        cmd = "Neogit",
+        config = function()
+            require("neogit").setup {}
+        end,
+    },
 
     -- autopairs
-    use {
+    {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
             require("nvim-autopairs").setup { check_ts = true }
             require("nvim-treesitter.configs").setup { autopairs = { enable = true } }
         end,
-    }
-
-    -- git ui
-    use {
-        "TimUntersberger/neogit",
-        requires = "nvim-lua/plenary.nvim",
-        cmd = "Neogit",
-        config = function()
-            require("neogit").setup {}
-        end,
-    }
+    },
 
     -- indent line
-    use {
+    {
         "lukas-reineke/indent-blankline.nvim",
         cmd = "IndentBlanklineToggle",
         config = function()
             require "user.plugins.indentline"
         end,
-    }
-
-    -- commenting plugin
-    use {
-        "b3nj5m1n/kommentary",
-        keys = {
-            "<Leader>k",
-            "<Leader>/",
-        },
-        setup = function()
-            vim.g.kommentary_create_default_mappings = false
-        end,
-        config = function()
-            require "user.plugins.kommentary"
-        end,
-    }
+    },
 
     -- colorizer
-    use {
+    {
         "norcalli/nvim-colorizer.lua",
         cmd = "ColorizerToggle",
-    }
-
-    -- practice
-    use {
-        "ThePrimeagen/vim-be-good",
-        cmd = "VimBeGood"
-    }
-end)
+    },
+}, { ui = { border = vim.g.border_style }})
