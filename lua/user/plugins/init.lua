@@ -214,4 +214,16 @@ require ("lazy").setup({
         "norcalli/nvim-colorizer.lua",
         cmd = "ColorizerToggle",
     },
+
+    -- org mode
+    {
+        "nvim-neorg/neorg",
+        dependencies = "nvim-lua/plenary.nvim",
+        build = ":Neorg sync-parsers",
+        ft = "norg",
+        cmd = "Neorg",
+        config = function ()
+            require "user.plugins.neorg"
+        end,
+    }
 }, { ui = { border = vim.g.border_style }})

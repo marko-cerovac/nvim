@@ -24,6 +24,7 @@ material.setup {
         "nvim-web-devicons",
         "gitsigns",
         "neogit",
+        "neorg",
         "dap",
     },
     lualine_style = "stealth",
