@@ -10,11 +10,19 @@ require "user.debugger.configurations"
 
 vim.fn.sign_define(
     "DapBreakpoint",
-    { text = "", texthl = "DapBreakpoint", numhl = "" }
+    { text = "", texthl = "DapBreakpoint", numhl = "" }
+)
+vim.fn.sign_define(
+    "DapBreakpointCondition",
+    { text = "", texthl = "DapBreakpoint", numhl = "" }
+)
+vim.fn.sign_define(
+    "DapLogPoint",
+    { text = "", texthl = "DapBreakpoint", numhl = "" }
 )
 vim.fn.sign_define(
     "DapStopped",
-    { text = "", texthl = "DapStopped", numhl = "", linehl = "Visual" }
+    { text = "", texthl = "DapStopped", numhl = "", linehl = "Visual" }
 )
 
 map("n", "<Leader>dd", dap.continue, opts)
@@ -52,7 +60,7 @@ dap.listeners.after["event_initialized"]["me"] = function()
     end, opts)
 end
 
-dap.listeners.before["event_terminated"]["me"] = function()
+dap.listeners.after["disconnect"]["me"] = function()
     require("dapui").close()
 
     map("n", "<Up>", "k", opts)

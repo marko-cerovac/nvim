@@ -64,12 +64,12 @@ cmp.setup {
         ghost_text = true,
     },
     mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        ["<M-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<M-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-y>"] = cmp.config.disable,
+        ["<C-y>"] = cmp.mapping.abort(),
         ["<M-c>"] = cmp.mapping.close {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
@@ -121,7 +121,9 @@ cmp.setup {
 
 cmp.setup.filetype("norg", {
     sources = cmp.config.sources {
-        { name = "neorg" }
+        { name = "neorg" },
+        { name = "buffer" },
+        { name = "path" },
     },
 })
 

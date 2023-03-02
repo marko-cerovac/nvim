@@ -9,6 +9,7 @@ o.tabstop = 4
 o.shiftwidth = 4
 o.smartindent = true
 o.smartcase = true
+o.conceallevel = 2
 o.signcolumn = "yes"
 o.number = true
 o.relativenumber = true
@@ -28,6 +29,3 @@ o.fillchars = "fold: "
 -- o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 
 vim.g.border_style = "rounded"
-
--- disable built in plugins
-require "user.util.disable_plugins"

@@ -10,6 +10,10 @@ require ("lazy").setup({
             "nvim-treesitter/nvim-treesitter-textobjects"
         },
         build = ":TSUpdate",
+        event = {
+            "BufReadPost",
+            "BufNewFile",
+        },
         config = function()
             require "user.plugins.treesitter"
         end,
@@ -32,6 +36,22 @@ require ("lazy").setup({
                 "nvim-telescope/telescope-fzy-native.nvim",
                 build = "make",
             },
+        },
+        cmd = "Telescope",
+        keys = {
+            "gc",
+            "gs",
+            "<Leader>;",
+            "<Leader>e",
+            "<Leader>fj",
+            "<Leader>fg",
+            "<Leader>gf",
+            "<Leader>gc",
+            "<Leader>fr",
+            "<Leader>ft",
+            "<Leader>e",
+            "<Leader>e",
+
         },
         config = function()
             require "user.plugins.telescope"
@@ -87,6 +107,7 @@ require ("lazy").setup({
                 config = function()
                     require "user.lsp.snippets"
                 end,
+                build = "make install_jsregexp"
             },
         },
         config = function()
@@ -100,6 +121,7 @@ require ("lazy").setup({
         keys = {
             {
                 "<leader>k",
+                mode = {"n", "v"},
                 desc = "comment line"
             },
             {
@@ -107,6 +129,9 @@ require ("lazy").setup({
                 desc = "comment motion"
             },
         },
+        init = function ()
+            vim.g.kommentary_create_default_mappings = false
+        end,
         config = function()
             local map = vim.keymap.set
 
@@ -129,22 +154,17 @@ require ("lazy").setup({
             { "<Leader>b", desc = "toggle breakpoint" },
             { "<M-;>", desc = "toggle breakpoint" },
         },
+        dependencies = {
+            -- debugg adapter ui
+            {
+                "rcarriga/nvim-dap-ui",
+                config = function()
+                    require "user.debugger.ui"
+                end,
+            }
+        },
         config = function()
             require "user.debugger.config"
-        end,
-    },
-
-    -- debugg adapter ui
-    {
-        "rcarriga/nvim-dap-ui",
-        keys = {
-            { "<Leader>dd", desc = "run code" },
-            { "<Leader>b", desc = "toggle breakpoint" },
-            { "<M-;>", desc = "toggle breakpoint" },
-        },
-        dependencies = "mfussenegger/nvim-dap",
-        config = function()
-            require "user.debugger.ui"
         end,
     },
 
@@ -167,6 +187,7 @@ require ("lazy").setup({
     {
         "nvim-lualine/lualine.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
+        event = "VeryLazy",
         config = function()
             require "user.plugins.lualine"
         end,
@@ -175,6 +196,10 @@ require ("lazy").setup({
     -- git integration
     {
         "lewis6991/gitsigns.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         config = function()
             require "user.plugins.gitsigns"
         end,
@@ -225,5 +250,34 @@ require ("lazy").setup({
         config = function ()
             require "user.plugins.neorg"
         end,
-    }
-}, { ui = { border = vim.g.border_style }})
+    },
+},
+{
+    ui = {
+        border = vim.g.border_style
+    },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "2html_plugin",
+                "getscript",
+                "getscriptPlugin",
+                "gzip",
+                "logipat",
+                "netrw",
+                "netrwPlugin",
+                "netrwSettings",
+                "netrwFileHandlers",
+                "matchit",
+                -- "matchparen",
+                "tar",
+                "tarPlugin",
+                "rrhelper",
+                "vimball",
+                "vimballPlugin",
+                "zip",
+                "zipPlugin",
+            },
+        }
+    },
+})
