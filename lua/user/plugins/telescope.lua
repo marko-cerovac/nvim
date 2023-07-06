@@ -36,6 +36,7 @@ telescope.setup {
             },
         },
         commands = { theme = "dropdown" },
+        colorscheme = { theme = "dropdown" },
     },
     extensions = {
         ["file_browser"] = {
@@ -67,6 +68,7 @@ end
 map("n", "<leader>;", builtin.buffers, opts)
 map("n", "gc", builtin.commands, opts)
 map("n", "gs", neovim_settings, opts)
+map("n", "]t", builtin.colorscheme, opts)
 map("n", "<leader>e", telescope.extensions.file_browser.file_browser, opts)
 map("n", "<leader>fj", browse_folders, opts)
 map("n", "<leader>fg", builtin.live_grep, opts)

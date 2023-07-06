@@ -5,8 +5,7 @@ return {
 		fmt([[
 		#include <stdio.h>
 		
-		int main({})
-		{{
+		int main({}) {{
 			{}
 			return 0;
 		}}
@@ -21,8 +20,7 @@ return {
 		#include <stdio.h>
 		#include <stdlib.h>
 
-		int main({})
-		{{
+		int main({}) {{
 			{}
 			return 0;
 		}}
@@ -36,8 +34,7 @@ return {
 	-- main function
 	s("main",
 		fmt([[
-		int main({})
-		{{
+		int main({}) {{
 			{}
 			return 0;
 		}}

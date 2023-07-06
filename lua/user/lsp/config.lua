@@ -96,9 +96,9 @@ M.capabilities.textDocument.completion.completionItem = {
     tagSupport = { valueSet = { 1 } },
     resolveSupport = {
         properties = {
-            'documentation',
-            'detail',
-            'additionalTextEdits',
+            "documentation",
+            "detail",
+            "additionalTextEdits",
         }
     },
 }

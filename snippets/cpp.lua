@@ -4,8 +4,7 @@ return {
 		fmt([[
 		#include <iostream>
 
-		int main({})
-		{{
+		int main({}) {{
 			{}
 		}}
 		]],
@@ -17,8 +16,7 @@ return {
 
 	s("main",
 		fmt([[
-		int main({})
-		{{
+		int main({}) {{
 			{}
 		}}
 		]],
@@ -30,8 +28,7 @@ return {
 
 	s("class",
 		fmt([[
-		class {} {}
-		{{
+		class {} {} {{
 			public:
 
 			{}(){};
@@ -64,8 +61,7 @@ return {
 
     s("interface",
         fmt([[
-        class {}
-        {{
+        class {} {{
             public:
             virtual ~{}() {{}};
             {}

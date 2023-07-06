@@ -39,50 +39,49 @@ require ("lazy").setup({
         },
         cmd = "Telescope",
         keys = {
+            -- "gd",
+            -- "gD",
+            -- "gi",
+            -- "gr",
             "gc",
             "gs",
+            "]t",
             "<Leader>;",
             "<Leader>e",
+            -- "<Leader>cd",
+            -- "<Leader>co",
             "<Leader>fj",
             "<Leader>fg",
             "<Leader>gf",
             "<Leader>gc",
             "<Leader>fr",
             "<Leader>ft",
-            "<Leader>e",
-            "<Leader>e",
-
         },
         config = function()
             require "user.plugins.telescope"
         end
     },
 
-    -- language server installer
-    {
-        {
-            "williamboman/mason.nvim",
-            opts = {
-                ui = { border = vim.g.border_style }
-            }
-        },
-        {
-            "williamboman/mason-lspconfig.nvim",
-            dependencies = {
-                "williamboman/mason.nvim",
-            },
-            config = true,
-        }
-    },
-
     -- language server protocol
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
+            {
+                "williamboman/mason.nvim",
+                opts = {
+                    ui = { border = vim.g.border_style }
+                }
+            },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                config = true,
+            }
+        },
+        event = {
+            "BufReadPost",
+            "BufNewFile",
         },
         config = function()
-            -- require "user.lsp.config"
             require "user.lsp.servers"
         end,
     },
@@ -176,6 +175,14 @@ require ("lazy").setup({
         end,
     },
     --[[ {
+        "catppuccin/nvim",
+        lazy = true,
+        name = "catppuccin",
+        config = function()
+            require "user.themes.catppuccin"
+        end,
+    }, ]]
+    --[[ {
         "folke/tokyonight.nvim",
         lazy = true,
         config = function()
@@ -210,9 +217,7 @@ require ("lazy").setup({
         "TimUntersberger/neogit",
         dependencies = "nvim-lua/plenary.nvim",
         cmd = "Neogit",
-        config = function()
-            require("neogit").setup {}
-        end,
+        config = true
     },
 
     -- autopairs

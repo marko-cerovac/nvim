@@ -8,13 +8,14 @@ require("mason-lspconfig").setup_handlers({
             capabilities = user_config.capabilities
         }
     end,
-    --[[ ["rust_analyzer"] = function()
+    ["rust_analyzer"] = function()
         lspconfig.rust_analyzer.setup {
             on_attach = user_config.on_attach,
             capabilities = user_config.capabilities,
             settings = {
                 ["rust-analyzer"] = {
                     checkOnSave = {
+                        -- command = "check"
                         command = "clippy"
                     },
                     imports = {
@@ -29,12 +30,12 @@ require("mason-lspconfig").setup_handlers({
                         },
                     },
                     procMacro = {
-                        enable = true
+                        enable = false
                     },
                 }
             }
         }
-    end, ]]
+    end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup {
             settings = {

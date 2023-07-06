@@ -18,13 +18,11 @@ map("n", "<C-h>", ":vertical resize -2<CR>", opts)
 map("n", "<C-l>", ":vertical resize +2<CR>", opts)
 
 -- window splitting
-map("n", "<Leader>ws", ":split<CR>", opts)
-map("n", "<Leader>wv", ":vertical split<CR>", opts)
-map("n", "<Leader>wt", ":tab split<CR>", opts)
+map("n", "<M-s>", "<C-w>s", opts)
+map("n", "<M-v>", "<C-w>v", opts)
 
 -- switching buffers
-map("n", "<Tab>", ":bnext<CR>", opts)
-map("n", "<S-Tab>", ":bprevious<CR>", opts)
+map("n", "gb", ":bnext<CR>", opts)
 
 -- indenting lines
 map("v", "<", "<gv", opts)
@@ -43,9 +41,8 @@ map("n", "<Leader>h", ":noh<CR>", opts)
 map("n", "<M-;>", ":noh<CR>", opts)
 
 -- opening terminal
-map("n", "<Leader>v", ":vertical new<CR>:terminal<CR>", opts)
-map("n", "<Leader>ts", ":split new<CR>:terminal<CR>", opts)
-map("n", "<Leader>tt", ":tab new<CR>:terminal<CR>", opts)
+map("n", "<Leader>v", "<C-w>v:terminal<CR>", opts)
+map("n", "<Leader>s", "<C-w>s:terminal<CR>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
 
 -- align code

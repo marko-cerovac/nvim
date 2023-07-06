@@ -1,9 +1,9 @@
-local map  = vim.keymap.set
-local opts = { silent = true }
+-- local map  = vim.keymap.set
+-- local opts = { silent = true }
 
 -- open which-key
-map("n", "<Space>", ":call VSCodeNotify('whichkey.show')<CR>", opts)
-map("x", "<Space>", ":<C-u>call <SID>openWhichKeyInVisualMode()<CR>", opts)
+-- map("n", "<Space>", ":call VSCodeNotify('whichkey.show')<CR>", opts)
+-- map("x", "<Space>", ":<C-u>call <SID>openWhichKeyInVisualMode()<CR>", opts)
 
 -- window navigation
 -- map("n", "<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", opts)

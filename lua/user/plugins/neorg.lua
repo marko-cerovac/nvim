@@ -16,18 +16,18 @@ vim.api.nvim_create_autocmd("FileType", {
 neorg.setup {
     load = {
         ["core.defaults"] = {},
-        ["core.norg.concealer"] = {
+        ["core.concealer"] = {
             config = {
                 icon_preset = "diamond"
             }
         },
-        ["core.norg.completion"] = {
+        ["core.completion"] = {
             config = {
                 engine = "nvim-cmp",
                 name = "neorg"
             }
         },
-        ["core.norg.dirman"] = {
+        ["core.dirman"] = {
             config = {
                 workspaces = {
                     notes = "~/Documents/neorg/notes",
