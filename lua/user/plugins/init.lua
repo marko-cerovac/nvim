@@ -43,7 +43,7 @@ require ("lazy").setup({
             -- "gD",
             -- "gi",
             -- "gr",
-            "gc",
+            "<S-Enter>",
             "gs",
             "]t",
             "<Leader>;",

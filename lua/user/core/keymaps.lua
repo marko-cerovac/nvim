@@ -43,7 +43,7 @@ map("n", "<M-;>", ":noh<CR>", opts)
 -- opening terminal
 map("n", "<Leader>v", "<C-w>v:terminal<CR>", opts)
 map("n", "<Leader>s", "<C-w>s:terminal<CR>", opts)
-map("t", "<Esc>", "<C-\\><C-n>", opts)
+map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 
 -- align code
 map("v", "g=", "! column -t -s= -o=<CR>")

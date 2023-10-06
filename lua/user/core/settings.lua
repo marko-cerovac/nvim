@@ -13,6 +13,7 @@ o.conceallevel = 2
 o.signcolumn = "yes"
 o.number = true
 o.relativenumber = true
+o.scrolloff = 4
 o.wrap = false
 o.cursorline = true
 o.laststatus = 3

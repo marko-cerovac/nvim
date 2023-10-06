@@ -34,3 +34,13 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
         clear = true
     })
 })
+
+-- resize splits if window gots resized
+vim.api.nvim_create_autocmd("VimResized", {
+    callback = function()
+        vim.cmd("tabdo wincmd =")
+    end,
+    group = vim.api.nvim_create_augroup("ReadjustWindows", {
+        clear = true
+    }),
+})

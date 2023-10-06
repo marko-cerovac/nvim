@@ -66,7 +66,7 @@ end
 
 -- set keymaps
 map("n", "<leader>;", builtin.buffers, opts)
-map("n", "gc", builtin.commands, opts)
+map("n", "<S-Enter>", builtin.commands, opts)
 map("n", "gs", neovim_settings, opts)
 map("n", "]t", builtin.colorscheme, opts)
 map("n", "<leader>e", telescope.extensions.file_browser.file_browser, opts)
