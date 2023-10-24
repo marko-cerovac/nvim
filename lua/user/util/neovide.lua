@@ -7,7 +7,7 @@ vim.g.neovide_cursor_animation_length = 0.08
 vim.g.neovide_cursor_trail_size = 0.6
 
 -- font and cursor options
-vim.opt.guifont = "hasklug nerd font:h16"
+vim.opt.guifont = "hasklug nerd font:h15"
 
 -- disable transparant floating windows
 -- vim.g.neovide_floating_blur = false

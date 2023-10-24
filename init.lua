@@ -1,26 +1,20 @@
 -- neovim config
 -- author: Marko Cerovac
--- repo: https://github.com/marko-cerovac/nvim
+-- repo:   https://github.com/marko-cerovac/nvim
 
--- vscodium
 if vim.g.vscode then
-    require "user.util.vscode"
-    return
+	require 'user.util.vscode'
+	return
 end
 
--- load user settings
-require "user.core.settings"
+require 'user.core.options'
 
--- load user keymaps
-require "user.core.keymaps"
+require 'user.core.mappings'
 
--- load user autocommands
-require "user.core.autocommands"
+require 'user.core.autocmds'
 
--- load plugins
-require "user.plugins"
+require 'user.core.lazy'
 
--- neovide ui
 if vim.g.neovide then
-    require "user.util.neovide"
+    require 'user.util.neovide'
 end
