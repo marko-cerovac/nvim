@@ -3,6 +3,7 @@ local opts = { silent = true }
 
 -- map leader to space
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ';'
 map('n', '<Space>', '<NOP>', opts)
 
 -- window navigation
@@ -40,6 +41,7 @@ map('n', '<C-u>', '<C-u>zz', opts)
 map('n', '<Leader>h', ':noh<CR>', opts)
 
 -- opening terminal
+map('n', '<Leader>t', ':terminal<CR>', opts)
 map('n', '<Leader>v', '<C-w>v:terminal<CR>', opts)
 map('n', '<Leader>s', '<C-w>s:terminal<CR>', opts)
 map('t', '<Esc><Esc>', '<C-\\><C-n>', opts)

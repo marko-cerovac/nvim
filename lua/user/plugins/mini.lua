@@ -43,9 +43,9 @@ return {
         keys = { 'gS' },
         config = true
     },
-    {
-        'echasnovski/mini.surround',
-        keys = { 's' , mode = { 'n ', 'v' } },
-        config = true,
-    }
+    -- {
+    --     'echasnovski/mini.surround',
+    --     keys = { 's' , mode = { 'n ', 'v' } },
+    --     config = true,
+    -- }
 }

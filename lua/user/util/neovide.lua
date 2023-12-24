@@ -17,5 +17,6 @@ vim.g.neovide_floating_opacity = 1.0
 vim.g.neovide_hide_mouse_when_typing = true
 
 -- enable system clipboard
-vim.keymap.set("n", "<m-p>", '"+p', {})
-vim.keymap.set("v", "<m-y>", "*y", {})
+vim.keymap.set({"n", "c"}, "<m-p>", '"+p', {})
+vim.keymap.set({"n", "c"}, "<C-S-v>", '"+p', {})
+-- vim.keymap.set("v", "<m-y>", "*y", {})

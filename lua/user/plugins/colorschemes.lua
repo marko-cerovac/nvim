@@ -1,12 +1,14 @@
 return {
     {
         'marko-cerovac/material.nvim',
+        priority = 1000,
         config = function()
             local material = require 'material'
 
             vim.g.material_style = 'deep ocean'
 
             material.setup {
+                -- vibrant_syntax = true,
                 contrast = {
                     cursor_line = true,
                 },
@@ -36,5 +38,16 @@ return {
             -- enable the colorscheme
             vim.cmd 'colorscheme material'
         end
+    },
+    {
+        'folke/tokyonight.nvim',
+        lazy = true,
+        opts = {
+            style = 'moon',
+            styles = {
+                comments = { italic = true },
+                functions = { italic = true },
+            }
+        },
     }
 }

@@ -29,6 +29,7 @@ o.mouse = 'a'
 o.foldenable = false
 o.foldmethod = 'expr'
 o.shortmess:append({c = true, C = true})
+o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:N"
 
 o.fillchars = {
   foldopen = '',

@@ -1,3 +1,5 @@
+-- local keymap_restore = {}
+
 return {
     {
         'mfussenegger/nvim-dap',
@@ -19,8 +21,8 @@ return {
             local opts = { silent = true }
 
             -- load adapters and configurations
-            -- require 'user.debugger.adapters'
-            -- require 'user.debugger.configurations'
+            require 'user.util.dap.adapters'
+            require 'user.util.dap.configurations'
 
             vim.fn.sign_define(
                 'DapBreakpoint',
@@ -42,8 +44,23 @@ return {
             dap.listeners.after['event_initialized']['me'] = function()
                 local dapui = require 'dapui'
 
-                -- TODO: map 'K' to dap.eval using restore_keymaps
+                -- save previous 'K' mapping
+                -- for _, buf in pairs(vim.api.nvim_list_bufs()) do
+                --     local keymaps = vim.api.nvim_buf_get_keymap(buf, 'n')
+                --     for _, keymap in pairs(keymaps) do
+                --         if keymap.lhs == "K" then
+                --             table.insert(keymap_restore, keymap)
+                --             vim.keymap.del('n', 'K', { buffer = buf })
+                --         end
+                --     end
+                -- end
 
+                -- map({ 'n', 'v' }, 'K', dapui.eval, opts)
+                map({ 'n', 'v' }, 'ge', dapui.eval, opts)
+                map('n', 'C', dap.continue, opts)
+                map('n', 'H', dap.step_out, opts)
+                map('n', 'J', dap.step_over, opts)
+                map('n', 'L', dap.step_into, opts)
                 map('n', '<Up>', dap.continue, opts)
                 map('n', '<Down>', dap.step_over, opts)
                 map('n', '<Left>', dap.step_out, opts)
@@ -52,10 +69,15 @@ return {
                     dap.repl.close()
                     dap.terminate()
                 end, opts)
-                map({ 'n', 'v' }, 'ge', dapui.eval, opts)
                 map('n', '<Leader>dd', function()
                     dapui.toggle(1)
                     dapui.toggle(2)
+                end, opts)
+                map('n', '<Leader>dr', function()
+                    dapui.toggle(4)
+                end, opts)
+                map('n', '<Leader>dR', function() -- temporary mapping
+                    dapui.toggle(5)
                 end, opts)
                 map('n', '<Leader>dc', function()
                     dapui.float_element('console', { enter = true })
@@ -69,30 +91,56 @@ return {
                 map('n', '<Leader>ds', function()
                     dapui.float_element('stacks', { enter = true })
                 end, opts)
+                map('n', '<Leader>dS', function()
+                    dapui.float_element('scopes', { enter = true })
+                end, opts)
             end
 
-            dap.listeners.after['disconnect']['me'] = function()
-                require('dapui').close()
+            dap.listeners.before['disconnect']['me'] = function()
+                require 'dapui'.close()
 
-                map('n', '<Up>', 'k', opts)
-                map('n', '<Down>', 'j', opts)
-                map('n', '<Left>', 'h', opts)
-                map('n', '<Right>', 'l', opts)
+                -- return 'K' to it's original mapping
+                -- for _, keymap in pairs(keymap_restore) do
+                --     vim.keymap.set(
+                --         keymap.mode,
+                --         keymap.lhs,
+                --         keymap.rhs,
+                --         {
+                --             buffer = keymap.buffer,
+                --             silent = keymap.silent == true
+                --
+                --         }
+                --     )
+                -- end
+                -- keymap_restore = {}
+
                 map('n', '<Leader>dd', dap.continue, opts)
+                unmap('n', '<Up>')
+                unmap('n', '<Down>')
+                unmap('n', '<Left>')
+                unmap('n', '<Right>')
+                unmap('n', 'C')
+                unmap('n', 'H')
+                unmap('n', 'J')
+                unmap('n', 'L')
                 unmap('n', '<M-c>')
                 unmap('n', '<Leader>dq')
+                unmap('n', '<Leader>dr')
+                unmap('n', '<Leader>dR')
                 unmap('n', '<Leader>dc')
                 unmap('n', '<Leader>dw')
                 unmap('n', '<Leader>ds')
+                unmap('n', '<Leader>dS')
                 unmap('n', 'ge')
                 unmap('v', 'ge')
             end
         end
+
     },
     {
         'rcarriga/nvim-dap-ui',
-        opt = true,
-        config = {
+        lazy = true,
+        opts = {
             mappings = {
                 expand = { '<CR>', '<2-LeftMouse>' },
                 open = 'o',
@@ -127,6 +175,20 @@ return {
                     },
                     size = 0.40,
                     position = 'right',
+                },
+                {
+                    elements = {
+                        'repl'
+                    },
+                    size = 0.5,
+                    position = 'bottom'
+                },
+                {
+                    elements = {
+                        'scopes'
+                    },
+                    size = 0.25,
+                    position = 'right',
                 }
             },
             floating = {
@@ -143,12 +205,12 @@ return {
     },
     {
         'theHamsta/nvim-dap-virtual-text',
-        opt = true,
+        lazy = true,
         config = true
     },
     {
         'LiadOz/nvim-dap-repl-highlights',
-        opt = true,
+        lazy = true,
         config = true
     }
 }

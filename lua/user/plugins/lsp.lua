@@ -13,7 +13,18 @@ return {
                 group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
 
                 callback = function(ev)
-                    local opts = { buffer = ev.buffer }
+                    local opts = { buffer = ev.buf }
+
+                    -- vim.lsp.inlay_hint.enable(ev.buf, true)
+
+                    vim.api.nvim_buf_create_user_command( ev.buf,
+                        'LspInlayHintToggle',
+                        function ()
+                            local enabled = vim.lsp.inlay_hint.is_enabled()
+                            vim.lsp.inlay_hint.enable(0, not enabled)
+                        end,
+                        { nargs = 0 }
+                    )
 
                     map('n', 'gd', vim.lsp.buf.definition, opts)
                     map('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -38,9 +49,12 @@ return {
             -- ui config
             vim.diagnostic.config {
                 virtual_text = {
-                    prefix = '', -- could be '■', '▎', 'x', '●'
+                    prefix = '', -- could be '', '■', '▎', 'x', '●'
                 },
-                signs = true,
+                signs = {
+                    -- text = { ' ', ' ', ' ', ' ' }
+                    text = { ' ', ' ', ' ', ' ' }
+                },
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
@@ -67,28 +81,6 @@ return {
               -- opts.border = opts.border or border
               return orig_util_open_floating_preview(contents, syntax, opts, ...)
             end
-
-            -- set lsp signs
-            vim.fn.sign_define(
-                'DiagnosticSignError',
-                { text = ' ', texthl = 'DiagnosticSignError', numhl = '' }
-                -- {text = ' ', texthl = 'DiagnosticSignError', numhl = ''}
-            )
-            vim.fn.sign_define(
-                'DiagnosticSignWarn',
-                { text = ' ', texthl = 'DiagnosticSignWarn', numhl = '' }
-                -- {text = ' ', texthl = 'DiagnosticSignWarn', numhl = ''}
-            )
-            vim.fn.sign_define(
-                'DiagnosticSignHint',
-                { text = ' ', texthl = 'DiagnosticSignHint', numhl = '' }
-                -- {text = 'ﴞ ', texthl = 'DiagnosticSignHint', numhl = ''}
-            )
-            vim.fn.sign_define(
-                'DiagnosticSignInfo',
-                { text = ' ', texthl = 'DiagnosticSignInfo', numhl = '' }
-                -- {text = ' ', texthl = 'DiagnosticSignInfo', numhl = ''}
-            )
         end,
     },
     {
@@ -139,7 +131,7 @@ return {
                                     },
                                 },
                                 procMacro = {
-                                    enable = false
+                                    enable = true,
                                 },
                             }
                         }

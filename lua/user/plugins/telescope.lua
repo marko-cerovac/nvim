@@ -18,16 +18,16 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
         },
-        cmd = 'Telescope',
+        -- cmd = 'Telescope',
         keys = {
             -- 'gd',
             -- 'gD',
             -- 'gi',
             -- 'gr',
             -- { '<Leader>cd', }
-            -- { '<Leader>co', }
+            '<Leader>ca',
             { 'gr', function() return require 'telescope.builtin'.lsp_references() end, keymap_opts },
-            { '<Leader>cf', function() return require 'telescope.builtin'.lsp_document_symbols() end, keymap_opts },
+            { '<Leader>fc', function() return require 'telescope.builtin'.lsp_document_symbols() end, keymap_opts },
             { '<S-Enter>', function() return require 'telescope.builtin'.commands() end, keymap_opts },
             { 'gs', neovim_settings, keymap_opts },
             { '<Leader>;', function() return require 'telescope.builtin'.buffers() end, keymap_opts },
@@ -36,6 +36,7 @@ return {
             { '<Leader>gc', function() return require 'telescope.builtin'.git_commits() end, keymap_opts },
             { '<Leader>fr', function() return require 'telescope.builtin'.oldfiles() end, keymap_opts },
             { '<Leader>ft', function() return require 'telescope.builtin'.colorscheme() end, keymap_opts },
+            { '<Leader>fh', function() return require 'telescope.builtin'.help_tags() end, keymap_opts },
         },
         config = function()
             local telescope = require 'telescope'
@@ -82,6 +83,9 @@ return {
                     ['zoxide'] = {
                         prompt_title = 'Zoxide'
                     },
+                    ['import'] = {
+                        theme = themes.get_dropdown
+                    }
                 }
             }
 
@@ -125,5 +129,5 @@ return {
         config = function()
             require 'telescope'.load_extension 'zoxide'
         end,
-    },
+    }
 }
