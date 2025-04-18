@@ -12,7 +12,7 @@ require 'user.core.mappings'
 
 require 'user.core.autocmds'
 
--- require 'user.core.statusline'
+require 'user.core.statusline'
 
 require 'user.core.lazy'
 

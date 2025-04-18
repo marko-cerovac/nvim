@@ -26,9 +26,10 @@ o.cursorline = true
 o.wrap = false
 o.signcolumn = 'yes'
 o.laststatus = 3
-o.cmdheight = 0
+o.cmdheight = 1
 o.conceallevel = 2
 o.showmode = false
+o.showcmd = false
 vim.g.border_style = 'single'
 -- vim.g.border_style = 'rounded'
 
