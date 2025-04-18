@@ -28,7 +28,7 @@ local function filename()
     local fname = vim.fn.expand '%:t'
     local icon, icon_hl = require('mini.icons').get('file', fname)
 
-    return string.format('%%#%s#%s %%#StatusLine#%%M%s', icon_hl, icon, fname)
+    return string.format(' %%#%s#%s %%#StatusLine#%%M%s ', icon_hl, icon, fname)
 
 end
 
@@ -58,6 +58,8 @@ local function git()
 end
 
 local function diagnostics()
+    if not vim.diagnostic.is_enabled({ bufnr = 0 }) then return '' end
+
     local error = vim.diagnostic.count(0)[vim.diagnostic.severity.ERROR]
     local warn  = vim.diagnostic.count(0)[vim.diagnostic.severity.WARN]
     local info  = vim.diagnostic.count(0)[vim.diagnostic.severity.INFO]
@@ -90,12 +92,34 @@ local function diagnostics()
     return string.format( ' %s%s%s%s ', error, warn, info, hint)
 end
 
+local function macro_recording()
+    local register = vim.fn.reg_recording()
+
+    if register == '' then
+        return ''
+    else
+        return string.format(' %%#StatusLineRecording#󰑊%s ', register)
+        -- return string.format('%%#StatusLineRecording#󰑊%%#StatusLine#%s', register)
+    end
+end
+
+-- local function position()
+--     local line_count = vim.fn.line('$')
+--
+--     if line_count < 20 then
+--         return ''
+--     else
+--         return ' 󱪶 %l/%L[%p%%] '
+--     end
+-- end
+
 Statusline = {}
 
 Statusline.active = function()
     return table.concat {
         '%#StatusLine#',
         mode(),
+        macro_recording(),
         '%#StatusLine#',
         -- '%=%=',
         git(),
@@ -103,9 +127,10 @@ Statusline.active = function()
         diagnostics(),
         '%=%=',
         -- '  ',
+        '%=',
         filename(),
-        '%=%=',
-        '%l/%L [%p%%]',
+        -- position(),
+        ' 󱪶 %l/%L[%p%%] ',
     }
 end
 

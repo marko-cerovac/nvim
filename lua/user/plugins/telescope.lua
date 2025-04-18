@@ -19,7 +19,7 @@ return {
             '<Leader>ca',
             { 'gr',         function() return require 'telescope.builtin'.lsp_references() end,       keymap_opts },
             { '<Leader>fc', function() return require 'telescope.builtin'.lsp_document_symbols() end, keymap_opts },
-            { '<S-Enter>',  function() return require 'telescope.builtin'.commands() end,             keymap_opts },
+            -- { '<S-Enter>',  function() return require 'telescope.builtin'.commands() end,             keymap_opts },
             { 'gs',         neovim_settings,                                                          keymap_opts },
             { '<Leader>;',  function() return require 'telescope.builtin'.buffers() end,              keymap_opts },
             { '<Leader>fg', function() return require 'telescope.builtin'.live_grep() end,            keymap_opts },
@@ -38,7 +38,7 @@ return {
 
             telescope.setup {
                 defaults = themes.get_ivy {
-                -- defaults = {
+                    -- defaults = {
                     mappings = {
                         i = {
                             ['<C-j>'] = actions.move_selection_next,
@@ -81,6 +81,13 @@ return {
                     ['zoxide'] = {
                         prompt_title = 'Zoxide'
                     },
+                    ['cmdline'] = {
+                        mappings = {
+                            complete      = '<Tab>',
+                            run_selection = '<C-CR>',
+                            run_input     = '<CR>',
+                        }
+                    }
                 }
             }
 
@@ -122,5 +129,16 @@ return {
         config = function()
             require 'telescope'.load_extension 'zoxide'
         end,
+    },
+    {
+        'jonarrien/telescope-cmdline.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        keys = {
+            { '<S-Enter>', '<cmd>Telescope cmdline<CR>', keymap_opts },
+            -- { ':', '<cmd>Telescope cmdline<CR>', keymap_opts },
+        },
+        config = function()
+            require 'telescope'.load_extension 'cmdline'
+        end
     }
 }
