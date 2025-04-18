@@ -111,7 +111,7 @@ return {
                 window = {
                     completion = cmp.config.window.bordered {
                         border = vim.g.border_style,
-                        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+                        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PMenuSel,Search:None',
                         col_offset = -3,
                         side_padding = 0,
                         scrollbar = false,

@@ -1,5 +1,19 @@
 return {
     {
+        'echasnovski/mini.icons',
+        opts = {},
+        -- replace nvim-web-devicons with mini.icons
+        specs = {
+            { 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+        },
+        init = function()
+            package.preload['nvim-web-devicons'] = function()
+                require('mini.icons').mock_nvim_web_devicons()
+                return package.loaded['nvim-web-devicons']
+            end
+        end,
+    },
+    {
         'echasnovski/mini.comment',
         keys = {
             { '<Leader>k', mode = { 'n', 'v' } },
@@ -15,6 +29,11 @@ return {
             }
         }
     },
+    -- {
+    --     'echasnovski/mini.align',
+    --     keys = { 'ga', 'gA' },
+    --     config = true
+    -- },
     {
         'echasnovski/mini.pairs',
         event = 'InsertEnter',
@@ -35,7 +54,6 @@ return {
                 end
                 vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
             end, {})
-
         end
     },
     {

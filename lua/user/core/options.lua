@@ -29,7 +29,8 @@ o.laststatus = 3
 o.cmdheight = 0
 o.conceallevel = 2
 o.showmode = false
-vim.g.border_style = 'rounded'
+vim.g.border_style = 'single'
+-- vim.g.border_style = 'rounded'
 
 -- folding
 o.foldenable = false
@@ -46,7 +47,6 @@ o.fillchars = {
 
 -- misc
 o.mouse = 'a'
--- o.shell = '/bin/nu'
 o.autochdir = true
 o.smartcase = true
 o.clipboard = 'unnamedplus'

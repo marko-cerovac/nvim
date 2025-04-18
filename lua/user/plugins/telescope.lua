@@ -13,21 +13,23 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
+            'nvim-telescope/telescope-ui-select.nvim',
         },
         keys = {
             '<Leader>ca',
-            { 'gr', function() return require 'telescope.builtin'.lsp_references() end, keymap_opts },
+            { 'gr',         function() return require 'telescope.builtin'.lsp_references() end,       keymap_opts },
             { '<Leader>fc', function() return require 'telescope.builtin'.lsp_document_symbols() end, keymap_opts },
-            { '<S-Enter>', function() return require 'telescope.builtin'.commands() end, keymap_opts },
-            { 'gs', neovim_settings, keymap_opts },
-            { '<Leader>;', function() return require 'telescope.builtin'.buffers() end, keymap_opts },
-            { '<Leader>fg', function() return require 'telescope.builtin'.live_grep() end, keymap_opts },
-            { '<Leader>gf', function() return require 'telescope.builtin'.git_files() end, keymap_opts },
-            { '<Leader>gc', function() return require 'telescope.builtin'.git_commits() end, keymap_opts },
-            { '<Leader>fr', function() return require 'telescope.builtin'.oldfiles() end, keymap_opts },
-            { '<Leader>ft', function() return require 'telescope.builtin'.colorscheme() end, keymap_opts },
-            { '<Leader>fh', function() return require 'telescope.builtin'.help_tags() end, keymap_opts },
-            { '<Leader>fm', function() return require 'telescope.builtin'.marks() end, keymap_opts },
+            { '<S-Enter>',  function() return require 'telescope.builtin'.commands() end,             keymap_opts },
+            { 'gs',         neovim_settings,                                                          keymap_opts },
+            { '<Leader>;',  function() return require 'telescope.builtin'.buffers() end,              keymap_opts },
+            { '<Leader>fg', function() return require 'telescope.builtin'.live_grep() end,            keymap_opts },
+            { '<Leader>gf', function() return require 'telescope.builtin'.git_files() end,            keymap_opts },
+            { '<Leader>gc', function() return require 'telescope.builtin'.git_commits() end,          keymap_opts },
+            { '<Leader>gb', function() return require 'telescope.builtin'.git_branches() end,         keymap_opts },
+            { '<Leader>fr', function() return require 'telescope.builtin'.oldfiles() end,             keymap_opts },
+            { '<Leader>ft', function() return require 'telescope.builtin'.colorscheme() end,          keymap_opts },
+            { '<Leader>fh', function() return require 'telescope.builtin'.help_tags() end,            keymap_opts },
+            { '<Leader>fm', function() return require 'telescope.builtin'.marks() end,                keymap_opts },
         },
         config = function()
             local telescope = require 'telescope'
@@ -36,6 +38,7 @@ return {
 
             telescope.setup {
                 defaults = themes.get_ivy {
+                -- defaults = {
                     mappings = {
                         i = {
                             ['<C-j>'] = actions.move_selection_next,
@@ -63,7 +66,7 @@ return {
                             },
                         },
                     },
-                    commans = { theme = 'dropdown' },
+                    commands = { theme = 'dropdown' },
                     marks = { theme = 'dropdown' },
                     colorscheme = { theme = 'dropdown' },
                     lsp_references = { theme = 'cursor' },
@@ -72,16 +75,18 @@ return {
                     ['file_browser'] = {
                         hijack_netrw = true,
                     },
+                    ['ui-select'] = {
+                        themes.get_dropdown { initial_mode = 'normal' }
+                    },
                     ['zoxide'] = {
                         prompt_title = 'Zoxide'
                     },
-                    ['import'] = {
-                        theme = themes.get_dropdown
-                    } }
+                }
             }
 
             -- load extensions
             telescope.load_extension 'fzy_native'
+            telescope.load_extension 'ui-select'
         end
     },
     {

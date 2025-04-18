@@ -27,8 +27,7 @@ return {
 
                     -- Commands
                     vim.api.nvim_buf_create_user_command(ev.buf, 'LspInlayHintToggle', function()
-                            local enabled = vim.lsp.inlay_hint.is_enabled()
-                            vim.lsp.inlay_hint.enable(0, not enabled)
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                         end,
                         { nargs = 0 }
                     )
@@ -52,11 +51,13 @@ return {
 
             -- ui config
             vim.diagnostic.config {
-                virtual_text = {
-                    prefix = '', -- could be '', '■', '▎', 'x', '●'
+                -- virtual_text = {
+                --     prefix = '', -- could be '', '■', '▎', 'x', '●'
+                -- },
+                virtual_lines = {
+                    current_line = true
                 },
                 signs = {
-                    -- text = { ' ', ' ', ' ', ' ' }
                     text = { ' ', ' ', ' ', ' ' }
                 },
                 underline = true,
@@ -115,8 +116,8 @@ return {
         version = '^5',
         ft = 'rust'
     },
-    {
-        'mfussenegger/nvim-jdtls',
-        ft = 'java'
-    }
+    -- {
+    --     'mfussenegger/nvim-jdtls',
+    --     ft = 'java'
+    -- }
 }

@@ -5,8 +5,12 @@ return {
         'mfussenegger/nvim-dap',
         keys = {
             { '<Leader>dd', function() return require 'dap'.continue() end },
-            { '<Leader>b', function() return require 'dap'.toggle_breakpoint() end },
-            { '<M-;>', function() return require 'dap'.toggle_breakpoint() end },
+            { '<Leader>b',  function() return require 'dap'.toggle_breakpoint() end },
+            { '<M-;>',      function() return require 'dap'.toggle_breakpoint() end },
+            { '<Leader>db', function()
+                local condition = vim.fn.input({ prompt = 'Breakpoint condition: ' })
+                return require 'dap'.toggle_breakpoint(condition)
+            end },
             { '<Leader>dx', function() return require 'dap'.clear_breakpoints() end },
         },
         dependencies = {
@@ -76,7 +80,7 @@ return {
 
                 vim.api.nvim_create_user_command(
                     'DapConsole',
-                    function ()
+                    function()
                         dapui.toggle(3)
                     end,
                     { nargs = 0 }
@@ -84,7 +88,7 @@ return {
 
                 vim.api.nvim_create_user_command(
                     'DapWatch',
-                    function ()
+                    function()
                         dapui.toggle(5)
                     end,
                     { nargs = 0 }
@@ -92,7 +96,7 @@ return {
 
                 vim.api.nvim_create_user_command(
                     'DapRepl',
-                    function ()
+                    function()
                         dapui.toggle(4)
                     end,
                     { nargs = 0 }
@@ -100,7 +104,7 @@ return {
             end
 
             dap.listeners.before['disconnect']['me'] = function()
-                require 'dapui'.close({1, 2, 3, 4, 5})
+                require 'dapui'.close({ 1, 2, 3, 4, 5 })
 
                 map('n', '<Leader>dd', dap.continue, opts)
                 unmap('n', '<Up>')
@@ -133,6 +137,9 @@ return {
         },
         lazy = true,
         opts = {
+            controls = {
+                enabled = false,
+            },
             mappings = {
                 expand = { '<CR>', '<2-LeftMouse>' },
                 open = 'o',
@@ -199,7 +206,8 @@ return {
         'theHamsta/nvim-dap-virtual-text',
         lazy = true,
         opts = {
-            enabled = false
+            commented = false,
+            all_references = true
         }
     },
     {

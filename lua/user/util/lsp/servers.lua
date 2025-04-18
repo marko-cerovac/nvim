@@ -1,11 +1,17 @@
 local lsp = require 'lspconfig'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local home_dir = vim.env.HOME
+
 lsp.clangd.setup {
     capabilities = capabilities
 }
 
 lsp.nushell.setup {
+    capabilities = capabilities
+}
+
+lsp.basedpyright.setup {
     capabilities = capabilities
 }
 
@@ -24,6 +30,26 @@ lsp.lua_ls.setup {
             },
         },
     },
+}
+
+lsp.jdtls.setup {
+    capabilities = capabilities,
+    cmd = {
+        'jdtls',
+        '-configuration',
+        home_dir .. '/.cache/jdtls/config',
+        '-data',
+        home_dir .. '/.cache/jdtls/workspace',
+    },
+    init_options = {
+        jvm_args = {},
+        workspace = home_dir .. '/.cache/jdtls/workspace'
+    }
+
+}
+
+lsp.tinymist.setup {
+    capabilities = capabilities,
 }
 
 -- lsp.rust_analyzer.setup {

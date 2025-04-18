@@ -1,8 +1,14 @@
 return {
     {
-        'marko-cerovac/material.nvim',
+        'marko-cerovac/balaena',
         priority = 1000,
-        -- lazy = true,
+        config = function()
+            vim.cmd 'colorscheme balaena'
+        end
+    },
+    {
+        'marko-cerovac/material.nvim',
+        lazy = true,
         config = function()
             local material = require 'material'
 
@@ -22,7 +28,6 @@ return {
                     functions = { italic = true },
                 },
                 plugins = {
-                    'flash',
                     'telescope',
                     'noice',
                     'nvim-cmp',
@@ -39,7 +44,7 @@ return {
             }
 
             -- enable the colorscheme
-            vim.cmd 'colorscheme material'
+            -- vim.cmd 'colorscheme material'
         end
     },
 }
