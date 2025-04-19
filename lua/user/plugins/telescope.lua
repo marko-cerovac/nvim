@@ -133,6 +133,7 @@ return {
     {
         'jonarrien/telescope-cmdline.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim' },
+        lazy = true,
         keys = {
             { '<S-Enter>', '<cmd>Telescope cmdline<CR>', keymap_opts },
             -- { ':', '<cmd>Telescope cmdline<CR>', keymap_opts },

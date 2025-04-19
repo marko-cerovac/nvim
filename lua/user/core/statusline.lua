@@ -29,7 +29,6 @@ local function filename()
     local icon, icon_hl = require('mini.icons').get('file', fname)
 
     return string.format(' %%#%s#%s %%#StatusLine#%%M%s ', icon_hl, icon, fname)
-
 end
 
 local function git()
@@ -57,39 +56,57 @@ local function git()
     return string.format(' %%#Title#%%%s: %s%s%s', branch, added, changed, removed)
 end
 
+-- scrap this
+-- local lsp_clients = {}
+-- local function lsp_client()
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     if lsp_clients[bufnr] then
+--         return string.format('%s', lsp_clients[bufnr])
+--     else
+--         local result = ''
+--         local servers = vim.lsp.get_clients({ bufnr = bufnr })
+--         if not vim.tbl_isempty(servers) then
+--             for _, server in pairs(servers) do
+--                 result = result .. '+' .. server.name
+--             end
+--         end
+--
+--         lsp_clients[bufnr] = result:sub(2) .. ':'
+--         vim.schedule(function()
+--             vim.cmd 'redrawstatus'
+--         end)
+--     end
+-- end
+
 local function diagnostics()
-    if not vim.diagnostic.is_enabled({ bufnr = 0 }) then return '' end
+    local bufnr = vim.api.nvim_get_current_buf()
+    if not vim.diagnostic.is_enabled({ bufnr = bufnr }) then return '' end
 
     local error = vim.diagnostic.count(0)[vim.diagnostic.severity.ERROR]
     local warn  = vim.diagnostic.count(0)[vim.diagnostic.severity.WARN]
     local info  = vim.diagnostic.count(0)[vim.diagnostic.severity.INFO]
     local hint  = vim.diagnostic.count(0)[vim.diagnostic.severity.HINT]
 
-    if error == nil or error == 0 then
-        error = ''
-    else
-        error = string.format('%%#DiagnosticSignError# %s ', error)
+    if error == nil or error == 0 then error = '' else error = string.format('%%#DiagnosticSignError# %s ', error) end
+    if warn == nil or warn == 0 then warn = '' else warn = string.format('%%#DiagnosticSignWarn# %s ', warn) end
+    if info == nil or info == 0 then info = '' else info = string.format('%%#DiagnosticSignInfo# %s ', info) end
+    if hint == nil or hint == 0 then hint = '' else hint = string.format('%%#DiagnosticSignHint# %s ', hint) end
+
+    return string.format(' %s%s%s%s ', error, warn, info, hint)
+end
+
+local function dap()
+    if not package.loaded['dap'] then
+        return ''
     end
 
-    if warn == nil or warn == 0 then
-        warn = ''
-    else
-        warn = string.format('%%#DiagnosticSignWarn# %s ', warn)
+    local status = require('dap').status()
+
+    if status == '' then
+        return ''
     end
 
-    if info == nil or warn == 0 then
-        info = ''
-    else
-        info = string.format('%%#DiagnosticSignInfo# %s ', info)
-    end
-
-    if hint == nil or hint == 0 then
-        hint = ''
-    else
-        hint = string.format('%%#DiagnosticSignHint# %s ', hint)
-    end
-
-    return string.format( ' %s%s%s%s ', error, warn, info, hint)
+    return string.format(' %s', status)
 end
 
 local function macro_recording()
@@ -103,15 +120,15 @@ local function macro_recording()
     end
 end
 
--- local function position()
---     local line_count = vim.fn.line('$')
---
---     if line_count < 20 then
---         return ''
---     else
---         return ' 󱪶 %l/%L[%p%%] '
---     end
--- end
+local function position()
+    local line_count = vim.fn.line('$')
+
+    if line_count < 20 then
+        return ''
+    else
+        return ' 󱪶 %l/%L[%p%%] '
+    end
+end
 
 Statusline = {}
 
@@ -124,13 +141,16 @@ Statusline.active = function()
         -- '%=%=',
         git(),
         '%=%=',
+        -- '%#StatusLine#',
+        -- lsp_client(),
         diagnostics(),
+        '%#StatusLine#',
+        dap(),
         '%=%=',
         -- '  ',
         '%=',
         filename(),
-        -- position(),
-        ' 󱪶 %l/%L[%p%%] ',
+        position(),
     }
 end
 
@@ -143,6 +163,16 @@ end
 
 vim.go.statusline =
 '%{%(nvim_get_current_win()==#g:actual_curwin || &laststatus==3) ? v:lua.Statusline.active() : v:lua.Statusline.inactive()%}'
+
+
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+    group = vim.api.nvim_create_augroup('user.statusline', { clear = true }),
+    callback = function()
+        vim.schedule(function()
+            vim.cmd 'redrawstatus'
+        end)
+    end
+})
 
 -- cmdgeight=0 option has a glitch where the statusline
 -- doesn't render on modes other than Normal mode.
@@ -158,9 +188,3 @@ vim.go.statusline =
 
 -- ############## RESOURCES ###############
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
-
--- IDEA:
--- have a red recording button ( or )
--- to denote that a macro is being recorded
--- literature:
--- https://www.reddit.com/r/neovim/comments/1djkwif/show_recording_macros_message_in_ministatusline/
