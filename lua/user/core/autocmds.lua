@@ -34,6 +34,16 @@ vim.api.nvim_create_autocmd('VimResized', {
     })
 })
 
+-- clear cmdline text after 5 seconds
+vim.api.nvim_create_autocmd('CmdLineLeave', {
+    callback = function()
+        vim.defer_fn(function() vim.cmd 'echom ""' end, 5000)
+    end,
+    group = vim.api.nvim_create_augroup('ClearCmdLine', {
+        clear = true
+    })
+})
+
 -- notify when recording macros
 local recording_group = vim.api.nvim_create_augroup('NotifyRecording', {
     clear = true
