@@ -19,11 +19,11 @@ return {
         'elkowar/yuck.vim',
         ft = 'yuck',
     },
-    {
-        'cordx56/rustowl',
-        ft = 'rust',
-        dependencies = { 'neovim/nvim-lspconfig' }
-    },
+    -- {
+    --     'cordx56/rustowl',
+    --     ft = 'rust',
+    --     dependencies = { 'neovim/nvim-lspconfig' }
+    -- },
     {
         'OXY2DEV/markview.nvim',
         dependencies = {
@@ -65,6 +65,33 @@ return {
             },
             ui = {
                 enable = false -- use markview.nvim for rendering
+            },
+            mappings = {
+                ['gf'] = {
+                    action = function()
+                        return require('obsidian').util.gf_passthrough()
+                    end,
+                    opts = { noremap = false, expr = true, buffer = true },
+                },
+                ['<m-Enter>'] = {
+                    action = function()
+                        return require('obsidian').util.gf_passthrough()
+                    end,
+                    opts = { noremap = false, expr = true, buffer = true },
+                },
+                ['<c-Space>'] = {
+                    action = function()
+                        return require('obsidian').util.toggle_checkbox()
+                    end,
+                    opts = { buffer = true },
+                },
+            },
+            picker = {
+                name = 'telescope.nvim',
+                mappings = {
+                    new = '<S-Enter>',
+                    insert_link = '<C-l>',
+                },
             }
         },
     }

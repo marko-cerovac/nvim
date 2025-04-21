@@ -1,5 +1,44 @@
 return {
     {
+        'echasnovski/mini.notify',
+        config = function()
+            local notify = require 'mini.notify'
+
+            notify.setup {
+                content = {
+                    format = function(notif)
+                        local icon = ' '
+
+                        if notif.level == 'DEBUG' then
+                            icon = ''
+                        elseif notif.level == 'ERROR' then
+                            icon = ''
+                        elseif notif.level == 'INFO' then
+                            icon = ''
+                        elseif notif.level == 'TRACE' then
+                            icon = ''
+                        elseif notif.level == 'WARN' then
+                            icon = ''
+                        end
+
+                        return string.format('%s | %s', icon, notif.msg)
+                    end
+                },
+                lsp_progress = {
+                    enable = true
+                },
+                window = {
+                    config = {
+                        border = vim.g.border_style
+                    },
+                    winblend = 0
+                }
+            }
+
+            vim.notify = notify.make_notify()
+        end,
+    },
+    {
         'echasnovski/mini.icons',
         opts = {},
         -- replace nvim-web-devicons with mini.icons
@@ -29,11 +68,6 @@ return {
             }
         }
     },
-    -- {
-    --     'echasnovski/mini.align',
-    --     keys = { 'ga', 'gA' },
-    --     config = true
-    -- },
     {
         'echasnovski/mini.pairs',
         event = 'InsertEnter',
