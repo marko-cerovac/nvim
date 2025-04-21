@@ -3,7 +3,6 @@ local CTRL_V = vim.api.nvim_replace_termcodes('<C-V>', true, true, true)
 
 local modes = {
     ['n']    = { content = 'NORM', hl = 'StatusLineModeNormal' },
-
     ['v']    = { content = 'VISU', hl = 'StatusLineModeVisual' },
     ['V']    = { content = 'V-LN', hl = 'StatusLineModeVisual' },
     [CTRL_V] = { content = 'V-BL', hl = 'StatusLineModeVisual' },
@@ -92,7 +91,13 @@ local function diagnostics()
     if info == nil or info == 0 then info = '' else info = string.format('%%#DiagnosticSignInfo# %s ', info) end
     if hint == nil or hint == 0 then hint = '' else hint = string.format('%%#DiagnosticSignHint# %s ', hint) end
 
-    return string.format(' %s%s%s%s ', error, warn, info, hint)
+    local result = string.format(' %s%s%s%s ', error, warn, info, hint)
+
+    if result == '  ' then
+        return result
+    else
+        return string.format('  :%s', result)
+    end
 end
 
 local function dap()
@@ -120,7 +125,21 @@ local function macro_recording()
     end
 end
 
+local function visual_selected()
+
+    local ln_beg = vim.fn.line('v')
+    local ln_end = vim.fn.line('.')
+
+    local lines = ln_beg <= ln_end and ln_end - ln_beg + 1 or ln_beg - ln_end + 1
+
+    return string.format(' [%sch/%sln]', vim.fn.wordcount().visual_chars, lines)
+end
+
 local function position()
+    if vim.fn.mode():find('[vV]') then
+        return visual_selected()
+    end
+
     local line_count = vim.fn.line('$')
 
     if line_count < 20 then
@@ -141,7 +160,7 @@ Statusline.active = function()
         -- '%=%=',
         git(),
         '%=%=',
-        -- '%#StatusLine#',
+        '%#StatusLine#',
         -- lsp_client(),
         diagnostics(),
         '%#StatusLine#',

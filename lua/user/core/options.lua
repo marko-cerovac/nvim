@@ -54,7 +54,11 @@ o.clipboard = 'unnamedplus'
 o.grepprg = 'rg --vimgrep'
 o.updatetime = 250
 o.timeoutlen = 1000
-o.shortmess:append({c = true, C = true})
+o.shortmess:append({
+    c = true,
+    C = true,
+    q = true,
+})
 
 -- add hyprlang filetype
 vim.filetype.add {
