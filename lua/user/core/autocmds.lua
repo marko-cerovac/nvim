@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
         vim.opt_local.relativenumber = false
         vim.cmd 'startinsert'
     end,
-    group = vim.api.nvim_create_augroup('Terminal', {
+    group = vim.api.nvim_create_augroup('user.terminal', {
         clear = true
     })
 })
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
             on_visual = false
         }
     end,
-    group = vim.api.nvim_create_augroup('YankHighlight', {
+    group = vim.api.nvim_create_augroup('user.yank_highlight', {
         clear = true
     })
 })
@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('VimResized', {
     callback = function()
         vim.cmd 'tabdo wincmd ='
     end,
-    group = vim.api.nvim_create_augroup('ReadjustWindows', {
+    group = vim.api.nvim_create_augroup('user.readjust_windows', {
         clear = true
     })
 })
@@ -39,13 +39,13 @@ vim.api.nvim_create_autocmd('CmdLineLeave', {
     callback = function()
         vim.defer_fn(function() vim.cmd 'echom ""' end, 5000)
     end,
-    group = vim.api.nvim_create_augroup('ClearCmdLine', {
+    group = vim.api.nvim_create_augroup('user.clear_cmdline', {
         clear = true
     })
 })
 
 -- notify when recording macros
-local recording_group = vim.api.nvim_create_augroup('NotifyRecording', {
+local recording_group = vim.api.nvim_create_augroup('user.notify_recording', {
     clear = true
 })
 vim.api.nvim_create_autocmd('RecordingEnter', {
