@@ -14,7 +14,7 @@ return {
                     map('n', 'gD', vim.lsp.buf.declaration, opts)
                     map('n', 'K', vim.lsp.buf.hover, opts)
                     map('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
-                    map('n', '<Leader>cr', vim.lsp.buf.rename, opts)
+                    map('n', '<Leader>cr', require('user.ui.lsp_rename').rename, opts)
                     map({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
                     map('n', '<Leader>cf', function() vim.lsp.buf.format { async = true } end, opts)
                     -- map('n', 'gl', vim.diagnostic.open_float)

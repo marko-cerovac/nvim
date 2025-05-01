@@ -52,9 +52,6 @@ map('n', '<C-u>', '<C-u>zz', opts)
 -- check if nu exists and use it as a shell
 local shell_cmd = vim.fn.executable('nu') == 1 and 'nu' or ''
 
-map('n', '<Leader>tt', function()
-    vim.cmd.term(shell_cmd)
-end, opts)
 map('n', '<Leader>tv', function()
     vim.cmd.vnew()
     vim.cmd.term(shell_cmd)
@@ -62,6 +59,9 @@ end, opts)
 map('n', '<Leader>ts', function()
     vim.cmd.split()
     vim.cmd.term(shell_cmd)
+end, opts)
+map({'n', 't'}, '<M-t>', function()
+    require('user.ui.floating_terminal').toggle(shell_cmd)
 end, opts)
 
 -- terminal navigation

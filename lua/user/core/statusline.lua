@@ -15,11 +15,12 @@ local modes = {
     ['r']    = { content = 'PROM', hl = 'StatusLineModeCommand' },
     ['!']    = { content = 'SHEL', hl = 'StatusLineModeTerminal' },
     ['t']    = { content = 'TERM', hl = 'StatusLineModeTerminal' },
+    ['nt']   = { content = 'TERM', hl = 'StatusLineModeTerminal' },
 }
 
 local function mode()
-    local current_mode = vim.api.nvim_get_mode().mode
-    return string.format('%%#%s# %s ', modes[current_mode].hl, modes[current_mode].content)
+    local current_mode = modes[vim.api.nvim_get_mode().mode] or { content = 'UNKN', hl = 'StatusLineModeUnknown' }
+    return string.format('%%#%s# %s ', current_mode.hl, current_mode.content)
 end
 
 

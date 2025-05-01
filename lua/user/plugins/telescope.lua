@@ -23,7 +23,7 @@ return {
             { 'gs',         neovim_settings,                                                          keymap_opts },
             { '<Leader>;',  function() return require 'telescope.builtin'.buffers() end,              keymap_opts },
             { '<Leader>fg', function() return require 'telescope.builtin'.live_grep() end,            keymap_opts },
-            { '<Leader>gf', function() return require 'telescope.builtin'.git_files() end,            keymap_opts },
+            { '<Leader>gg', function() return require 'telescope.builtin'.git_files() end,            keymap_opts },
             { '<Leader>gc', function() return require 'telescope.builtin'.git_commits() end,          keymap_opts },
             { '<Leader>gb', function() return require 'telescope.builtin'.git_branches() end,         keymap_opts },
             { '<Leader>fr', function() return require 'telescope.builtin'.oldfiles() end,             keymap_opts },

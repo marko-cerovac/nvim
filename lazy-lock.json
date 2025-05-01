@@ -40,7 +40,6 @@
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "rasi.vim": { "branch": "main", "commit": "7ce90590d007a7d15fc292313565e04a2ba57182" },
   "rustaceanvim": { "branch": "master", "commit": "e9c5aaba16fead831379d5f44617547a90b913c7" },
-  "rustowl": { "branch": "main", "commit": "23252b703b3fd4a6364bb0853261b80df6ec2f4d" },
   "telescope-cmdline.nvim": { "branch": "main", "commit": "8b05928ac1b9f2b772cedde891faa6669b0ec59a" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
