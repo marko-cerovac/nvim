@@ -35,8 +35,10 @@ vim.g.border_style = 'single'
 
 -- folding
 o.foldenable = false
+o.foldlevel = 99
 o.foldmethod = 'expr'
-o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:N"
+o.foldtext = ''
+o.foldcolumn = '0'
 o.fillchars = {
   foldopen = '',
   foldclose = '',
@@ -45,6 +47,7 @@ o.fillchars = {
   diff = '╱',
   eob = ' ',
 }
+-- o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:N"
 
 -- misc
 o.mouse = 'a'

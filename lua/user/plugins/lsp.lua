@@ -6,8 +6,15 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
                 callback = function(ev)
-                    local opts = { buffer = ev.buf }
-                    local map = vim.keymap.set
+                    local opts   = { buffer = ev.buf }
+                    local map    = vim.keymap.set
+                    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+                    -- enable lsp folding if the ls supports it
+                    if client:supports_method('textDocument/foldingRange') then
+                        local win = vim.api.nvim_get_current_win()
+                        vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+                    end
 
                     -- Mappings
                     map('n', 'L', vim.diagnostic.open_float)
@@ -116,8 +123,8 @@ return {
         version = '^5',
         ft = 'rust'
     },
-    -- {
-    --     'mfussenegger/nvim-jdtls',
-    --     ft = 'java'
-    -- }
+    {
+        'mfussenegger/nvim-jdtls',
+        ft = 'java'
+    }
 }

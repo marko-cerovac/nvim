@@ -30,7 +30,10 @@ return {
             'nvim-treesitter/nvim-treesitter',
             'nvim-tree/nvim-web-devicons'
         },
-        ft = 'markdown',
+        ft = {
+            'markdown',
+            'typst'
+        },
         opts = {},
     },
     {
@@ -84,6 +87,12 @@ return {
                         return require('obsidian').util.toggle_checkbox()
                     end,
                     opts = { buffer = true },
+                },
+                ['<C-o>'] = {
+                    action = function()
+                        vim.cmd 'ObsidianQuickSwitch'
+                    end,
+                    opts = { buffer = true }
                 },
             },
             picker = {

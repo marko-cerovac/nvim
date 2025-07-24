@@ -29,13 +29,13 @@ return {
                 end
             end, opts)
 
-            map({'i', 's'}, '<C-l>', function()
+            map({'i', 's'}, '<M-l>', function()
                 if ls.expand_or_jumpable() then
                     ls.expand_or_jump()
                 end
             end)
 
-            map({'i', 's'}, '<C-h>', function()
+            map({'i', 's'}, '<M-h>', function()
                 if ls.expand_or_jumpable(-1) then
                     ls.expand_or_jump(-1)
                 end
@@ -137,8 +137,8 @@ return {
                     ghost_text = true,
                 },
                 mapping = {
-                    ['<C-k>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-                    ['<C-j>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                    ['<M-k>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                    ['<M-j>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),

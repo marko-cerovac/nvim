@@ -91,6 +91,13 @@ return {
         end
     },
     {
+        'echasnovski/mini.surround',
+        keys = {
+            { 's', mode = { 'n', 'v' } },
+        },
+        config = true
+    },
+    {
         'echasnovski/mini.splitjoin',
         keys = { 'gS' },
         config = true

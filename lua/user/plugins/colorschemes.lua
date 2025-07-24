@@ -47,4 +47,11 @@ return {
             -- vim.cmd 'colorscheme material'
         end
     },
+    {
+        'mcauley-penney/techbase.nvim',
+        lazy = true,
+        config = function ()
+            vim.cmd 'colorscheme techbase'
+        end
+    },
 }

@@ -10,6 +10,7 @@ end
 return {
     {
         'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
@@ -41,8 +42,8 @@ return {
                     -- defaults = {
                     mappings = {
                         i = {
-                            ['<C-j>'] = actions.move_selection_next,
-                            ['<C-k>'] = actions.move_selection_previous,
+                            ['<M-j>'] = actions.move_selection_next,
+                            ['<M-k>'] = actions.move_selection_previous,
                             ['<C-s>'] = actions.select_horizontal,
                         },
                         n = {
@@ -84,8 +85,8 @@ return {
                     ['cmdline'] = {
                         mappings = {
                             complete      = '<Tab>',
-                            run_selection = '<C-CR>',
-                            run_input     = '<CR>',
+                            run_selection = '<CR>',
+                            run_input     = '<C-CR>',
                         }
                     }
                 }

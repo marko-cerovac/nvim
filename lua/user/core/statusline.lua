@@ -160,7 +160,7 @@ Statusline.active = function()
         '%#StatusLine#',
         -- '%=%=',
         git(),
-        '%=%=',
+        -- '%=%=',
         '%#StatusLine#',
         -- lsp_client(),
         diagnostics(),

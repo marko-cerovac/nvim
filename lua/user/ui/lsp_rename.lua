@@ -15,7 +15,7 @@ end
 M.rename = function ()
     local win_config = {
         relative = 'cursor',
-        width = 20,
+        width = 30,
         height = 1,
         col = 0,
         row = 1,
