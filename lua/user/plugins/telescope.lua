@@ -37,6 +37,25 @@ return {
             local actions   = require 'telescope.actions'
             local themes    = require 'telescope.themes'
 
+            -- REMOVE AS SOON AS POSSIBLE
+            -- ------------------------------------------------
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "TelescopeFindPre",
+                callback = function()
+                    vim.opt_local.winborder = "none"
+                    vim.api.nvim_create_autocmd("WinLeave", {
+                        once = true,
+                        callback = function()
+                            vim.opt_local.winborder = "single"
+                        end,
+                    })
+                end,
+                group = vim.api.nvim_create_augroup('user.ugly_telescope_border_workaround', {
+                    clear = true
+                })
+            })
+            -- ------------------------------------------------
+
             telescope.setup {
                 defaults = themes.get_ivy {
                     -- defaults = {

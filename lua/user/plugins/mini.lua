@@ -28,9 +28,9 @@ return {
                     enable = true
                 },
                 window = {
-                    config = {
-                        border = vim.g.border_style
-                    },
+                    -- config = {
+                        -- border = vim.g.border_style
+                    -- },
                     winblend = 0
                 }
             }

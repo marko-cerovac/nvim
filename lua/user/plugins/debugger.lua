@@ -191,7 +191,7 @@ return {
                 },
             },
             floating = {
-                border = vim.g.border_style,
+                -- border = vim.g.border_style,
                 mappings = {
                     close = { 'q', '<Esc>' },
                 },

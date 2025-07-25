@@ -16,7 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("user.plugins", {
     ui = {
-        border = vim.g.border_style
+        -- border = vim.g.border_style,
+        backdrop = 100
     },
     performance = {
         rtp = {

@@ -103,6 +103,11 @@ return {
                             { "label_description" },
                             { "kind" },
                         },
+                        components = {
+                            kind_icon = {
+                                highlight = 'BlinkCmpKindIcon'
+                            },
+                        },
                         gap = 2,
                         treesitter = { 'lsp' },
                     },

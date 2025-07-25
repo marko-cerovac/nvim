@@ -21,7 +21,7 @@ M.rename = function ()
         row = 1,
         style = 'minimal',
         title = 'Rename',
-        border = vim.g.border_style,
+        -- border = vim.g.border_style,
     }
 
     local current_name = vim.fn.expand('<cword>')

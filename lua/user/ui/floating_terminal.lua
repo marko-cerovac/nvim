@@ -31,7 +31,7 @@ local function create_floating_window(opts)
         style = 'minimal',
         title = 'Terminal',
         title_pos = 'center',
-        border = vim.g.border_style,
+        -- border = vim.g.border_style,
     }
 
     -- open the window and enter it

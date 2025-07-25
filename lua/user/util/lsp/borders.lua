@@ -1,5 +1,5 @@
 -- set borders for :lspinfo window
-require 'lspconfig.ui.windows'.default_options.border = vim.g.border_style
+-- require 'lspconfig.ui.windows'.default_options.border = vim.g.border_style
 
 -- Set borders for all lsp floating windows
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

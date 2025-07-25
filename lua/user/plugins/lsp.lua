@@ -70,10 +70,10 @@ return {
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
-                float = {
-                    border = vim.g.border_style,
-                    style = 'minimal',
-                },
+                -- float = {
+                    -- border = vim.g.border_style,
+                    -- style = 'minimal',
+                -- },
             }
 
             -- add rounded borders to lsp ui
@@ -91,7 +91,8 @@ return {
                 'williamboman/mason.nvim',
                 opts = {
                     ui = {
-                        border = vim.g.border_style,
+                        -- border = vim.g.border_style,
+                        backdrop = 100,
                         icons = {
                             package_installed = "",
                             package_pending = "",
