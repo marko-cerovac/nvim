@@ -98,13 +98,18 @@ return {
                 menu = {
                     draw = {
                         columns = {
-                            { "kind_icon",         "label", gap = 2 },
-                            { "label_description", "kind",  gap = 2 },
+                            { "kind_icon" },
+                            { "label" },
+                            { "label_description" },
+                            { "kind" },
                         },
+                        gap = 2,
+                        treesitter = { 'lsp' },
                     },
                     documentation = {
                         auto_show = false
-                    }
+                    },
+                    scrollbar = false,
                 },
 
                 ghost_text = { enabled = true },

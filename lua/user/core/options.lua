@@ -30,6 +30,7 @@ o.cmdheight = 1
 o.conceallevel = 2
 o.showmode = false
 o.showcmd = false
+o.winborder = 'single'
 vim.g.border_style = 'single'
 -- vim.g.border_style = 'rounded'
 
