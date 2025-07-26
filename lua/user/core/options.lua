@@ -54,7 +54,6 @@ o.fillchars = {
 o.mouse = 'a'
 o.autochdir = true
 o.smartcase = true
-o.clipboard = 'unnamedplus'
 o.grepprg = 'rg --vimgrep'
 o.updatetime = 250
 o.timeoutlen = 1000
@@ -63,6 +62,10 @@ o.shortmess:append({
     C = true,
     q = true,
 })
+
+vim.schedule(function()
+    o.clipboard = 'unnamedplus'
+end)
 
 -- add hyprlang filetype
 vim.filetype.add {

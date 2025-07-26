@@ -34,7 +34,8 @@ map('n', '<M-L>', ':vertical resize +2<CR>')
 map('n', 'gb', ':bnext<CR>')
 
 -- removing search highlight
-map('n', 'gh', ':noh<CR>')
+map('n', '<Esc>', ':noh<CR>')
+-- map('n', 'gh', ':noh<CR>')
 
 -- hold on to selection when indenting
 map('v', '<', '<gv')

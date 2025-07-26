@@ -4,7 +4,7 @@ return {
         lazy = true,
         config = function()
             vim.api.nvim_create_autocmd('LspAttach', {
-                group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
+                group = vim.api.nvim_create_augroup('user.lspconfig', { clear = true }),
                 callback = function(ev)
                     local opts   = { buffer = ev.buf }
                     local map    = vim.keymap.set
@@ -77,7 +77,7 @@ return {
             }
 
             -- add rounded borders to lsp ui
-            require 'user.util.lsp.borders'
+            -- require 'user.util.lsp.borders'
         end,
     },
     {

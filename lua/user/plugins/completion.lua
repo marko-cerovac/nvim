@@ -53,6 +53,9 @@ return {
         build = 'cargo build --release',
         opts = {
             cmdline = { enabled = true },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
             keymap = {
                 preset = 'none',
                 ['<M-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -81,9 +84,6 @@ return {
 
             },
             completion = {
-                sources = {
-                    default = { 'lsp', 'path', 'snippets', 'buffer' },
-                },
                 accept = {
                     auto_brackets = { enabled = false }
 
@@ -99,11 +99,17 @@ return {
                     draw = {
                         columns = {
                             { "kind_icon" },
+                            -- { "label", "label_description", gap = 1 },
                             { "label" },
-                            { "label_description" },
                             { "kind" },
                         },
                         components = {
+                            -- label = {
+                            --     width = { max = 30 }
+                            -- },
+                            -- label_description = {
+                            --     width = { max = 20 }
+                            -- },
                             kind_icon = {
                                 highlight = 'BlinkCmpKindIcon'
                             },
@@ -111,10 +117,10 @@ return {
                         gap = 2,
                         treesitter = { 'lsp' },
                     },
-                    documentation = {
-                        auto_show = false
-                    },
                     scrollbar = false,
+                },
+                documentation = {
+                    auto_show = false
                 },
 
                 ghost_text = { enabled = true },
