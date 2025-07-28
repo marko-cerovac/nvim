@@ -17,5 +17,5 @@ require 'user.core.statusline'
 require 'user.core.lazy'
 
 if vim.g.neovide then
-    require 'user.util.neovide'
+    require 'user.clients.neovide'
 end

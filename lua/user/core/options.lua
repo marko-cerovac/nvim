@@ -1,46 +1,44 @@
-local o = vim.opt
-
 -- file
-o.confirm = true
-o.swapfile = false
-o.writebackup = false
-o.autoread = true
+vim.opt.confirm = true
+vim.opt.swapfile = false
+vim.opt.writebackup = false
+vim.opt.autoread = true
 
 -- formating
-o.expandtab = true
-o.tabstop = 4
-o.shiftwidth = 4
-o.smartindent = true
-o.breakindent = false
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.smartindent = true
+vim.opt.breakindent = false
 
 -- window
-o.splitright = true
-o.splitbelow = true
-o.scrolloff = 5
-o.sidescrolloff = 10
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 10
 
 -- ui
-o.number = true
-o.relativenumber = true
-o.cursorline = true
-o.wrap = false
-o.signcolumn = 'yes'
-o.laststatus = 3
-o.cmdheight = 1
-o.conceallevel = 2
-o.showmode = false
-o.showcmd = false
-o.winborder = 'single'
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.wrap = false
+vim.opt.signcolumn = 'yes'
+vim.opt.laststatus = 3
+vim.opt.cmdheight = 1
+vim.opt.conceallevel = 2
+vim.opt.showmode = false
+vim.opt.showcmd = false
+vim.opt.winborder = 'single'
 -- vim.g.border_style = 'single'
 -- vim.g.border_style = 'rounded'
 
 -- folding
-o.foldenable = false
-o.foldlevel = 99
-o.foldmethod = 'expr'
-o.foldtext = ''
-o.foldcolumn = '0'
-o.fillchars = {
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
+vim.opt.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars = {
   foldopen = '',
   foldclose = '',
   fold = ' ',
@@ -51,26 +49,28 @@ o.fillchars = {
 -- o.listchars = "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:N"
 
 -- misc
-o.mouse = 'a'
-o.autochdir = true
-o.smartcase = true
-o.grepprg = 'rg --vimgrep'
-o.updatetime = 250
-o.timeoutlen = 1000
-o.shortmess:append({
+vim.opt.mouse = 'a'
+vim.opt.autochdir = true
+vim.opt.smartcase = true
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 1000
+vim.opt.shortmess:append({
     c = true,
     C = true,
     q = true,
 })
 
+-- set slower settings async
 vim.schedule(function()
-    o.clipboard = 'unnamedplus'
+    vim.opt.clipboard = 'unnamedplus'
+
+    -- add hyprlang filetype
+    vim.filetype.add {
+        pattern = {
+            ['.*/hyprland%.conf'] = 'hyprlang',
+            ['${XDG_CONFIG_HOME}/hypr/.*%.conf'] = 'hyprlang'
+        }
+    }
 end)
 
--- add hyprlang filetype
-vim.filetype.add {
-    pattern = {
-        ['.*/hyprland%.conf'] = 'hyprlang',
-        ['${XDG_CONFIG_HOME}/hypr/.*%.conf'] = 'hyprlang'
-    }
-}

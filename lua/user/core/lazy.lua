@@ -16,7 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("user.plugins", {
     ui = {
-        -- border = vim.g.border_style,
+        -- remove as soon as possible
+        -- --------------------------------
+        border = vim.opt.winborder["_value"],
+        -- --------------------------------
         backdrop = 100
     },
     performance = {

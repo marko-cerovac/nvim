@@ -1,49 +1,30 @@
-local map  = vim.keymap.set
+local map = vim.keymap.set
+
 
 -- map leader to space
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ';'
+vim.g.mapleader      = ' '
+vim.g.maplocalleader = ','
 map('n', '<Space>', '<NOP>')
 
--- window navigation
-map('n', '<M-j>', '<C-w>j')
-map('n', '<M-k>', '<C-w>k')
-map('n', '<M-h>', '<C-w>h')
-map('n', '<M-l>', '<C-w>l')
+map('n', '<M-j>', '<C-w>j', { desc = 'Move focus to lower window' })
+map('n', '<M-k>', '<C-w>k', { desc = 'Move focus to upper window' })
+map('n', '<M-h>', '<C-w>h', { desc = 'Move focus to left window' })
+map('n', '<M-l>', '<C-w>l', { desc = 'Move focus to right window' })
 map('n', '<M-w>', '<C-w>')
--- map('n', '<M-j>', function()
---     vim.cmd.wincmd('j')
--- end)
--- map('n', '<M-k>', function()
---     vim.cmd.wincmd('k')
--- end)
--- map('n', '<M-h>', function()
---     vim.cmd.wincmd('h')
--- end)
--- map('n', '<M-l>', function()
---     vim.cmd.wincmd('l')
--- end)
 
--- window resizing
-map('n', '<M-J>', ':resize -2<CR>')
-map('n', '<M-K>', ':resize +2<CR>')
-map('n', '<M-H>', ':vertical resize -2<CR>')
-map('n', '<M-L>', ':vertical resize +2<CR>')
+map('n', '<M-J>', ':resize -2<CR>', { desc = 'Resize window down' })
+map('n', '<M-K>', ':resize +2<CR>', { desc = 'Resize window up' })
+map('n', '<M-H>', ':vertical resize -2<CR>', { desc = 'Resize window to the left' })
+map('n', '<M-L>', ':vertical resize +2<CR>', { desc = 'Resize window to the right' })
 
--- switching buffers
-map('n', 'gb', ':bnext<CR>')
-
--- removing search highlight
-map('n', '<Esc>', ':noh<CR>')
--- map('n', 'gh', ':noh<CR>')
+map('n', '<Esc>', ':noh<CR>', { desc = 'Clear serarch highlighting' })
+map('n', 'gh', ':noh<CR>', { desc = 'Clear serarch highlighting' })
+map('i', 'jf', '<Esc>', { desc = 'Escape insert mode' })
+map('i', 'fj', '<Esc>', { desc = 'Escape insert mode' })
 
 -- hold on to selection when indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
-
--- escaping insert mode
-map('i', 'jf', '<Esc>')
-map('i', 'fj', '<Esc>')
 
 -- center window when scrolling
 map('n', '<C-d>', '<C-d>zz')
@@ -53,16 +34,16 @@ map('n', '<C-u>', '<C-u>zz')
 local shell_cmd = vim.fn.executable('nu') == 1 and 'nu' or ''
 
 map('n', '<Leader>tv', function()
-    vim.cmd.vnew()
+    vim.cmd.vsp()
     vim.cmd.term(shell_cmd)
-end)
+end, { desc = 'Open terminal vertically' })
 map('n', '<Leader>ts', function()
-    vim.cmd.split()
+    vim.cmd.sp()
     vim.cmd.term(shell_cmd)
-end)
-map({'n', 't'}, '<M-t>', function()
-    require('user.ui.floating_terminal').toggle(shell_cmd)
-end)
+end, { desc = 'Open terminal horizontally' })
+map({ 'n', 't' }, '<M-t>', function()
+    require('user.util.floating_terminal').toggle(shell_cmd)
+end, { desc = 'Toggle floating terminal' })
 
 -- terminal navigation
 map('t', '<Esc><Esc>', '<C-\\><C-n>')
@@ -76,5 +57,4 @@ map('i', ',', ',<C-g>u')
 map('i', '.', '.<C-g>u')
 map('i', ';', ';<C-g>u')
 
--- align code
-map('v', 'g=', '! column -t -s= -o=<CR>')
+map('v', 'g=', '! column -t -s= -o=<CR>', { desc = 'Align code to the \'=\' char' })

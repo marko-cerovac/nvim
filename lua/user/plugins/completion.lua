@@ -51,6 +51,7 @@ return {
         version = '1.*',
         dependencies = { 'L3MON4D3/LuaSnip' },
         build = 'cargo build --release',
+        event = 'UIEnter',
         opts = {
             cmdline = { enabled = true },
             sources = {

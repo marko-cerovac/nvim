@@ -1,41 +1,25 @@
-local keymap_opts = { silet = true }
-
-local neovim_settings = function()
-    require 'telescope.builtin'.find_files {
-        prompt_title = 'NeoVim Settings',
-        cwd = vim.fn.stdpath 'config' .. '/lua/user',
-    }
-end
-
 return {
     {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
+        event = 'UIEnter',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
         },
-        keys = {
-            '<Leader>ca',
-            { 'gr',         function() return require 'telescope.builtin'.lsp_references() end,       keymap_opts },
-            { '<Leader>fc', function() return require 'telescope.builtin'.lsp_document_symbols() end, keymap_opts },
-            -- { '<S-Enter>',  function() return require 'telescope.builtin'.commands() end,             keymap_opts },
-            { 'gs',         neovim_settings,                                                          keymap_opts },
-            { '<Leader>;',  function() return require 'telescope.builtin'.buffers() end,              keymap_opts },
-            { '<Leader>fg', function() return require 'telescope.builtin'.live_grep() end,            keymap_opts },
-            { '<Leader>gg', function() return require 'telescope.builtin'.git_files() end,            keymap_opts },
-            { '<Leader>gc', function() return require 'telescope.builtin'.git_commits() end,          keymap_opts },
-            { '<Leader>gb', function() return require 'telescope.builtin'.git_branches() end,         keymap_opts },
-            { '<Leader>fr', function() return require 'telescope.builtin'.oldfiles() end,             keymap_opts },
-            { '<Leader>ft', function() return require 'telescope.builtin'.colorscheme() end,          keymap_opts },
-            { '<Leader>fh', function() return require 'telescope.builtin'.help_tags() end,            keymap_opts },
-            { '<Leader>fm', function() return require 'telescope.builtin'.marks() end,                keymap_opts },
-        },
         config = function()
             local telescope = require 'telescope'
             local actions   = require 'telescope.actions'
             local themes    = require 'telescope.themes'
+            local map       = vim.keymap.set
+
+            local neovim_settings = function()
+                require 'telescope.builtin'.find_files {
+                    prompt_title = 'NeoVim Settings',
+                    cwd = vim.fn.stdpath 'config' .. '/lua/user',
+                }
+            end
 
             -- REMOVE AS SOON AS POSSIBLE
             -- ------------------------------------------------
@@ -98,9 +82,6 @@ return {
                     ['ui-select'] = {
                         themes.get_dropdown { initial_mode = 'normal' }
                     },
-                    ['zoxide'] = {
-                        prompt_title = 'Zoxide'
-                    },
                     ['cmdline'] = {
                         mappings = {
                             complete      = '<Tab>',
@@ -114,7 +95,22 @@ return {
             -- load extensions
             telescope.load_extension 'fzy_native'
             telescope.load_extension 'ui-select'
+
+            map('n', 'gs', neovim_settings, { desc = 'Find NeoVim settings' })
+            map('n', 'g;', require('telescope.builtin').buffers, { desc = 'Find open buffers' })
+            map('n', 'grr', require('telescope.builtin').lsp_references, { desc = 'Find LSP references' })
+            map('n', 'gO', require('telescope.builtin').lsp_document_symbols, { desc = 'Show LSP document symbols' })
+            map('n', 'gri', require('telescope.builtin').lsp_implementations, { desc = 'Find LSP implementations' })
+            map('n', '<Leader>fg', require('telescope.builtin').live_grep, { desc = 'Grep directory' })
+            map('n', '<Leader>fr', require('telescope.builtin').oldfiles, { desc = 'Find recent files' })
+            map('n', '<Leader>ft', require('telescope.builtin').colorscheme, { desc = 'Find colorschemes' })
+            map('n', '<Leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help tags' })
+            map('n', '<Leader>fm', require('telescope.builtin').marks, { desc = 'Find marks' })
+            map('n', '<Leader>gg', require('telescope.builtin').git_files, { desc = 'Find Git files' })
+            map('n', '<Leader>gc', require('telescope.builtin').git_commits, { desc = 'Find Git commits' })
+            map('n', '<Leader>gb', require('telescope.builtin').git_branches, { desc = 'Find Git branches' })
         end
+
     },
     {
         'nvim-telescope/telescope-file-browser.nvim',
@@ -129,7 +125,7 @@ return {
         keys = {
             { '<Leader>e', function()
                 return require 'telescope'.extensions.file_browser.file_browser()
-            end, keymap_opts
+            end, { desc = 'Open Telescope file browser' }
             },
         },
         config = function()
@@ -137,29 +133,29 @@ return {
         end
     },
     {
-        'jvgrootveld/telescope-zoxide',
-        lazy = true,
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-            'nvim-telescope/telescope-file-browser.nvim',
-        },
-        keys = {
-            { '<Leader>j', function() return require 'telescope'.extensions.zoxide.list() end, keymap_opts }
-        },
-        config = function()
-            require 'telescope'.load_extension 'zoxide'
-        end,
-    },
-    {
         'jonarrien/telescope-cmdline.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim' },
         lazy = true,
         keys = {
-            { '<S-Enter>', '<cmd>Telescope cmdline<CR>', keymap_opts },
-            -- { ':', '<cmd>Telescope cmdline<CR>', keymap_opts },
+            { '<S-Enter>', '<cmd>Telescope cmdline<CR>', { desc = 'Open Telescope command line' } },
         },
         config = function()
             require 'telescope'.load_extension 'cmdline'
         end
-    }
+    },
+    -- {
+    --     'jvgrootveld/telescope-zoxide',
+    --     lazy = true,
+    --     dependencies = {
+    --         'nvim-telescope/telescope.nvim',
+    --     },
+    --     keys = {
+    --         { '<Leader>j', function()
+    --             return require 'telescope'.extensions.zoxide.list()
+    --         end, { desc = 'Find zoxide directories' } }
+    --     },
+    --     config = function()
+    --         require 'telescope'.load_extension 'zoxide'
+    --     end,
+    -- },
 }

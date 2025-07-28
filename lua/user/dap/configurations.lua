@@ -1,5 +1,5 @@
 local dap      = require 'dap'
-local find_exe = require 'user.util.telescope.dap_launch'
+local find_exe = require 'user.util.dap_launch'
 
 -- cppdbg
 dap.configurations.cpp = {

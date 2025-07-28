@@ -12,16 +12,7 @@ return {
                     changedelete = { text = '▍', },
                     untracked = { text = '▍', },
                 },
-                -- signs_staged = {
-                --     add = { text = '▍', },
-                --     change = { text = '▍', },
-                --     delete = { text = '', },
-                --     topdelete = { text = '', },
-                --     changedelete = { text = '▍', },
-                --     untracked = { text = '▍', },
-                -- },
                 signs_staged_enable = false,
-                -- preview_config = { border = vim.g.border_style },
                 on_attach = function(bufnr)
                     local gs   = package.loaded.gitsigns
                     local map  = vim.keymap.set
