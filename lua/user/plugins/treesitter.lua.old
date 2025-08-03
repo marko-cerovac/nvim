@@ -1,0 +1,43 @@
+return {
+    {
+        'nvim-treesitter/nvim-treesitter',
+        branch = 'main',
+        build = ':TSUpdate',
+        opts = {
+            ensure_installed = {
+                'vim', 'vimdoc', 'lua', 'markdown', 'markdown_inline',
+                'c', 'cpp', 'rust', 'python', 'java', 'javadoc',
+                'html', 'css', 'javascript', 'typescript',
+                'make', 'meson', 'sql', 'xml', 'toml',
+                'bash', 'nu',
+                'hyperlang',
+            }
+        },
+        config = function(_, opts)
+            -- new setup function for the "main" branch
+            require('nvim-treesitter').setup {
+                -- Directory to install parsers and queries to
+                install_dir = vim.fn.stdpath('data') .. '/site'
+            }
+
+            if opts.ensure_installed then
+                local group = vim.api.nvim_create_augroup('user.treesitter_autostart', { clear = true })
+
+
+                require('nvim-treesitter').install(opts.ensure_installed)
+
+                for _, parser in ipairs(opts.ensure_installed) do
+                    vim.api.nvim_create_autocmd('FileType', {
+                        pattern = parser,
+                        callback = function(ev)
+                            vim.treesitter.start(ev.buf, parser)
+                        end
+                    })
+                end
+            end
+
+            vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+            -- vim.bo.indentexpr = 'v:lua.require"nvim-treesitter".indentexpr()'
+        end,
+    }
+}

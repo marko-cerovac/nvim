@@ -5,7 +5,10 @@ return {
         event = 'UIEnter',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-fzy-native.nvim',
+            {
+                'nvim-telescope/telescope-fzy-native.nvim',
+                build = 'make'
+            },
             'nvim-telescope/telescope-ui-select.nvim',
         },
         config = function()
@@ -17,7 +20,8 @@ return {
             local neovim_settings = function()
                 require 'telescope.builtin'.find_files {
                     prompt_title = 'NeoVim Settings',
-                    cwd = vim.fn.stdpath 'config' .. '/lua/user',
+                    cwd = vim.fn.stdpath 'config',
+                    -- cwd = vim.fn.stdpath 'config' .. '/lua/user',
                 }
             end
 
@@ -143,19 +147,19 @@ return {
             require 'telescope'.load_extension 'cmdline'
         end
     },
-    -- {
-    --     'jvgrootveld/telescope-zoxide',
-    --     lazy = true,
-    --     dependencies = {
-    --         'nvim-telescope/telescope.nvim',
-    --     },
-    --     keys = {
-    --         { '<Leader>j', function()
-    --             return require 'telescope'.extensions.zoxide.list()
-    --         end, { desc = 'Find zoxide directories' } }
-    --     },
-    --     config = function()
-    --         require 'telescope'.load_extension 'zoxide'
-    --     end,
-    -- },
+    {
+        'jvgrootveld/telescope-zoxide',
+        lazy = true,
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+        },
+        keys = {
+            { '<Leader>j', function()
+                return require 'telescope'.extensions.zoxide.list()
+            end, { desc = 'Find zoxide directories' } }
+        },
+        config = function()
+            require 'telescope'.load_extension 'zoxide'
+        end,
+    },
 }

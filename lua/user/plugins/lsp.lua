@@ -29,7 +29,7 @@ return {
                     end
 
                     -- Mappings
-                    map('n', 'grn', require('user.util.lsp_rename').rename, opts)
+                    -- map('n', 'grn', require('user.util.lsp_rename').rename, opts)
                     map('n', 'gqf', function() vim.lsp.buf.format { async = true } end, opts)
                     map('n', 'gl', vim.diagnostic.open_float, opts)
 
@@ -67,6 +67,7 @@ return {
                 'nushell',
                 'basedpyright',
                 'tinymist',
+                -- 'html-lsp',
             })
         end,
     },
@@ -77,6 +78,7 @@ return {
     },
     {
         'mfussenegger/nvim-jdtls',
+        dependencies = { 'mfussenegger/nvim-dap' },
         ft = 'java'
     }
 }

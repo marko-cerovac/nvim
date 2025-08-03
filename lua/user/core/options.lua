@@ -73,4 +73,3 @@ vim.schedule(function()
         }
     }
 end)
-

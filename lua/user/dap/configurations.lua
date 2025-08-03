@@ -77,11 +77,11 @@ dap.configurations.java = {
         vmArgs = "" .. "-Xmx2g"
     },
     {
-        name = 'Debug Attach (8000)',
+        name = 'Debug Attach (8080)',
         type = 'java',
         request = 'attach',
         hostName = '127.0.0.1',
-        port = 8000
+        port = 8080
     },
     {
         name = 'Debug Attach (5005)',

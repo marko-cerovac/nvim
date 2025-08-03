@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 return {
     {
         'mfussenegger/nvim-dap',
@@ -19,7 +20,27 @@ return {
             local dap = require 'dap'
             local map = vim.keymap.set
             local unmap = vim.keymap.del
-            local opts = { silent = true }
+
+            local cleanup = function()
+                map('n', '<Leader>dd', dap.continue)
+
+                unmap({ 'n', 'v' }, 'ge')
+                unmap({ 'n', 'v' }, 'gw')
+                unmap('n', '<Up>')
+                unmap('n', '<Down>')
+                unmap('n', '<Left>')
+                unmap('n', '<Right>')
+                unmap('n', 'C')
+                unmap('n', 'H')
+                unmap('n', 'J')
+                unmap('n', 'L')
+                unmap('n', '<Leader>dq')
+                unmap('n', '<Leader>ds')
+                unmap('n', '<Leader>dr')
+
+                require('dap-view').close(true)
+                vim.cmd 'DapVirtualTextDisable'
+            end
 
             -- load adapters and configurations
             require 'user.dap.adapters'
@@ -42,39 +63,38 @@ return {
                 { text = '', texthl = 'DapStopped', numhl = '', linehl = 'Visual' }
             )
 
-            dap.listeners.after['event_initialized']['me'] = function()
+            dap.listeners.after['event_initialized']['user'] = function()
 
-                map('n', 'C', dap.continue, opts)
-                map('n', 'H', dap.step_out, opts)
-                map('n', 'J', dap.step_over, opts)
-                map('n', 'L', dap.step_into, opts)
-                map('n', '<Up>', dap.continue, opts)
-                map('n', '<Down>', dap.step_over, opts)
-                map('n', '<Left>', dap.step_out, opts)
-                map('n', '<Right>', dap.step_into, opts)
+                map({'n', 'v'}, 'ge', require('dap.ui.widgets').hover)
+                map('n', 'C', dap.continue, { desc = 'Continue' })
+                map('n', 'H', dap.step_out, { desc = 'Step out' })
+                map('n', 'J', dap.step_over, { desc = 'Step over' })
+                map('n', 'L', dap.step_into, { desc = 'Step into' })
+                map('n', '<Up>', dap.continue, { desc = 'Continue' })
+                map('n', '<Left>', dap.step_out, { desc = 'Step out' })
+                map('n', '<Down>', dap.step_over, { desc = 'Step over' })
+                map('n', '<Right>', dap.step_into, { desc = 'Step into' })
+                map('n', '<Leader>dd', require('dap-view').toggle, { desc = 'Toggle UI' })
+                map({'n', 'v'}, 'gw', require('dap-view').add_expr, { desc = 'Watch expression' })
+
                 map('n', '<Leader>dq', function()
                     dap.repl.close()
-                    dap.terminate()
-                end, opts)
+                    dap.terminate({ all = true })
+                end, { desc = 'Terminate session' })
+
+                map('n', '<Leader>ds', function()
+                    local widgets = require('dap.ui.widgets')
+                    widgets.sidebar(widgets.scopes).open()
+                end, { desc = 'Show locals' })
+
+                map('n', '<Leader>dr', function()
+                    dap.repl.toggle()
+                end, { desc = 'Toggle repl' })
             end
 
-            dap.listeners.before['disconnect']['me'] = function()
-                require 'dapui'.close({ 1, 2, 3, 4, 5 })
-
-                map('n', '<Leader>dd', dap.continue, opts)
-                unmap('n', '<Up>')
-                unmap('n', '<Down>')
-                unmap('n', '<Left>')
-                unmap('n', '<Right>')
-                unmap('n', 'C')
-                unmap('n', 'H')
-                unmap('n', 'J')
-                unmap('n', 'L')
-                unmap('n', '<M-c>')
-                unmap('n', '<Leader>dq')
-                unmap('n', 'ge')
-                unmap('v', 'ge')
-            end
+            dap.listeners.before['disconnect']['user'] = cleanup
+            dap.listeners.before['event_terminated']['user'] = cleanup
+            dap.listeners.before['event_exited']['user'] = cleanup
         end
     },
     {
