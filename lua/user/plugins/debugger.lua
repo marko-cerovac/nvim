@@ -13,7 +13,7 @@ return {
             { '<Leader>dx', function() return require 'dap'.clear_breakpoints() end },
         },
         dependencies = {
-            'theHamsta/nvim-dap-virtual-text',
+            -- 'theHamsta/nvim-dap-virtual-text',
             'igorlfs/nvim-dap-view',
         },
         config = function()
@@ -22,6 +22,15 @@ return {
             local unmap = vim.keymap.del
 
             local cleanup = function()
+
+                -- unlock all buffers for modifications
+                -- for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                --     if vim.api.nvim_buf_is_loaded(bufnr) then
+                --         vim.api.nvim_set_option_value('modifiable', true, { buf = bufnr })
+                --
+                --     end
+                -- end
+
                 map('n', '<Leader>dd', dap.continue)
 
                 unmap({ 'n', 'v' }, 'ge')
@@ -90,6 +99,13 @@ return {
                 map('n', '<Leader>dr', function()
                     dap.repl.toggle()
                 end, { desc = 'Toggle repl' })
+
+                -- lock all open buffers to prevent screwing up the debug session
+                -- for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                --     if vim.api.nvim_buf_is_loaded(bufnr) then
+                --         vim.api.nvim_set_option_value('modifiable', false, { buf = bufnr })
+                --     end
+                -- end
             end
 
             dap.listeners.before['disconnect']['user'] = cleanup
@@ -102,12 +118,12 @@ return {
         lazy = true,
         opts = {}
     },
-    {
-        'theHamsta/nvim-dap-virtual-text',
-        lazy = true,
-        opts = {
-            commented = false,
-            all_references = true
-        }
-    },
+    -- {
+    --     'theHamsta/nvim-dap-virtual-text',
+    --     lazy = true,
+    --     opts = {
+    --         commented = false,
+    --         all_references = true
+    --     }
+    -- },
 }

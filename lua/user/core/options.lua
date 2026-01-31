@@ -61,6 +61,14 @@ vim.opt.shortmess:append({
     q = true,
 })
 
+-- require('vim._extui').enable({
+--     enable = true,
+--     msg = {
+--         -- target = 'cmd'
+--         target = 'msg'
+--     }
+-- })
+
 -- set slower settings async
 vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'

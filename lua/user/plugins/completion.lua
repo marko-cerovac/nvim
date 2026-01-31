@@ -67,19 +67,6 @@ return {
                 ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<M-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
-
-                -- supertab
-                -- ['<Tab>'] = {
-                --     function(cmp)
-                --         if cmp.snippet_active() then
-                --             return cmp.accept()
-                --         else
-                --             return cmp.select_and_accept()
-                --         end
-                --     end,
-                --     'snippet_forward',
-                --     'fallback'
-                -- },
                 ['<Tab>'] = { 'snippet_forward', 'fallback' },
                 ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
@@ -116,12 +103,13 @@ return {
                             },
                         },
                         gap = 2,
-                        treesitter = { 'lsp' },
+                        -- treesitter = { 'lsp' },
                     },
                     scrollbar = false,
                 },
                 documentation = {
-                    auto_show = false
+                    auto_show = false,
+                    window = { scrollbar = false }
                 },
 
                 ghost_text = { enabled = true },

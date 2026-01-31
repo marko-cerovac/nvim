@@ -1,45 +1,6 @@
 return {
     {
-        'echasnovski/mini.notify',
-        config = function()
-            local notify = require 'mini.notify'
-
-            notify.setup {
-                content = {
-                    format = function(notif)
-                        local icon = ' '
-
-                        if notif.level == 'DEBUG' then
-                            icon = ''
-                        elseif notif.level == 'ERROR' then
-                            icon = ''
-                        elseif notif.level == 'INFO' then
-                            icon = ''
-                        elseif notif.level == 'TRACE' then
-                            icon = ''
-                        elseif notif.level == 'WARN' then
-                            icon = ''
-                        end
-
-                        return string.format('%s | %s', icon, notif.msg)
-                    end
-                },
-                lsp_progress = {
-                    enable = true
-                },
-                window = {
-                    -- config = {
-                        -- border = vim.g.border_style
-                    -- },
-                    winblend = 0
-                }
-            }
-
-            vim.notify = notify.make_notify()
-        end,
-    },
-    {
-        'echasnovski/mini.icons',
+        'nvim-mini/mini.icons',
         opts = {},
         -- replace nvim-web-devicons with mini.icons
         specs = {
@@ -53,36 +14,33 @@ return {
         end,
     },
     {
-        'echasnovski/mini.comment',
-        keys = {
-            { '<Leader>k', mode = { 'n', 'v' } },
-            'gc',
-        },
-        opts = {
-            ignore_blank_line = true,
-            mappings = {
-                comment = '<Leader>k',
-                comment_line = '<Leader>k',
-                comment_visual = '<Leader>k',
-                textobject = 'gc',
-            }
-        }
-    },
-    {
-        'echasnovski/mini.pairs',
+        'nvim-mini/mini.pairs',
         event = 'InsertEnter',
         config = true,
     },
     {
-        'echasnovski/mini.surround',
+        'nvim-mini/mini.surround',
         keys = {
             { 's', mode = { 'n', 'v' } },
         },
         config = true
     },
     {
-        'echasnovski/mini.splitjoin',
+        'nvim-mini/mini.splitjoin',
         keys = { 'gS' },
+        config = true
+    },
+    {
+        'nvim-mini/mini.sessions',
+        keys = {
+            { '<leader>ss', function() MiniSessions.select('read') end,   { silent = true } },
+            { '<leader>sd', function() MiniSessions.select('delete') end, { silent = true } },
+            { '<leader>sw', function()
+                local session_name = vim.fn.input({ prompt = 'Session name: ' })
+                MiniSessions.write(session_name)
+            end, { silent = true }
+            },
+        },
         config = true
     },
 }

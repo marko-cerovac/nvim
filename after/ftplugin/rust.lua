@@ -24,6 +24,9 @@ vim.g.rustaceanvim = {
                 enable = true,
             },
         }
+    },
+    tools = {
+        test_executor = 'background'
     }
 }
 
@@ -33,7 +36,7 @@ map('n', '<leader>rr', function() vim.cmd.RustLsp('runnables') end, opts)
 map('n', '<leader>rt', function() vim.cmd.RustLsp('testables') end, opts)
 map('n', '<leader>re', function() vim.cmd.RustLsp('explainError') end, opts)
 map('n', '<leader>rc', function() vim.cmd.RustLsp('flyCheck') end, opts)
-map('n', 'L', function() vim.cmd.RustLsp({ 'renderDiagnostic', 'current' }) end, opts)
+-- map('n', 'L', function() vim.cmd.RustLsp({ 'renderDiagnostic', 'current' }) end, opts)
 map({ 'n', 'v' }, '<Leader>ra', vim.lsp.buf.code_action, opts)
 
 vim.api.nvim_buf_create_user_command(buf, 'LspRebuildMacro', function()

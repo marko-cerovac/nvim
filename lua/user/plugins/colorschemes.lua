@@ -3,7 +3,7 @@ return {
         'marko-cerovac/balaena',
         priority = 1000,
         config = function()
-            vim.cmd 'colorscheme balaena'
+            vim.cmd.colorscheme 'balaena'
         end
     },
     {
@@ -44,14 +44,14 @@ return {
             }
 
             -- enable the colorscheme
-            -- vim.cmd 'colorscheme material'
+            -- vim.cmd.colorscheme 'material'
         end
     },
     {
         'mcauley-penney/techbase.nvim',
         lazy = true,
-        config = function ()
-            vim.cmd 'colorscheme techbase'
+        config = function()
+            vim.cmd.colorscheme 'techbase'
         end
     },
 }

@@ -1,21 +1,19 @@
 local jdtls = require 'jdtls'
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.env.HOME .. '/Code/Projects/jdtls-workspace/' .. project_name
-local system_os = 'linux' -- linux | win | mac
+-- local system_os = 'linux' -- linux | win | mac
 
 local function mason_executable(path)
     return vim.fn.glob(vim.fn.stdpath('data') .. '/mason/packages/' .. path, true)
 end
 
 local config = {
-    -- The command that starts the language server
-    -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
 
         -- 💀
         '/usr/lib/jvm/java-21-openjdk/bin/java', -- or '/path/to/java17_or_newer/bin/java'
-        -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
+        '-javaagent:' .. mason_executable('jdtls/lombok.jar'),
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -32,9 +30,9 @@ local config = {
         '-jar',
         -- home .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar',
         mason_executable('jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-        -- Must point to the                                                     Change this to
-        -- eclipse.jdt.ls installation                                           the actual version
+        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        -- Must point to the
+        -- eclipse.jdt.ls installation
 
         -- 💀
         '-configuration',

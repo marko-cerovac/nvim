@@ -1,7 +1,7 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        -- branch = '0.1.x',
         event = 'UIEnter',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -15,17 +15,20 @@ return {
             local telescope = require 'telescope'
             local actions   = require 'telescope.actions'
             local themes    = require 'telescope.themes'
+            local layout    = require 'telescope.actions.layout'
+            local builtin   = require 'telescope.builtin'
             local map       = vim.keymap.set
 
             local neovim_settings = function()
                 require 'telescope.builtin'.find_files {
+                    previewer = false,
                     prompt_title = 'NeoVim Settings',
                     cwd = vim.fn.stdpath 'config',
                     -- cwd = vim.fn.stdpath 'config' .. '/lua/user',
                 }
             end
 
-            -- REMOVE AS SOON AS POSSIBLE
+            -- TODO: REMOVE AS SOON AS POSSIBLE
             -- ------------------------------------------------
             vim.api.nvim_create_autocmd("User", {
                 pattern = "TelescopeFindPre",
@@ -52,11 +55,13 @@ return {
                             ['<M-j>'] = actions.move_selection_next,
                             ['<M-k>'] = actions.move_selection_previous,
                             ['<C-s>'] = actions.select_horizontal,
+                            ['<C-p>'] = layout.toggle_preview
                         },
                         n = {
                             ['s'] = actions.select_horizontal,
                             ['v'] = actions.select_vertical,
                             ['t'] = actions.select_tab,
+                            ['p'] = layout.toggle_preview
                         },
                     },
                     prompt_prefix = ' ',
@@ -74,25 +79,28 @@ return {
                             },
                         },
                     },
+                    help_tags = { previewer = false },
                     commands = { theme = 'dropdown' },
-                    marks = { theme = 'dropdown' },
+                    -- marks = { theme = 'dropdown' },
                     colorscheme = { theme = 'dropdown' },
                     lsp_references = { theme = 'cursor' },
+                    git_commits = { previewer = false },
                 },
                 extensions = {
-                    ['file_browser'] = {
-                        hijack_netrw = true,
-                    },
                     ['ui-select'] = {
                         themes.get_dropdown { initial_mode = 'normal' }
                     },
-                    ['cmdline'] = {
-                        mappings = {
-                            complete      = '<Tab>',
-                            run_selection = '<CR>',
-                            run_input     = '<C-CR>',
-                        }
-                    }
+                    ['file_browser'] = {
+                        previewer = false,
+                        hijack_netrw = true,
+                    },
+                    -- ['cmdline'] = {
+                    --     mappings = {
+                    --         complete      = '<Tab>',
+                    --         run_selection = '<CR>',
+                    --         run_input     = '<C-CR>',
+                    --     }
+                    -- }
                 }
             }
 
@@ -101,18 +109,18 @@ return {
             telescope.load_extension 'ui-select'
 
             map('n', 'gs', neovim_settings, { desc = 'Find NeoVim settings' })
-            map('n', 'g;', require('telescope.builtin').buffers, { desc = 'Find open buffers' })
-            map('n', 'grr', require('telescope.builtin').lsp_references, { desc = 'Find LSP references' })
-            map('n', 'gO', require('telescope.builtin').lsp_document_symbols, { desc = 'Show LSP document symbols' })
-            map('n', 'gri', require('telescope.builtin').lsp_implementations, { desc = 'Find LSP implementations' })
-            map('n', '<Leader>fg', require('telescope.builtin').live_grep, { desc = 'Grep directory' })
-            map('n', '<Leader>fr', require('telescope.builtin').oldfiles, { desc = 'Find recent files' })
-            map('n', '<Leader>ft', require('telescope.builtin').colorscheme, { desc = 'Find colorschemes' })
-            map('n', '<Leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help tags' })
-            map('n', '<Leader>fm', require('telescope.builtin').marks, { desc = 'Find marks' })
-            map('n', '<Leader>gg', require('telescope.builtin').git_files, { desc = 'Find Git files' })
-            map('n', '<Leader>gc', require('telescope.builtin').git_commits, { desc = 'Find Git commits' })
-            map('n', '<Leader>gb', require('telescope.builtin').git_branches, { desc = 'Find Git branches' })
+            map('n', 'g;', builtin.buffers, { desc = 'Find open buffers' })
+            map('n', 'grr', builtin.lsp_references, { desc = 'Find LSP references' })
+            map('n', 'gO', builtin.lsp_document_symbols, { desc = 'Show LSP document symbols' })
+            map('n', 'gri', builtin.lsp_implementations, { desc = 'Find LSP implementations' })
+            map('n', '<Leader>fg', builtin.live_grep, { desc = 'Grep directory' })
+            map('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent files' })
+            map('n', '<Leader>ft', builtin.colorscheme, { desc = 'Find colorschemes' })
+            map('n', '<Leader>fh', builtin.help_tags, { desc = 'Find help tags' })
+            map('n', '<Leader>fm', builtin.marks, { desc = 'Find marks' })
+            map('n', '<Leader>gg', builtin.git_files, { desc = 'Find Git files' })
+            map('n', '<Leader>gc', builtin.git_commits, { desc = 'Find Git commits' })
+            map('n', '<Leader>gb', builtin.git_branches, { desc = 'Find Git branches' })
         end
 
     },
@@ -135,31 +143,5 @@ return {
         config = function()
             require 'telescope'.load_extension 'file_browser'
         end
-    },
-    {
-        'jonarrien/telescope-cmdline.nvim',
-        dependencies = { 'nvim-telescope/telescope.nvim' },
-        lazy = true,
-        keys = {
-            { '<S-Enter>', '<cmd>Telescope cmdline<CR>', { desc = 'Open Telescope command line' } },
-        },
-        config = function()
-            require 'telescope'.load_extension 'cmdline'
-        end
-    },
-    {
-        'jvgrootveld/telescope-zoxide',
-        lazy = true,
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-        },
-        keys = {
-            { '<Leader>j', function()
-                return require 'telescope'.extensions.zoxide.list()
-            end, { desc = 'Find zoxide directories' } }
-        },
-        config = function()
-            require 'telescope'.load_extension 'zoxide'
-        end,
     },
 }

@@ -30,6 +30,7 @@ return {
 
                     -- Mappings
                     -- map('n', 'grn', require('user.util.lsp_rename').rename, opts)
+                    map('n', 'gd', vim.lsp.buf.definition, opts)
                     map('n', 'gqf', function() vim.lsp.buf.format { async = true } end, opts)
                     map('n', 'gl', vim.diagnostic.open_float, opts)
 

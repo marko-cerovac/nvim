@@ -17,10 +17,10 @@ map('n', '<M-K>', ':resize +2<CR>', { desc = 'Resize window up' })
 map('n', '<M-H>', ':vertical resize -2<CR>', { desc = 'Resize window to the left' })
 map('n', '<M-L>', ':vertical resize +2<CR>', { desc = 'Resize window to the right' })
 
-map('n', '<Esc>', ':noh<CR>', { desc = 'Clear serarch highlighting' })
-map('n', 'gh', ':noh<CR>', { desc = 'Clear serarch highlighting' })
+map('n', 'gh', ':noh<CR>', { desc = 'Clear serarch highlighting', silent = true })
 map('i', 'jf', '<Esc>', { desc = 'Escape insert mode' })
 map('i', 'fj', '<Esc>', { desc = 'Escape insert mode' })
+map('i', 'kj', '<Esc>', { desc = 'Escape insert mode' })
 
 -- hold on to selection when indenting
 map('v', '<', '<gv')
@@ -45,6 +45,13 @@ map({ 'n', 't' }, '<M-t>', function()
     require('user.util.floating_terminal').toggle(shell_cmd)
 end, { desc = 'Toggle floating terminal' })
 
+-- lua REPL
+map('n', '<M-r>', function ()
+    require('user.util.lua_repl').open({
+        close_cmd = '<M-r>'
+    })
+end)
+
 -- terminal navigation
 map('t', '<Esc><Esc>', '<C-\\><C-n>')
 map('t', '<M-j>', '<C-\\><C-n><C-w>j')
@@ -58,3 +65,5 @@ map('i', '.', '.<C-g>u')
 map('i', ';', ';<C-g>u')
 
 map('v', 'g=', '! column -t -s= -o=<CR>', { desc = 'Align code to the \'=\' char' })
+
+-- require('user.util.markdown_table_format')
