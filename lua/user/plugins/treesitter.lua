@@ -7,14 +7,18 @@ return {
 
             treesitter.setup()
             treesitter.install {
+                'lua',
+                'vim',
                 'c',
                 'cpp',
                 'rust',
                 'java',
-                'vim',
-                'lua',
+                'python',
                 'bash',
+                'zsh',
+                'nu',
                 'toml',
+                'json',
                 'markdown',
                 'markdown_inline',
             }

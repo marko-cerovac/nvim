@@ -1,5 +1,43 @@
 return {
     {
+        'stevearc/oil.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        keys = {
+            { '<leader>o', '<cmd>Oil<CR>' },
+        },
+        opts = {
+            keymaps = {
+                ['<leader>o'] = 'actions.close',
+                ['<Esc>'] = 'actions.close'
+            }
+        }
+    },
+    {
+        'norcalli/nvim-colorizer.lua',
+        cmd = 'ColorizerToggle',
+        init = function()
+            vim.cmd 'cabbrev ct ColorizerToggle'
+        end
+    },
+    {
+        'OXY2DEV/markview.nvim',
+        priority = 1100,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        ft = {
+            'markdown',
+            'typst',
+            'yaml',
+            'tex',
+            'html',
+        },
+        init = function()
+            vim.cmd 'cabbrev mdv Markview'
+        end,
+        opts = {},
+    },
+    {
         'cbochs/grapple.nvim',
         opts = {
             scope = 'git', -- static | global
