@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local dap      = require 'dap'
 local find_exe = require 'user.util.dap_launch'
 

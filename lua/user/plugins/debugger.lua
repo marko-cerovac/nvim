@@ -2,54 +2,20 @@
 return {
     {
         'mfussenegger/nvim-dap',
+        dependencies = {
+            "igorlfs/nvim-dap-view",
+        },
         keys = {
             { '<Leader>dd', function() return require 'dap'.continue() end },
-            { '<Leader>b',  function() return require 'dap'.toggle_breakpoint() end },
-            { '<M-;>',      function() return require 'dap'.toggle_breakpoint() end },
-            { '<Leader>db', function()
+            { '<Leader>db', function() return require 'dap'.toggle_breakpoint() end },
+            { '<Leader>dB', function()
                 local condition = vim.fn.input({ prompt = 'Breakpoint condition: ' })
                 return require 'dap'.toggle_breakpoint(condition)
             end },
-            { '<Leader>dx', function() return require 'dap'.clear_breakpoints() end },
-        },
-        dependencies = {
-            -- 'theHamsta/nvim-dap-virtual-text',
-            'igorlfs/nvim-dap-view',
         },
         config = function()
             local dap = require 'dap'
-            local map = vim.keymap.set
-            local unmap = vim.keymap.del
-
-            local cleanup = function()
-
-                -- unlock all buffers for modifications
-                -- for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-                --     if vim.api.nvim_buf_is_loaded(bufnr) then
-                --         vim.api.nvim_set_option_value('modifiable', true, { buf = bufnr })
-                --
-                --     end
-                -- end
-
-                map('n', '<Leader>dd', dap.continue)
-
-                unmap({ 'n', 'v' }, 'ge')
-                unmap({ 'n', 'v' }, 'gw')
-                unmap('n', '<Up>')
-                unmap('n', '<Down>')
-                unmap('n', '<Left>')
-                unmap('n', '<Right>')
-                unmap('n', 'C')
-                unmap('n', 'H')
-                unmap('n', 'J')
-                unmap('n', 'L')
-                unmap('n', '<Leader>dq')
-                unmap('n', '<Leader>ds')
-                unmap('n', '<Leader>dr')
-
-                require('dap-view').close(true)
-                vim.cmd 'DapVirtualTextDisable'
-            end
+            local mappings = require 'user.util.dap_mappings'
 
             -- load adapters and configurations
             require 'user.dap.adapters'
@@ -72,58 +38,52 @@ return {
                 { text = '', texthl = 'DapStopped', numhl = '', linehl = 'Visual' }
             )
 
-            dap.listeners.after['event_initialized']['user'] = function()
+            vim.api.nvim_create_user_command('DapCreateMappings', function()
+                mappings.create()
+            end, {})
+            vim.api.nvim_create_user_command('DapDeleteMappings', function()
+                mappings.delete()
+            end, {})
+            vim.api.nvim_create_user_command('DapCleanUp', function()
+                vim.cmd 'DapViewClose'
+                dap.repl.close()
+                dap.terminate({
+                    disconnect_args = {
+                        terminateDebugee = true
+                    },
+                    all = true,
+                    hierarchy = true
+                })
+                mappings.delete()
+            end, {})
 
-                map({'n', 'v'}, 'ge', require('dap.ui.widgets').hover)
-                map('n', 'C', dap.continue, { desc = 'Continue' })
-                map('n', 'H', dap.step_out, { desc = 'Step out' })
-                map('n', 'J', dap.step_over, { desc = 'Step over' })
-                map('n', 'L', dap.step_into, { desc = 'Step into' })
-                map('n', '<Up>', dap.continue, { desc = 'Continue' })
-                map('n', '<Left>', dap.step_out, { desc = 'Step out' })
-                map('n', '<Down>', dap.step_over, { desc = 'Step over' })
-                map('n', '<Right>', dap.step_into, { desc = 'Step into' })
-                map('n', '<Leader>dd', require('dap-view').toggle, { desc = 'Toggle UI' })
-                map({'n', 'v'}, 'gw', require('dap-view').add_expr, { desc = 'Watch expression' })
-
-                map('n', '<Leader>dq', function()
-                    dap.repl.close()
-                    dap.terminate({ all = true })
-                end, { desc = 'Terminate session' })
-
-                map('n', '<Leader>ds', function()
-                    local widgets = require('dap.ui.widgets')
-                    widgets.sidebar(widgets.scopes).open()
-                end, { desc = 'Show locals' })
-
-                map('n', '<Leader>dr', function()
-                    dap.repl.toggle()
-                end, { desc = 'Toggle repl' })
-
-                -- lock all open buffers to prevent screwing up the debug session
-                -- for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-                --     if vim.api.nvim_buf_is_loaded(bufnr) then
-                --         vim.api.nvim_set_option_value('modifiable', false, { buf = bufnr })
-                --     end
-                -- end
-            end
-
-            dap.listeners.before['disconnect']['user'] = cleanup
-            dap.listeners.before['event_terminated']['user'] = cleanup
-            dap.listeners.before['event_exited']['user'] = cleanup
+            -- create mappings when a session starts,
+            -- and delete them when it ends
+            dap.listeners.after.event_initialized['user'] = mappings.create
+            dap.listeners.before.disconnect['user'] = mappings.delete
+            dap.listeners.before.event_terminated['user'] = mappings.delete
+            dap.listeners.before.event_exited['user'] = mappings.delete
         end
     },
     {
-        'igorlfs/nvim-dap-view',
+        "igorlfs/nvim-dap-view",
         lazy = true,
-        opts = {}
+        opts = {
+            winbar = {
+                sections = {
+                    "console",
+                    "watches",
+                    "scopes",
+                    "exceptions",
+                    "breakpoints",
+                    "threads",
+                    "repl",
+                    "sessions",
+                },
+                default_section = "console",
+            },
+            windows = { size = 0.3, },
+            auto_toggle = true,
+        },
     },
-    -- {
-    --     'theHamsta/nvim-dap-virtual-text',
-    --     lazy = true,
-    --     opts = {
-    --         commented = false,
-    --         all_references = true
-    --     }
-    -- },
 }

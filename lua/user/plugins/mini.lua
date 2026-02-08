@@ -30,17 +30,4 @@ return {
         keys = { 'gS' },
         config = true
     },
-    {
-        'nvim-mini/mini.sessions',
-        keys = {
-            { '<leader>ss', function() MiniSessions.select('read') end,   { silent = true } },
-            { '<leader>sd', function() MiniSessions.select('delete') end, { silent = true } },
-            { '<leader>sw', function()
-                local session_name = vim.fn.input({ prompt = 'Session name: ' })
-                MiniSessions.write(session_name)
-            end, { silent = true }
-            },
-        },
-        config = true
-    },
 }
