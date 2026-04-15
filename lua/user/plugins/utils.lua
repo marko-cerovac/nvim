@@ -3,12 +3,27 @@ return {
         'stevearc/oil.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         keys = {
-            { '<leader>o', '<cmd>Oil<CR>' },
+            { 'go', '<cmd>Oil<CR>' },
         },
         opts = {
+            -- columns = {
+            --     'icon',
+            --     'permissions',
+            --     'size',
+            --      'mtime',
+            -- },
             keymaps = {
-                ['<leader>o'] = 'actions.close',
-                ['<Esc>'] = 'actions.close'
+                ['go'] = 'actions.close',
+                -- ['<Esc>'] = 'actions.close',
+                ["gl"] = function()
+                    if vim.g.oil_list_long ~= true then
+                        vim.g.oil_list_long = true
+                        require('oil').set_columns({ 'icon', 'permissions', 'size', 'mtime' })
+                    else
+                        vim.g.oil_list_long = false
+                        require('oil').set_columns({ 'icon' })
+                    end
+                end,
             }
         }
     },
@@ -25,13 +40,14 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
         },
-        ft = {
-            'markdown',
-            'typst',
-            'yaml',
-            'tex',
-            'html',
-        },
+        cmd = 'Markview',
+        -- ft = {
+        --     'markdown',
+        --     'typst',
+        --     'yaml',
+        --     'tex',
+        --     'html',
+        -- },
         init = function()
             vim.cmd 'cabbrev mdv Markview'
         end,

@@ -23,7 +23,7 @@ return {
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
                     -- enable lsp folding if the ls supports it
-                    if client:supports_method('textDocument/foldingRange') then
+                    if client and client:supports_method('textDocument/foldingRange') then
                         local win = vim.api.nvim_get_current_win()
                         vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
                     end
@@ -35,6 +35,11 @@ return {
                     map('n', 'gl', vim.diagnostic.open_float, opts)
 
                     -- Commands
+                    vim.api.nvim_buf_create_user_command(ev.buf, 'Diagnostics', function()
+                            vim.diagnostic.setqflist()
+                        end,
+                        { nargs = 0 }
+                    )
                     vim.api.nvim_buf_create_user_command(ev.buf, 'LspInlayHintToggle', function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                         end,
@@ -64,10 +69,11 @@ return {
             vim.lsp.enable({
                 'lua_ls',
                 'clangd',
-                'sqls',
+                'jdtls',
+                -- 'sqls',
                 'nushell',
-                'basedpyright',
-                'tinymist',
+                -- 'basedpyright',
+                -- 'tinymist',
                 -- 'html-lsp',
             })
         end,

@@ -28,6 +28,6 @@ return {
     {
         'nvim-mini/mini.splitjoin',
         keys = { 'gS' },
-        config = true
+        config = true -- hello
     },
 }

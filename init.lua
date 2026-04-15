@@ -2,9 +2,9 @@
 -- author: Marko Cerovac
 -- repo:   https://github.com/marko-cerovac/nvim
 
-if vim.g.vscode then
-    return
-end
+-- if vim.g.vscode then
+--     return
+-- end
 
 require 'user.core.options'
 

@@ -26,3 +26,5 @@ vim.api.nvim_create_user_command('TableFormat', function(opts)
 
     fill_separator(opts.line1 + 1)
 end, { range = true })
+
+vim.w.conceallevel = 2

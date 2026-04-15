@@ -2,6 +2,22 @@ return {
     {
         'marko-cerovac/balaena',
         priority = 1000,
+        init = function()
+            vim.api.nvim_create_autocmd('OptionSet', {
+                pattern = 'background',
+                callback = function()
+                    local bg_val = vim.v.option_new
+                    if bg_val == 'dark' then
+                        vim.cmd.colorscheme 'balaena'
+                    elseif bg_val == 'light' then
+                        vim.cmd.colorscheme 'default'
+                    end
+                end,
+                group = vim.api.nvim_create_augroup("user.background_change", {
+                    clear = true
+                })
+            })
+        end,
         config = function()
             vim.cmd.colorscheme 'balaena'
         end
@@ -46,5 +62,13 @@ return {
             -- enable the colorscheme
             -- vim.cmd.colorscheme 'material'
         end
+    },
+    {
+        'gbprod/nord.nvim',
+        lazy = true,
+        config = function()
+            require('nord').setup({})
+            vim.cmd.colorscheme('nord')
+        end,
     },
 }

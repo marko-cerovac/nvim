@@ -84,6 +84,7 @@ return {
                     -- marks = { theme = 'dropdown' },
                     colorscheme = { theme = 'dropdown' },
                     lsp_references = { theme = 'cursor' },
+                    git_files = { show_untracked = true },
                     git_commits = { previewer = false },
                 },
                 extensions = {

@@ -1,13 +1,22 @@
+local term_group = vim.api.nvim_create_augroup('user.terminal', {
+    clear = true
+})
 -- open terminal in insert mode
 vim.api.nvim_create_autocmd('TermOpen', {
     callback = function()
         vim.opt_local.number = false
         vim.opt_local.relativenumber = false
+        vim.opt_local.signcolumn = "no"
         vim.cmd 'startinsert'
     end,
-    group = vim.api.nvim_create_augroup('user.terminal', {
-        clear = true
-    })
+    group = term_group
+})
+-- Automatically close the terminal window when the process exits
+vim.api.nvim_create_autocmd('TermClose', {
+  callback = function()
+    vim.cmd 'bdelete!'
+  end,
+  group = term_group
 })
 
 -- highlight text on yank

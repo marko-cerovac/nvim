@@ -52,7 +52,17 @@ return {
         dependencies = { 'L3MON4D3/LuaSnip' },
         build = 'cargo build --release',
         event = 'UIEnter',
+        init = function()
+            -- toggle completion on keymap
+            vim.g.blink_cmp_enabled = true
+            vim.keymap.set('n', 'grc', function()
+                vim.g.blink_cmp_enabled = not vim.g.blink_cmp_enabled
+            end, { desc = 'Toggle completion'})
+        end,
         opts = {
+            enabled = function ()
+                return vim.g.blink_cmp_enabled ~= false
+            end,
             cmdline = { enabled = true },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },

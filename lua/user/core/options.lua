@@ -61,13 +61,7 @@ vim.opt.shortmess:append({
     q = true,
 })
 
--- require('vim._extui').enable({
---     enable = true,
---     msg = {
---         -- target = 'cmd'
---         target = 'msg'
---     }
--- })
+require('vim._core.ui2').enable({ })
 
 -- set slower settings async
 vim.schedule(function()

@@ -139,4 +139,20 @@ return {
         },
         config = true
     },
+    {
+        'nvim-mini/mini.diff',
+        event = 'VeryLazy',
+        config = function()
+            require('mini.diff').setup {
+                view = {
+                    -- style = vim.go.number and 'number' or 'sign',
+                    style = 'sign',
+                    signs = { add = '▍', change = '▍', delete = '' },
+                },
+            }
+
+            ---@diagnostic disable-next-line: undefined-global
+            vim.keymap.set('n', '<Leader>gd', MiniDiff.toggle_overlay, { silent = true })
+        end,
+    }
 }

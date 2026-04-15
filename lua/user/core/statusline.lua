@@ -56,28 +56,6 @@ local function git()
     return string.format(' %%#Title#%%%s: %s%s%s', branch, added, changed, removed)
 end
 
--- scrap this
--- local lsp_clients = {}
--- local function lsp_client()
---     local bufnr = vim.api.nvim_get_current_buf()
---     if lsp_clients[bufnr] then
---         return string.format('%s', lsp_clients[bufnr])
---     else
---         local result = ''
---         local servers = vim.lsp.get_clients({ bufnr = bufnr })
---         if not vim.tbl_isempty(servers) then
---             for _, server in pairs(servers) do
---                 result = result .. '+' .. server.name
---             end
---         end
---
---         lsp_clients[bufnr] = result:sub(2) .. ':'
---         vim.schedule(function()
---             vim.cmd 'redrawstatus'
---         end)
---     end
--- end
-
 local function diagnostics()
     local bufnr = vim.api.nvim_get_current_buf()
     if not vim.diagnostic.is_enabled({ bufnr = bufnr }) then return '' end
@@ -100,6 +78,7 @@ local function diagnostics()
         return string.format('  :%s', result)
     end
 end
+
 
 local function dap()
     if not package.loaded['dap'] then
@@ -127,7 +106,6 @@ local function macro_recording()
 end
 
 local function visual_selected()
-
     local ln_beg = vim.fn.line('v')
     local ln_end = vim.fn.line('.')
 
@@ -164,6 +142,7 @@ Statusline.active = function()
         '%#StatusLine#',
         -- lsp_client(),
         diagnostics(),
+        -- vim.diagnostic.status(),
         '%#StatusLine#',
         dap(),
         '%=%=',
