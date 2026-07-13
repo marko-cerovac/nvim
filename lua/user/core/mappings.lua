@@ -30,29 +30,18 @@ map('v', '>', '>gv')
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 
--- check if nu exists and use it as a shell
-local shell_cmd = vim.fn.executable('nu') == 1 and 'nu' or ''
-
--- map('n', '<Leader>tv', function()
---     vim.cmd.vsp()
---     vim.cmd.term(shell_cmd)
--- end, { desc = 'Open terminal vertically' })
--- map('n', '<Leader>ts', function()
---     vim.cmd.sp()
---     vim.cmd.term(shell_cmd)
--- end, { desc = 'Open terminal horizontally' })
 
 map({ 'n', 't' }, '<M-t>', function()
-    require('user.util.terminal').toggle_current_buf(shell_cmd)
+    require('user.util.terminal').toggle_current_buf()
 end, { desc = 'Toggle floating terminal' })
 map({ 'n', 't' }, '<M-f>', function()
-    require('user.util.terminal').toggle_floating(shell_cmd)
+    require('user.util.terminal').toggle_floating()
 end, { desc = 'Toggle floating terminal' })
 map({ 'n', 't' }, '<M-v>', function()
-    require('user.util.terminal').toggle("v", shell_cmd)
+    require('user.util.terminal').toggle("v")
 end, { desc = 'Toggle vertical split terminal '})
 map({ 'n', 't' }, '<M-s>', function()
-    require('user.util.terminal').toggle("h", shell_cmd)
+    require('user.util.terminal').toggle("h")
 end, { desc = 'Toggle vertical split terminal '})
 
 -- lua REPL

@@ -57,23 +57,23 @@ return {
             vim.g.blink_cmp_enabled = true
             vim.keymap.set('n', 'grc', function()
                 vim.g.blink_cmp_enabled = not vim.g.blink_cmp_enabled
-            end, { desc = 'Toggle completion'})
+            end, { desc = 'Toggle completion' })
         end,
         opts = {
-            enabled = function ()
+            enabled = function()
                 return vim.g.blink_cmp_enabled ~= false
             end,
             cmdline = { enabled = true },
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'snippets', 'lsp', 'path', 'buffer' },
             },
             keymap = {
                 preset = 'none',
-                ['<M-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
                 ['<CR>'] = { 'accept', 'fallback' },
                 ['<M-c>'] = { 'hide' },
                 ['<M-j>'] = { 'select_next', 'fallback_to_mappings' },
                 ['<M-k>'] = { 'select_prev', 'fallback_to_mappings' },
+                ['<M-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
                 ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<M-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
@@ -84,7 +84,6 @@ return {
             completion = {
                 accept = {
                     auto_brackets = { enabled = false }
-
                 },
                 list = {
                     selection = {

@@ -41,6 +41,9 @@ return {
                         })
                     end,
                 },
+                lsp = {
+                    enabled = false
+                }
             }
 
             -- vim.o.autoread = true -- already 'true'

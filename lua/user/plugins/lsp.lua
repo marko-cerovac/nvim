@@ -33,13 +33,8 @@ return {
                     map('n', 'gd', vim.lsp.buf.definition, opts)
                     map('n', 'gqf', function() vim.lsp.buf.format { async = true } end, opts)
                     map('n', 'gl', vim.diagnostic.open_float, opts)
+                    map('n', 'grq', vim.diagnostic.setqflist, opts)
 
-                    -- Commands
-                    vim.api.nvim_buf_create_user_command(ev.buf, 'Diagnostics', function()
-                            vim.diagnostic.setqflist()
-                        end,
-                        { nargs = 0 }
-                    )
                     vim.api.nvim_buf_create_user_command(ev.buf, 'LspInlayHintToggle', function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                         end,
@@ -69,7 +64,7 @@ return {
             vim.lsp.enable({
                 'lua_ls',
                 'clangd',
-                'jdtls',
+                -- 'jdtls', -- TURN BACK ON LATER
                 -- 'sqls',
                 'nushell',
                 -- 'basedpyright',
@@ -83,9 +78,9 @@ return {
         version = '^5',
         ft = 'rust'
     },
-    {
-        'mfussenegger/nvim-jdtls',
-        dependencies = { 'mfussenegger/nvim-dap' },
-        ft = 'java'
-    }
+    -- {
+    --     'mfussenegger/nvim-jdtls',
+    --     dependencies = { 'mfussenegger/nvim-dap' },
+    --     ft = 'java'
+    -- }
 }

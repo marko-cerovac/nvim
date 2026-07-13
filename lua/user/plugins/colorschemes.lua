@@ -10,6 +10,7 @@ return {
                     if bg_val == 'dark' then
                         vim.cmd.colorscheme 'balaena'
                     elseif bg_val == 'light' then
+                        vim.cmd.highlight 'clear'
                         vim.cmd.colorscheme 'default'
                     end
                 end,

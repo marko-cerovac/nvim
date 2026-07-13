@@ -43,19 +43,19 @@ local function create_floating_window(opts)
     return { buf = opts.buf, win = win }
 end
 
-M.toggle_floating = function(shell_cmd)
+M.toggle_floating = function()
     if vim.api.nvim_win_is_valid(state.floating.win) then
         vim.api.nvim_win_hide(state.floating.win)
     else
         state.floating = create_floating_window { buf = state.floating.buf }
 
         if vim.bo[state.floating.buf].buftype ~= 'terminal' then
-            vim.cmd.term(shell_cmd)
+            vim.cmd.term()
         end
     end
 end
 
-M.toggle = function(split_type, shell_cmd)
+M.toggle = function(split_type)
   -- Determine the command based on split_type
   local split_cmd = (split_type == "v") and "vsplit" or "split"
 
@@ -73,13 +73,12 @@ M.toggle = function(split_type, shell_cmd)
     end
   else
     -- If terminal doesn't exist, create it with the specified split type
-    vim.cmd(split_cmd .. " | terminal " .. shell_cmd)
+    vim.cmd(split_cmd .. " | terminal ")
     term_buf = vim.api.nvim_get_current_buf()
   end
 end
 
-M.toggle_current_buf = function(shell_cmd)
-    shell_cmd = shell_cmd or ''
+M.toggle_current_buf = function()
 
   -- If the current buffer is a terminal, switch back to the previous buffer
   if vim.bo.buftype == 'terminal' then
@@ -90,7 +89,7 @@ M.toggle_current_buf = function(shell_cmd)
       vim.cmd('buffer ' .. term_buf)
     else
       -- Otherwise, create a new terminal
-      vim.cmd('terminal ' .. shell_cmd)
+      vim.cmd('terminal')
       term_buf = vim.api.nvim_get_current_buf()
     end
     -- Enter insert mode automatically when switching to the terminal

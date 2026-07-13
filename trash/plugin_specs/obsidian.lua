@@ -4,8 +4,8 @@ return {
         version = '*',
         lazy = true,
         event = {
-            'BufReadPre ' .. vim.fn.expand '~' .. '/Vaults/Life/*.md',
-            'BufNewFile ' .. vim.fn.expand '~' .. '/Vaults/Life/*.md',
+            'BufReadPre ' .. vim.fn.expand '~' .. '/Vaults/Cerebrum/*.md',
+            'BufNewFile ' .. vim.fn.expand '~' .. '/Vaults/Cerebrum/*.md',
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -14,7 +14,7 @@ return {
             workspaces = {
                 {
                     name = 'personal',
-                    path = '~/Vaults/Life',
+                    path = '~/Vaults/Cerebrum',
                 },
             },
             daily_notes = {
@@ -27,7 +27,7 @@ return {
                 img_folder = 'Attachments/Images'
             },
             completion = {
-                nvim_cmp = false
+                blink = true
             },
             ui = {
                 enable = false -- use markview.nvim for rendering

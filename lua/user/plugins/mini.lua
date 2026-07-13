@@ -13,11 +13,11 @@ return {
             end
         end,
     },
-    {
-        'nvim-mini/mini.pairs',
-        event = 'InsertEnter',
-        config = true,
-    },
+    -- {
+    --     'nvim-mini/mini.pairs',
+    --     event = 'InsertEnter',
+    --     config = true,
+    -- },
     {
         'nvim-mini/mini.surround',
         keys = {
