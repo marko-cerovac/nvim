@@ -1,20 +1,17 @@
--- neovim config
 -- author: Marko Cerovac
 -- repo:   https://github.com/marko-cerovac/nvim
 
--- if vim.g.vscode then
---     return
--- end
+vim.loader.enable()
 
-require 'user.core.options'
+require 'user.options'
 
-require 'user.core.mappings'
+require 'user.mappings'
 
-require 'user.core.autocmds'
+require 'user.autocmds'
 
-require 'user.core.statusline'
+require 'user.statusline'
 
-require 'user.core.lazy'
+require 'user.lazy'
 
 if vim.g.neovide then
     require 'user.clients.neovide'
