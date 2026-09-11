@@ -63,7 +63,7 @@ return {
             enabled = function()
                 return vim.g.blink_cmp_enabled ~= false
             end,
-            cmdline = { enabled = true },
+            cmdline = { enabled = false },
             sources = {
                 default = { 'snippets', 'lsp', 'path', 'buffer' },
             },

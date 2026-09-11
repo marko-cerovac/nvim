@@ -6,18 +6,17 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             {
-                'nvim-telescope/telescope-fzy-native.nvim',
+                'nvim-telescope/telescope-fzf-native.nvim',
                 build = 'make'
             },
             'nvim-telescope/telescope-ui-select.nvim',
         },
         config = function()
-            local telescope = require 'telescope'
-            local actions   = require 'telescope.actions'
-            local themes    = require 'telescope.themes'
-            local layout    = require 'telescope.actions.layout'
-            local builtin   = require 'telescope.builtin'
-            local map       = vim.keymap.set
+            local telescope       = require 'telescope'
+            local actions         = require 'telescope.actions'
+            local themes          = require 'telescope.themes'
+            local layout          = require 'telescope.actions.layout'
+            local builtin         = require 'telescope.builtin'
 
             local neovim_settings = function()
                 require 'telescope.builtin'.find_files {
@@ -27,25 +26,6 @@ return {
                     -- cwd = vim.fn.stdpath 'config' .. '/lua/user',
                 }
             end
-
-            -- TODO: REMOVE AS SOON AS POSSIBLE
-            -- ------------------------------------------------
-            vim.api.nvim_create_autocmd("User", {
-                pattern = "TelescopeFindPre",
-                callback = function()
-                    vim.opt_local.winborder = "none"
-                    vim.api.nvim_create_autocmd("WinLeave", {
-                        once = true,
-                        callback = function()
-                            vim.opt_local.winborder = "single"
-                        end,
-                    })
-                end,
-                group = vim.api.nvim_create_augroup('user.ugly_telescope_border_workaround', {
-                    clear = true
-                })
-            })
-            -- ------------------------------------------------
 
             telescope.setup {
                 defaults = themes.get_ivy {
@@ -102,26 +82,32 @@ return {
                     --         run_input     = '<C-CR>',
                     --     }
                     -- }
+                },
+                ['fzf'] = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
                 }
             }
 
             -- load extensions
-            telescope.load_extension 'fzy_native'
+            telescope.load_extension 'fzf'
             telescope.load_extension 'ui-select'
 
-            map('n', 'gs', neovim_settings, { desc = 'Find NeoVim settings' })
-            map('n', 'g;', builtin.buffers, { desc = 'Find open buffers' })
-            map('n', 'grr', builtin.lsp_references, { desc = 'Find LSP references' })
-            map('n', 'gO', builtin.lsp_document_symbols, { desc = 'Show LSP document symbols' })
-            map('n', 'gri', builtin.lsp_implementations, { desc = 'Find LSP implementations' })
-            map('n', '<Leader>fg', builtin.live_grep, { desc = 'Grep directory' })
-            map('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent files' })
-            map('n', '<Leader>ft', builtin.colorscheme, { desc = 'Find colorschemes' })
-            map('n', '<Leader>fh', builtin.help_tags, { desc = 'Find help tags' })
-            map('n', '<Leader>fm', builtin.marks, { desc = 'Find marks' })
-            map('n', '<Leader>gg', builtin.git_files, { desc = 'Find Git files' })
-            map('n', '<Leader>gc', builtin.git_commits, { desc = 'Find Git commits' })
-            map('n', '<Leader>gb', builtin.git_branches, { desc = 'Find Git branches' })
+            vim.keymap.set('n', 'gs', neovim_settings, { desc = 'Find NeoVim settings' })
+            vim.keymap.set('n', 'g;', builtin.buffers, { desc = 'Find open buffers' })
+            vim.keymap.set('n', 'grr', builtin.lsp_references, { desc = 'Find LSP references' })
+            vim.keymap.set('n', 'gO', builtin.lsp_document_symbols, { desc = 'Show LSP document symbols' })
+            vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'Find LSP implementations' })
+            vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Grep directory' })
+            vim.keymap.set('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent files' })
+            vim.keymap.set('n', '<Leader>ft', builtin.colorscheme, { desc = 'Find colorschemes' })
+            vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Find help tags' })
+            vim.keymap.set('n', '<Leader>fm', builtin.marks, { desc = 'Find marks' })
+            vim.keymap.set('n', '<Leader>gg', builtin.git_files, { desc = 'Find Git files' })
+            vim.keymap.set('n', '<Leader>gc', builtin.git_commits, { desc = 'Find Git commits' })
+            vim.keymap.set('n', '<Leader>gb', builtin.git_branches, { desc = 'Find Git branches' })
         end
 
     },
@@ -137,7 +123,10 @@ return {
         },
         keys = {
             { '<Leader>e', function()
-                return require 'telescope'.extensions.file_browser.file_browser()
+                return require 'telescope'.extensions.file_browser.file_browser({
+                    path = vim.fn.expand('%:p:h'),
+                    select_buffer = true
+                })
             end, { desc = 'Open Telescope file browser' }
             },
         },

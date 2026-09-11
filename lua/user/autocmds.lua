@@ -12,17 +12,17 @@ vim.api.nvim_create_autocmd('TermOpen', {
     group = term_group
 })
 -- Automatically close the terminal window when the process exits
-vim.api.nvim_create_autocmd('TermClose', {
-  callback = function()
-    vim.cmd 'bdelete!'
-  end,
-  group = term_group
-})
+-- vim.api.nvim_create_autocmd('TermClose', {
+--   callback = function()
+--     vim.cmd 'bdelete!'
+--   end,
+--   group = term_group
+-- })
 
 -- highlight text on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank {
+        vim.hl.hl_op {
             higroup = 'Visual',
             timeout = 250,
             on_visual = false
@@ -41,31 +41,4 @@ vim.api.nvim_create_autocmd('VimResized', {
     group = vim.api.nvim_create_augroup('user.readjust_windows', {
         clear = true
     })
-})
-
--- clear cmdline text after 5 seconds
--- vim.api.nvim_create_autocmd('CmdLineLeave', {
---     callback = function()
---         vim.defer_fn(function() vim.cmd 'echom ""' end, 5000)
---     end,
---     group = vim.api.nvim_create_augroup('user.clear_cmdline', {
---         clear = true
---     })
--- })
-
--- notify when recording macros
-local recording_group = vim.api.nvim_create_augroup('user.notify_recording', {
-    clear = true
-})
-vim.api.nvim_create_autocmd('RecordingEnter', {
-    callback = function ()
-        vim.notify("Recording @" .. vim.fn.reg_recording())
-    end,
-    group = recording_group
-})
-vim.api.nvim_create_autocmd('RecordingLeave', {
-    callback = function ()
-        vim.notify("Stoped recording @" .. vim.fn.reg_recording())
-    end,
-    group = recording_group
 })

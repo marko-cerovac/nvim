@@ -48,12 +48,13 @@ vim.opt.listchars = {
 
 -- other
 vim.opt.mouse = 'a'
-vim.opt.autochdir = true
 vim.opt.smartcase = true
 vim.opt.grepprg = 'rg --vimgrep'
 vim.o.inccommand = 'split'
 vim.opt.shortmess:append({q = true})
 
+-- disable built in dir browser
+vim.g.loaded_nvim_dir_plugin = 1
 require('vim._core.ui2').enable({})
 
 -- slower settings

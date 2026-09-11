@@ -4,10 +4,10 @@ return {
             runtime = {
                 version = 'LuaJIT',
             },
-            workspace = {
+            -- workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
+                -- library = vim.api.nvim_get_runtime_file("", true),
+            -- },
             diagnostics = {
                 globals = { 'vim' },
             },

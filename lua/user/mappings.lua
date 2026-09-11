@@ -37,6 +37,9 @@ vim.keymap.set('t', '<M-j>', '<C-\\><C-n><C-w>j', { desc = 'Move focus to the lo
 vim.keymap.set('t', '<M-k>', '<C-\\><C-n><C-w>k', { desc = 'Move focus to the upper window' })
 vim.keymap.set('t', '<M-l>', '<C-\\><C-n><C-w>l', { desc = 'Move focus to the right window' })
 
+-- change directory to that of currnet buffer
+vim.keymap.set('n', '<leader>cd', ':lcd %:h<CR>', { desc = 'Change directory to that of current buffer' })
+
 -- undo breakpoints
 vim.keymap.set('i', ',', ',<C-g>u')
 vim.keymap.set('i', '.', '.<C-g>u')

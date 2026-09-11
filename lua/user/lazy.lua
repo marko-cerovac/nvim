@@ -1,7 +1,7 @@
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system {
         "git",
         "clone",
@@ -16,10 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("user.plugins", {
     ui = {
-        -- remove as soon as possible
-        -- --------------------------------
-        border = vim.opt.winborder["_value"],
-        -- --------------------------------
+        border = vim.g.border_style,
         backdrop = 100
     },
     performance = {
